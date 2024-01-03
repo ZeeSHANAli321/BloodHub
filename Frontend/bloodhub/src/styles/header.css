@@ -5,6 +5,9 @@
     color: var(--c-txt-head);
     font-size: 4rem;
 }
+.homeLogoname{
+    color: white !important;
+}
 .nav{
     font-family: 'Inter',sans-serif;
     font-weight:bold;
@@ -15,16 +18,25 @@
 }
 .nav li{
     margin-left:35px;
-
 }
+.homeNav li{
+    color: white;
+}
+
 .header{
+    z-index: 100;
     border-bottom: 5px solid black;
     box-shadow: var(--box-shadow);
-    transition: all 1.5s ease-in-out;
+    transition: all .5s ease-in-out;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    background: white ;
+}
+.homeHeader{
+    border-bottom: 0px solid transparent !important ;
+    box-shadow: none;
 }
 
 

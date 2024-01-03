@@ -1,0 +1,141 @@
+.heroDiv{
+    background: url('../images/Bloodcell.png') no-repeat 0 0;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    height: 60vh;
+    width: 100%;
+
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.heroTxt h1{
+    font-family: 'Jomhuria',sans-serif;
+    
+    color: white;
+    font-size: 4rem;
+}
+.heroTxt{
+    text-align: center;
+}
+.interTxt{
+    font-family: 'Inter',sans-serif;
+
+}
+.bloodDonationImg{
+    border-right: 2px solid black;
+}
+.sectionPadding{
+    padding: 5px 0px;
+
+}
+.teamwokimg{
+    border:none !important;
+}
+.sectionHead{
+  font-family: 'Jomhuria',sans-serif;  
+  font-size: 100px;
+}
+
+/* Who we are  */
+.whoWeAre{
+    background-color: var(--c-theme);
+}
+
+/* howItWork */
+.howItWork{
+    background-color: #F4F4F4;
+}
+.step{
+    margin-left: 100px;
+}
+.stepNum{
+    font-size: 30px;
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 5px;
+    left: -46px;
+    background-color: #D9D9D9 ;
+    z-index: 1;
+}
+.stepContainer::after{
+    content: "";
+    height: 79%;
+    width: 1px;
+    background-color: black;
+    position: absolute;
+    top: 77px;
+    left: 84px;
+}
+.stepImg img{
+    height: 150px;
+    width: 150px;
+
+}
+.stepHeader{
+    font-family: 'Jomhuria',sans-serif;
+    font-size: 50px;
+}
+/* Contact us  */
+.contact{
+    background-color: var(--c-theme2);
+}
+@media (min-width:767.98px) and (max-width:992.98px){
+    .sectionHead{
+        font-size: 70px;
+    }
+    .heroTxt h1{
+        font-size: 3rem;
+    }
+    .bloodDonationImg img{
+    height: 150px;
+    width: 150px;
+    }
+    .interTxt{
+        font-size: .7rem;
+    }
+}
+@media (min-width:575.98px) and (max-width:767.98px){
+    .heroTxt h1{
+        font-size: 2.5rem;
+        
+
+    }
+
+}
+@media (max-width:575.98px){
+    .heroTxt h1{
+        font-size: 2rem;
+    }
+    .heroNavs button{
+        font-size: .6rem;
+    }
+}
+
+@media (max-width:767.98px){
+    .sectionHead{
+        font-size: 40px;
+    }
+    .interTxt{
+        font-size: .7rem;
+    }
+    .bloodDonationImg{
+        border-right: none;
+       
+    }
+    .bloodDonationImg img{
+        height: 100px !important;
+        width: 100px !important;
+    }
+   
+
+}
