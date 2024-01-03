@@ -1,38 +1,24 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: 'Jomhuria';
+  src: local('Jomhuria'), url('Fonts/Jomhuria/Jomhuria-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  src: local('Inter'), url('Fonts/Inter/Inter-VariableFont_slnt\,wght.ttf') format('truetype');
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root{
+  --c-theme: #FFABAB;
+  --c-theme2: #D4E3FF;
+  --c-txt-head:#000000;
+  --c-txt-light:rgba(0,0,0,82%);
+  --c-txt-white:white;
+  --box-shadow: 0px 1px 18px 3px #888888;
+  --transition: all 1.5s ease-in-out;
+}
+*{
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

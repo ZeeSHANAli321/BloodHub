@@ -1,0 +1,54 @@
+.logoName{
+    font-family: 'Jomhuria',sans-serif;
+    margin: auto;
+    padding-top: 6px;
+    color: var(--c-txt-head);
+    font-size: 4rem;
+}
+.nav{
+    font-family: 'Inter',sans-serif;
+    font-weight:bold;
+    align-items: center;
+    font-size: 0.9rem;
+    
+    
+}
+.nav li{
+    margin-left:35px;
+
+}
+.header{
+    border-bottom: 5px solid black;
+    box-shadow: var(--box-shadow);
+    transition: all 1.5s ease-in-out;
+}
+
+
+@media (max-width: 767.98px) {
+    .logoImage{
+        height: 50px !important;
+        width: 50px !important;
+    }
+    .logoName{
+        
+        padding-top: 6px;
+        color: var(--c-txt-head);
+        font-size: 3rem;
+    }
+    .nav{
+        font-family: 'Inter',sans-serif;
+        font-weight:lighter;
+        align-items: center;
+        font-size: 2.9rem;
+        display: block;
+        text-align: center;
+        border-top:1px solid rgb(0, 0, 0);
+
+        
+    }
+    .nav li{
+        margin-left: 0px;
+    }
+   
+    
+}
