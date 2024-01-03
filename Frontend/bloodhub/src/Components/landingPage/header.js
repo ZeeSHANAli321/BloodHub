@@ -21,7 +21,7 @@ export default function Header() {
     display: isActiveNav ? 'block' : 'none',
   }
   return (
-    <div className="header nav bg-light  overflow-hidden" style={navStyle}>
+    <div className="header nav overflow-hidden" style={navStyle}>
       <div className="navBarContainer container-lg" >
         <div className=" d-lg-flex flex-row justify-content-between align-items-center ">
           <div className="w-auto w-md-100 w-lg-auto text-md-center d-flex align-items-center justify-content-between">

@@ -21,6 +21,10 @@
     border-bottom: 5px solid black;
     box-shadow: var(--box-shadow);
     transition: all 1.5s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
 
