@@ -2,7 +2,7 @@ import React from 'react'
 import "../../styles/blogBlock.css";
 export default function BlogBlocks() {
   return (
-    <div className='blogBlock mx-2'>
+    <div className='blogBlock m-2'>
         <div className="blogImg">
             
         </div>

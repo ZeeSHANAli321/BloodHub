@@ -1,0 +1,44 @@
+.waveSvg{
+    /* position: relative;
+    left: 0;
+    top: 0; */
+    background-color: var(--c-theme2);
+    
+    
+}
+.footerElements{
+    background-color: var(--c-theme);
+    margin-top: -1px;
+    overflow: hidden;
+}
+.footerElements .container{
+    padding: 0px;
+}
+.footerLinks{
+    list-style: none;
+    
+}
+.socials i{
+    margin-right: 10px;
+}
+.footerLinks li{
+    margin-right: 7px;
+    font-weight: lighter;
+   
+}
+.subFooter{
+    border-top: 2px solid black;
+    background-color: var(--c-theme);
+}
+@media (max-width:575.98px){
+.footerElements li{
+    font-size: 10px;
+}
+.subFooter span{
+    font-size: 7px;
+    
+}
+.socials i{
+    font-size: 20px;
+}
+}

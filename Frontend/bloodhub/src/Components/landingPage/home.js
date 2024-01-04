@@ -9,8 +9,9 @@ import Chat from '../../images/discussion.png'
 import Seeker from '../../images/job-seeker.png'
 import Timeline from '../../images/timeline.png'
 import Uipanel from '../../images/digital-marketing.png'
+import contact from '../../images/contact.png'
 import BlogBlocks from './blogBlocks'
-import TextField from "@mui/material/TextField";
+/* import TextField from "@mui/material/TextField"; */
 
 export default function Home() {
     const homeBtnStyle = {
@@ -214,12 +215,12 @@ export default function Home() {
             <div className="row">
             <h2 className='sectionHead'>Blogs</h2>
             </div>
-            <div className="row">
+            <div className="row sectionDisc">
                 <p>
                 Discover our Blogs for comprehensive knowledge on the significance of blood donation, effective utilization, and the motivating factors driving this essential act.
                 </p>
             </div>
-            <div className="row blogBlockContainer">
+            <div className="row blogBlockContainer d-flex justify-content-center">
                 <BlogBlocks />
                 <BlogBlocks />
                 <BlogBlocks />
@@ -235,17 +236,20 @@ export default function Home() {
             </div>
             
             <div className="row">
-                <div className="col-md-3 col-12 bloodDonationImg d-flex justify-content-center align-items-center">
-                    <img height='200px' width='200px' src={BloodDonation} alt="BloodDonation png" />
+                <div className="col-md-3  col-12 bloodDonationImg d-flex justify-content-center align-items-center">
+                    <img height='200px' width='200px' src={contact} alt="BloodDonation png" />
                 </div>
-                <div className="col-md-9 col-12 px-2 ps-md-3  interTxt  d-flex align-items-center">
+                <div className="col-md-9 col-12 px-2 ps-md-3  interTxt  d-flex align-items-center justify-content-center">
                    <div className="contactForm">
                         <form >
-                            <div className="formElement d-flex flex-col">
-                            <TextField name='name' label="Name" variant="filled" />
-                        <TextField name='email' label="Email" variant="filled" />
-                        <TextField name='subject' label="Subject" variant="filled" />
-                     
+                            <div className="formElement d-flex flex-column">
+                                    <input className='formInput' placeholder='Name' type="text" name='name' />
+                                    <input className='formInput' placeholder='Email' type="text" name='email' />
+                                    <input className='formInput' placeholder='Subject' type="text" name='subject' />
+                                    <textarea className='formInput'  name="Message" placeholder='Message' id="Message" cols="30" rows="5" />
+                                    <Button type='submit' className='formInput mt-2' variant="outlined" style={homeBtnStyle}> 
+                                    Contact
+                                    </Button>
                             </div>
                            </form>
                    </div>

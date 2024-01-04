@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./Components/landingPage/header"
 import Home from './Components/landingPage/home'
+import Footer from './Components/landingPage/footer'
 import { useEffect,useState } from 'react' 
 
 function App() {
@@ -28,7 +29,12 @@ function App() {
       <Route path='/' element={<>
       <Header type={isScrolled?'none':'home'}/>
       <Home />
+      <Footer />
       </>} />
+      <Route path='footer/' element={
+        <Footer />
+      }
+      />
 
 
 
