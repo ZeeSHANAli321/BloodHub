@@ -1,5 +1,5 @@
 import React from 'react'
-import "../../styles/blogBlock.css";
+import "./blogBlock.css";
 export default function BlogBlocks() {
   return (
     <div className='blogBlock m-2'>

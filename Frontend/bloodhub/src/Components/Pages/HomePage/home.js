@@ -1,31 +1,40 @@
 import React from 'react'
-import "../../styles/home.css";
-import Button from "@mui/material/Button";
-import BloodDonation from '../../images/BloodDonation.png'
-import Teamwork from '../../images/teamwork.png'
-import Blooddonor from '../../images/blooddonor.png'
-import Login from '../../images/log-in.png'
-import Chat from '../../images/discussion.png'
-import Seeker from '../../images/job-seeker.png'
-import Timeline from '../../images/timeline.png'
-import Uipanel from '../../images/digital-marketing.png'
-import contact from '../../images/contact.png'
-import BlogBlocks from './blogBlocks'
-/* import TextField from "@mui/material/TextField"; */
+import "./home.css";
+import ButtonT1 from '../../Atoms/Buttons/ButtonT1'
+import BloodDonation from '../../../Assets/images/BloodDonation.png'
+import Teamwork from '../../../Assets/images/teamwork.png'
+import Blooddonor from '../../../Assets/images/blooddonor.png'
+import Login from '../../../Assets/images/log-in.png'
+import Chat from '../../../Assets/images/discussion.png'
+import Seeker from '../../../Assets/images/job-seeker.png'
+import Timeline from '../../../Assets/images/timeline.png'
+import Uipanel from '../../../Assets/images/digital-marketing.png'
+import contact from '../../../Assets/images/contact.png'
+import BlogBlocks from '../../Molecules/cards/blogCards/blogBlocks'
+import Header from "../../Molecules/navBars/header"
+import Footer from '../../Molecules/footer/footer'
+
+import { useEffect,useState } from 'react' 
 
 export default function Home() {
-    const homeBtnStyle = {
-        color: "black",
-        borderColor: "red",
-        fontWeight: "bold",
-        background:'white',
-        
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+      const handleScroll = () => {
+       
+        if (window.scrollY > 0) {
+          setIsScrolled(true);
+        } else {
+          setIsScrolled(false);
+        }
       };
-
-
+      window.addEventListener('scroll', handleScroll);
+  
+    }, []);
   return (
     
     <>
+    <Header type={isScrolled?'none':'home'}/>
     <section className='hero mb-2 mb-md-5'>
         <div className='heroDiv'>
             <div className="heroTxtContainer d-flex flex-column ">
@@ -33,12 +42,8 @@ export default function Home() {
                     <h1 >"The joy of saving lives is in your veins. Donate blood."</h1>
                 </div>
                 <div className="heroNavs d-flex flex-row justify-content-center">
-                <Button  variant="outlined" style={homeBtnStyle}>
-                  Become a Donor
-                </Button>
-                <Button className='ms-2' variant="outlined" style={homeBtnStyle}>
-                  Become a seeker
-                </Button>
+                    <ButtonT1 text="Become a Donor"/>
+                    <ButtonT1 text="Become a Seeker" classStyle="ms-2"/>
                 </div>
             </div>
         </div>
@@ -247,9 +252,8 @@ export default function Home() {
                                     <input className='formInput' placeholder='Email' type="text" name='email' />
                                     <input className='formInput' placeholder='Subject' type="text" name='subject' />
                                     <textarea className='formInput'  name="Message" placeholder='Message' id="Message" cols="30" rows="5" />
-                                    <Button type='submit' className='formInput mt-2' variant="outlined" style={homeBtnStyle}> 
-                                    Contact
-                                    </Button>
+
+                                    <ButtonT1 text="Contact" classStyle="formInput mt-2" />
                             </div>
                            </form>
                    </div>
@@ -258,6 +262,7 @@ export default function Home() {
             
         </div>
     </section>
+    <Footer />
     </>
   )
 }

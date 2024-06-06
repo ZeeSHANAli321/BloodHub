@@ -1,6 +1,6 @@
 import React from "react";
-import "../../styles/header.css";
-import Logo from "../../images/No-Bg-logo2.png";
+import "./header.css";
+import Logo from "../../../Assets/images/No-Bg-logo2.png";
 import  { useState } from 'react';
 import Button from "@mui/material/Button";
 import MenuIcon from "@mui/icons-material/Menu";

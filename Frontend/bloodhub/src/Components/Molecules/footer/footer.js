@@ -1,6 +1,6 @@
 import React from "react";
-import "../../styles/footer.css";
-import Logo from "../../images/No-Bg-logo2.png";
+import "./footer.css";
+import Logo from "../../../Assets/images/No-Bg-logo2.png";
 export default function Footer() {
   return (
     <>
@@ -40,7 +40,7 @@ export default function Footer() {
                 </div>
               </div>
               <div className="row">
-                <div className="col-md-6 mx-auto d-inline-flex justify-content-center">
+                <div className="col-md-10 mx-auto d-inline-flex justify-content-center">
                     <ul className="d-inline-flex footerLinks  ">
                         <li>Privacy Policy</li>
                         <li>Terms and Condition </li>
