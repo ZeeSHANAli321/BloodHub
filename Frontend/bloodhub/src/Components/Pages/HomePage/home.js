@@ -13,6 +13,7 @@ import contact from '../../../Assets/images/contact.png'
 import BlogBlocks from '../../Molecules/cards/blogCards/blogBlocks'
 import Header from "../../Molecules/navBars/header"
 import Footer from '../../Molecules/footer/footer'
+import SectionT1 from 'Components/Molecules/Sections/SectionT1';
 
 import { useEffect,useState } from 'react' 
 
@@ -31,6 +32,10 @@ export default function Home() {
       window.addEventListener('scroll', handleScroll);
   
     }, []);
+    const whoWeAreSectionDesc = `
+    We're Zeeshan Ali, Gaurav Gupta, and Ashirwad Gupta, a trio from "Alpha." Studying Computer Science at Mahamaya IT Polytechnic Maharajganj, it's our final year. Our project, "BloodHub," is our minor project focus. BloodHub is all about helping people with blood needs. It's a website we're making to connect blood donors with those who need it urgently. Our goal is to make it easy for donors to help save lives. By creating this platform, we aim to make donating and receiving blood simpler and quicker. We're using what we've learned to make a real difference in healthcare and the community. As a team, we're excited to apply our skills to benefit others by making blood donation more accessible and impactful.
+`;
+    
   return (
     
     <>
@@ -42,8 +47,8 @@ export default function Home() {
                     <h1 >"The joy of saving lives is in your veins. Donate blood."</h1>
                 </div>
                 <div className="heroNavs d-flex flex-row justify-content-center">
-                    <ButtonT1 text="Become a Donor"/>
-                    <ButtonT1 text="Become a Seeker" classStyle="ms-2"/>
+                    <ButtonT1 to="/donorRegistration" text="Become a Donor"/>
+                    <ButtonT1 to="/seekerRegistration" text="Become a Seeker" classStyle="ms-2"/>
                 </div>
             </div>
         </div>
@@ -65,8 +70,8 @@ export default function Home() {
             </div>
         </div>
     </section>
-
-    <section className='whoWeAre sectionPadding py-5'>
+    <SectionT1 sectionHead="Who we are " sectionImgSrc={Teamwork}  varColor="--c-theme" sectionDesc={whoWeAreSectionDesc} />
+    {/* <section className='whoWeAre sectionPadding py-5'>
         <div className="container">
             <div className="row">
                 <h2 className='sectionHead'>Who we are </h2>
@@ -84,7 +89,7 @@ export default function Home() {
                
             </div>
         </div>
-    </section>
+    </section> */}
 
     <section className='howItWork sectionPadding py-5'>
         <div className="container">

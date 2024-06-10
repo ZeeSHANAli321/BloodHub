@@ -4,8 +4,9 @@ import Logo from "../../../Assets/images/No-Bg-logo2.png";
 import  { useState } from 'react';
 import Button from "@mui/material/Button";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Link } from "react-router-dom";
 
-export default function Header({ type }) {
+export default function Header({ type,id }) {
   const BtnStyle = {
     color:"red",
     borderColor: "red",
@@ -33,14 +34,16 @@ export default function Header({ type }) {
   }
   return (<>
  {type === 'home' ? <>
- <div className="header homeHeader nav overflow-hidden" style={navStyle}>
+ <div id={id} className="header homeHeader nav overflow-hidden" style={navStyle}>
       <div className="navBarContainer container-lg" >
         <div className=" d-lg-flex flex-row justify-content-between align-items-center ">
           <div className="w-auto w-md-100 w-lg-auto text-md-center d-flex align-items-center justify-content-between">
+            <Link to="/" style={{textDecoration:"none"}}>
             <div className="align-items-center d-inline-flex">
               <img src={Logo} height="70px" width="70px" className="logoImage" alt="BloodHub Logo" />
               <h1 className="logoName homeLogoname">BLOODHUB</h1>
             </div>
+            </Link>
             <div className="hamContainer d-md-none">
             <MenuIcon fontSize="large" style={{color:'white'}} onClick={()=>{isActiveNav?setIsActiveNav(false):setIsActiveNav(true)}} />
             </div>
@@ -64,14 +67,16 @@ export default function Header({ type }) {
       </div>
     </div>
  </> : <>
- <div className="header nav overflow-hidden" style={navStyle2} >
+ <div  id={id} className="header nav overflow-hidden" style={navStyle2} >
       <div className="navBarContainer container-lg" >
         <div className=" d-lg-flex flex-row justify-content-between align-items-center ">
           <div className="w-auto w-md-100 w-lg-auto text-md-center d-flex align-items-center justify-content-between">
+          <Link to="/" style={{textDecoration:"none"}}>
             <div className="align-items-center d-inline-flex">
               <img src={Logo} height="70px" width="70px" className="logoImage" alt="BloodHub Logo" />
               <h1 className="logoName">BLOODHUB</h1>
             </div>
+          </Link>
             <div className="hamContainer d-md-none">
             <MenuIcon fontSize="large" onClick={()=>{isActiveNav?setIsActiveNav(false):setIsActiveNav(true)}} />
             </div>

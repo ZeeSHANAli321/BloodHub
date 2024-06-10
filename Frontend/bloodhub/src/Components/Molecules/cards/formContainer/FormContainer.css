@@ -1,0 +1,14 @@
+.formHeader h2{
+    font-family: Jomhuria;
+    font-size: 70px;
+}
+.formContainer{
+    border-radius: 50px;
+    background-color: var(--c-form-bg);
+}
+@media (max-width:399px){
+    .formHeader h2{
+        font-family: Jomhuria;
+        font-size: 40px;
+    }
+}

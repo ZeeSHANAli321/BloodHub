@@ -2,21 +2,23 @@ import React from "react";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 
-export default function ButtonT1({ text, classStyle, type, to }) {
-  const homeBtnStyle = {
+export default function ButtonT2({ text, classStyle, type, to }) {
+  const btnStyle = {
     color: "black",
-    borderColor: "red",
     fontWeight: "bold",
-    background: "white",
+    background: "var(--c-theme)",
+    borderRadius:"40px",
+    fontSize:"1rem"
+    
   };
   return (
     <>
-      <Link to={to} style={{textDecoration:"none"}}>
+      <Link to={to} className="px-5 py-4" style={{textDecoration:"none"}}>
         <Button
-          variant="outlined"
+          variant="contained"
           type={type}
           className={classStyle}
-          style={homeBtnStyle}
+          style={btnStyle}
         >
           {text}
         </Button>

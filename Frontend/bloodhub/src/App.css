@@ -13,6 +13,7 @@
   --c-txt-head:#000000;
   --c-txt-light:rgba(0,0,0,82%);
   --c-txt-white:white;
+  --c-form-bg:#B3CDFF;
   --box-shadow: 0px 1px 18px 3px #888888;
   --transition: all 1.5s ease-in-out;
 }

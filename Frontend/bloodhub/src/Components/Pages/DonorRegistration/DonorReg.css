@@ -1,0 +1,40 @@
+.donorRegSection{
+    padding-top: 100px !important;
+}
+.inputContainer{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 3px;
+        background-color: black;
+}
+.inputElements{
+    background-color: var(--c-form-bg);
+    padding: 5px;
+   
+}
+.inputElements label{
+    font-weight: bold;
+}
+.inputElements input,.inputElements select{
+    border:none;
+    font-family: Inter;
+    padding: 5px;
+}
+
+@media(max-width:399px){
+    .inputContainer{
+        display: grid;
+        grid-template-columns:1fr;
+        grid-column-gap: 0px;
+        background-color: transparent;
+}
+    .inputElements input{
+        width: 100% !important;
+    }
+    .inputElements label{
+        width: 100% !important;
+    }
+    .inputElements select{
+        width: 100% !important;
+    }
+}
