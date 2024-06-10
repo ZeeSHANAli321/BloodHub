@@ -19,3 +19,4 @@ class Donor(models.Model):
     Gender = models.CharField(max_length=10 , choices=(('Male','M'),
                                                        ('Female','F'),
                                                        ('Other','O')))
+    address = models.CharField(max_length=250)
