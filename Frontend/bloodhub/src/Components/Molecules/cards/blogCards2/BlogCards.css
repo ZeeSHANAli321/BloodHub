@@ -1,0 +1,17 @@
+/* src/Box.css */
+.box {
+    padding: 16px;
+    text-align: center;
+  }
+  
+  .box-image img {
+    width: 70%;
+    height: 70%;
+  }
+  
+  .box-title {
+    font-size: 1.2em;
+    margin-top: 8px;
+    font-weight: 700;
+  }
+  

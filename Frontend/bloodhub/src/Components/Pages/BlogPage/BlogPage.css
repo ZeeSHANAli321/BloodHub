@@ -1,0 +1,14 @@
+.HeroDiv{
+    background: url('../../../Assets/images/BlogImage.png') no-repeat 0 0;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    height: 60vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.Text{
+    font-weight: 700;
+}
