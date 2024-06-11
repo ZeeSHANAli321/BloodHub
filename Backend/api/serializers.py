@@ -4,6 +4,7 @@ from .models import Seeker
 from .models import login_Donor
 from .models import login_Seeker
 from .models import contact_us
+from .models import BlogPost
 
 class donorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -37,4 +38,9 @@ class login_SeekerSerializer(serializers.HyperlinkedModelSerializer):
 class contact_usSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model=contact_us
-        fields = "__all__"                              
+        fields = "__all__"   
+
+class BlogPostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BlogPost
+        fields = ['id', 'title', 'image', 'description']                         
