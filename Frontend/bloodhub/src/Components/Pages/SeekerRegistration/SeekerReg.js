@@ -7,6 +7,7 @@ import Footer from 'Components/Molecules/footer/footer'
 import Seeker from 'Assets/images/seeker.png';
 import { useEffect,useState } from 'react'
 import { getHeight } from 'Utils/util'
+import { useRef } from 'react';
 
 
 
@@ -14,7 +15,8 @@ export default function SeekerReg() {
     const [width, setWidth] = useState(window.innerWidth);
     const [toBraodcast,setToBroadcast] = useState(false);
     const handleTogle = (e) => {
-        setToBroadcast(e.target.value);
+        setToBroadcast(e.target.checked);
+        console.log("Value changes " + e.target.checked)
     }
     useEffect(() => {
         const handleResize = () => {
@@ -30,9 +32,14 @@ export default function SeekerReg() {
         const donorRegSection = document.querySelector('.SeekerRegistration');
         donorRegSection.style.setProperty('padding-top', `${getHeight('header')+30}px`, 'important');
     }, [width]);
-
+    const broadCastMsgStyle = useRef({display:"none"});
     useEffect(()=>{
-        console.log(toBraodcast) 
+        if(!toBraodcast){
+            broadCastMsgStyle.current = {display:"block"}
+        } else{
+            broadCastMsgStyle.current = {display:"none"}
+        }
+        
     },[toBraodcast]);
 
     const becomeASeekerSectionDesc = `"Seeking blood isn't a sign of weakness; it's a courageous step towards life, hope, and a chance to write a new chapter of resilience."`;
@@ -119,7 +126,7 @@ export default function SeekerReg() {
              <div className='BroadcastSection  px-md-5 m-auto align-items-center justify-content-between'>
                 <div className='option d-flex  m-auto align-items-center justify-content-between'>
                     <div className=' inputElements broadCardOption ms-md-3 d-flex'>
-                        <input id='toBraodcast' onClick={handleTogle} value={toBraodcast} type="checkbox" style={{fontSize:"1.5rem"}}/>
+                        <input id='toBraodcast' onChange={handleTogle} value={toBraodcast} type="checkbox" style={{fontSize:"1.5rem"}}/>
                         <label htmlFor="CheckBox"   className='ms-3 text-start'>Want to braodcast your need ?</label>
                     </div>
                     <div className='broadcastInfo position-relative d-flex align-items-center justify-content-center me-md-3'>
@@ -131,9 +138,9 @@ export default function SeekerReg() {
                     </div>
                     </div>
                 </div>
-                <div className='broadcastMsg inputElements px-5'>
+                <div className='broadcastMsg  inputElements px-5 ' style={broadCastMsgStyle.current}>
                     <label htmlFor="Broadcast message " className=' w-75 text-start'>Broadcast message </label>
-                    <input type="text" className='w-100' />
+                    <textarea placeholder='Enter your Message here' className='w-100' rows="4"/>
                 </div>
              </div>
         </div>

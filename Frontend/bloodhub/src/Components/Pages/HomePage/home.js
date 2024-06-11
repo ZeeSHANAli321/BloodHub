@@ -14,6 +14,7 @@ import BlogBlocks from '../../Molecules/cards/blogCards/blogBlocks'
 import Header from "../../Molecules/navBars/header"
 import Footer from '../../Molecules/footer/footer'
 import SectionT1 from 'Components/Molecules/Sections/SectionT1';
+import { Link as Rlink ,Element } from "react-scroll";
 
 import { useEffect,useState } from 'react' 
 
@@ -40,7 +41,7 @@ export default function Home() {
     
     <>
     <Header type={isScrolled?'none':'home'}/>
-    <section className='hero mb-2 mb-md-5'>
+    <section id='home' className='hero mb-2 mb-md-5'>
         <div className='heroDiv'>
             <div className="heroTxtContainer d-flex flex-column ">
                 <div className='heroTxt px-2'>
@@ -52,7 +53,6 @@ export default function Home() {
                 </div>
             </div>
         </div>
-        
     </section>
     
     <section className='section2 sectionPadding'>
@@ -70,7 +70,8 @@ export default function Home() {
             </div>
         </div>
     </section>
-    <SectionT1 sectionHead="Who we are " sectionImgSrc={Teamwork}  varColor="--c-theme" sectionDesc={whoWeAreSectionDesc} />
+
+    <SectionT1 name="whoWeAre" id="whoWeAre"  sectionHead="Who we are " sectionImgSrc={Teamwork}  varColor="--c-theme" sectionDesc={whoWeAreSectionDesc} />
     {/* <section className='whoWeAre sectionPadding py-5'>
         <div className="container">
             <div className="row">
@@ -91,7 +92,7 @@ export default function Home() {
         </div>
     </section> */}
 
-    <section className='howItWork sectionPadding py-5'>
+    <Element  name='howItWork' id='howItWork' className='howItWork sectionPadding py-5'>
         <div className="container">
             <div className="row">
             <h2 className='sectionHead text-center'>How it works </h2>
@@ -218,7 +219,7 @@ export default function Home() {
                 </p>
             </div>
         </div>
-    </section>
+    </Element>
 
     <section className="blogs sectionPadding py-5">
         <div className="container">
@@ -239,7 +240,7 @@ export default function Home() {
         </div>
     </section>
 
-    <section className="contact sectionPadding py-5">
+    <Element name='contact' id='contact' className="contact sectionPadding py-5">
         <div className="container">
             <div className="row">
             <h2 className='sectionHead text-center'>Contact us</h2>
@@ -266,7 +267,7 @@ export default function Home() {
             </div>        
             
         </div>
-    </section>
+    </Element>
     <Footer color="var(--c-theme2)"/>
     </>
   )
