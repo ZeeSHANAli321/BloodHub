@@ -18,6 +18,7 @@
 }
 .nav li{
     margin-left:35px;
+    cursor: pointer;
 }
 .homeNav li{
     color: white;

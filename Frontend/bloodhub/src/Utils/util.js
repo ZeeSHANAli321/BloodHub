@@ -4,3 +4,4 @@ export function getHeight(ElementId) {
   return Element.clientHeight;
 }
 
+

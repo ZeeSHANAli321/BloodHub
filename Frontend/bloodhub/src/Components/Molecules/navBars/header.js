@@ -5,6 +5,8 @@ import  { useState } from 'react';
 import Button from "@mui/material/Button";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
+import { Link as Rlink ,Element } from "react-scroll";
+import ButtonT1 from "Components/Atoms/Buttons/ButtonT1";
 
 export default function Header({ type,id }) {
   const BtnStyle = {
@@ -51,15 +53,13 @@ export default function Header({ type,id }) {
 
           <div className="  d-md-flex justify-content-center  " style={navList}>
             <ul className="nav homeNav mb-1 ">
-              <li className="navItems">Home</li>
-              <li className="navItems">Who we are </li>
-              <li className="navItems">How it works</li>
-              <li className="navItems">Blogs</li>
-              <li className="navItems">Contact</li>
+              <li className="navItems"><Link to="/" style={{textDecoration:"none",color:"inherit"}}>Home</Link></li>
+              <li className="navItems"><Rlink to="whoWeAre" smooth={true} duration={100} offset={-90}  style={{textDecoration:"none",color:"inherit"}}>Who we are </Rlink></li>
+              <li className="navItems"><Link to="/Blogs" style={{textDecoration:"none",color:"inherit"}}>Blogs</Link></li>
+              <li className="navItems"><Rlink to="howItWork" smooth={true} duration={100} offset={-90}  style={{textDecoration:"none",color:"inherit"}}>How it works</Rlink></li>
+              <li className="navItems"><Rlink to="contact" smooth={true} duration={100} offset={-90}  style={{textDecoration:"none",color:"inherit"}}>Contact</Rlink></li>
               <li className="navItems">
-                <Button variant="outlined" style={homeBtnStyle}>
-                  Login
-                </Button>
+                <ButtonT1 to="/Login" text=" Login "/>
               </li>
             </ul>
           </div>
@@ -84,15 +84,13 @@ export default function Header({ type,id }) {
 
           <div className="  d-md-flex justify-content-center  " style={navList}>
             <ul className="nav mb-1 ">
-              <li className="navItems">Home</li>
-              <li className="navItems">Who we are </li>
-              <li className="navItems">How it works</li>
-              <li className="navItems">Blogs</li>
-              <li className="navItems">Contact</li>
+            <li className="navItems"><Link to="/" style={{textDecoration:"none",color:"inherit"}}>Home</Link></li>
+              <li className="navItems"><Rlink to="whoWeAre" smooth={true} duration={100} offset={-90}  style={{textDecoration:"none",color:"inherit"}}>Who we are </Rlink></li>
+              <li className="navItems"><Link to="/Blogs" style={{textDecoration:"none",color:"inherit"}}>Blogs</Link></li>
+              <li className="navItems"><Rlink to="howItWork" smooth={true} duration={100} offset={-90}  style={{textDecoration:"none",color:"inherit"}}>How it works</Rlink></li>
+              <li className="navItems"><Rlink to="contact" smooth={true} duration={100} offset={-90}  style={{textDecoration:"none",color:"inherit"}}>Contact</Rlink></li>
               <li className="navItems">
-                <Button variant="outlined" style={BtnStyle}>
-                  Login
-                </Button>
+                <ButtonT1 to="/Login" text=" Login "/>
               </li>
             </ul>
           </div>
@@ -105,3 +103,4 @@ export default function Header({ type,id }) {
     </>
   );
 }
+

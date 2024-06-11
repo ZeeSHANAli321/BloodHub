@@ -1,13 +1,14 @@
 import React from 'react'
 import "../../Pages/HomePage/home.css"
+import { Link as Rlink ,Element } from "react-scroll";
 
-export default function SectionT1({sectionHead,sectionDesc,sectionImgSrc,varColor,className,style}) {
+export default function SectionT1({name,sectionHead,sectionDesc,sectionImgSrc,varColor,className,style,id}) {
     const sectionStyle = {
         backgroundColor: `var(${varColor})`,
         ...style
     };
   return (
-    <section className={`sectionPadding py-5 ${className}`} style={sectionStyle} >
+    <Element name={name} id={id} className={`sectionPadding py-5 ${className}`} style={sectionStyle} >
         <div className="container">
             <div className="row">
                 <h2 className='sectionHead'>{sectionHead}</h2>
@@ -25,6 +26,6 @@ export default function SectionT1({sectionHead,sectionDesc,sectionImgSrc,varColo
             
             </div>
         </div>
-    </section>
+    </Element>
   )
 }
