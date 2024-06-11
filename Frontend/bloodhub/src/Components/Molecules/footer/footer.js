@@ -1,21 +1,12 @@
 import React from "react";
 import "./footer.css";
 import Logo from "../../../Assets/images/No-Bg-logo2.png";
-export default function Footer() {
+export default function Footer({color}) {
   return (
     <>
       <div className="footerContainer">
         <div className="footer position-relative ">
-          {/* <div className="waveSvg">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-              <path
-                fill="#FFABAB"
-                fillOpacity="1"
-                d="M0,96L120,128C240,160,480,224,720,218.7C960,213,1200,139,1320,101.3L1440,64L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"
-              ></path>
-            </svg>
-          </div> */}
-            <div className="waveSvg">
+          <div className="waveSvg" style={{background:`${color}`}}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
               <path
                 fill="#FFABAB"
@@ -24,6 +15,15 @@ export default function Footer() {
               ></path>
             </svg>
           </div>
+            {/* <div className="waveSvg">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+              <path
+                fill="#FFABAB"
+                fillOpacity="1"
+                d="M0,96L120,128C240,160,480,224,720,218.7C960,213,1200,139,1320,101.3L1440,64L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"
+              ></path>
+            </svg>
+          </div> */}
           <div className="footerElements">
   
             <div className="container ">

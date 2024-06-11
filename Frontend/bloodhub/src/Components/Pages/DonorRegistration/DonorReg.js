@@ -108,7 +108,7 @@ export default function DonorReg() {
                  <FormContainer FormHeading="Register as a Donor" FormElements={formElements} />
             </div>
         </div>
-        <Footer />
+        <Footer color="white"/>
     </>
   )
 }

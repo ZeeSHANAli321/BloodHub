@@ -1,0 +1,76 @@
+.donorRegSection{
+    padding-top: 100px !important;
+}
+.inputContainer{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 3px;
+        background-color: black;
+}
+.inputElements{
+    background-color: var(--c-form-bg);
+    padding: 5px;
+   
+}
+.inputElements label{
+    font-weight: bold;
+}
+.inputElements input,.inputElements select{
+    border:none;
+    font-family: Inter;
+    padding: 5px;
+}
+input[type="checkbox"]{
+    transform: scale(1.5);
+}
+.infoDialogBox{
+    
+    width: 200px;
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid black;
+    font-weight: 500;
+    border-radius: 20px;
+
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    transition: all .5s ease-in-out;
+    scale: 0;
+
+}
+.broadcastInfo{
+    overflow: hidden;
+}
+.broadcastInfo i{
+    z-index: 99;
+}
+.broadcastInfo:hover .infoDialogBox{
+    scale: 1;
+
+}
+.broadcastInfo:hover{
+    overflow: visible ;
+}
+
+
+@media(max-width:399px){
+    .inputContainer{
+        display: grid;
+        grid-template-columns:1fr;
+        grid-column-gap: 0px;
+        background-color: transparent;
+}
+    .inputElements input{
+        width: 100% !important;
+    }
+    .inputElements label{
+        width: 100% !important;
+    }
+    .inputElements select{
+        width: 100% !important;
+    }
+}

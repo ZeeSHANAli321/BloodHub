@@ -267,7 +267,7 @@ export default function Home() {
             
         </div>
     </section>
-    <Footer />
+    <Footer color="var(--c-theme2)"/>
     </>
   )
 }

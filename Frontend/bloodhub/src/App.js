@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from './Components/Pages/HomePage/home'
 import DonorReg from 'Components/Pages/DonorRegistration/DonorReg';
 import Footer from 'Components/Molecules/footer/footer';
+import SeekerReg from 'Components/Pages/SeekerRegistration/SeekerReg';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path='/' element={<Home />}/>
         {/* Donor Registration Page  */}
         <Route path='/donorRegistration' element={<DonorReg />}/>
+        <Route path='/seekerRegistration' element={<SeekerReg />}/>
         <Route path='/Footer' element={<Footer />}/>
         
       </Routes>

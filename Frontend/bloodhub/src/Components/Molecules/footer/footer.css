@@ -4,12 +4,12 @@
     
     
 } */
-.waveSvg{
+/* .waveSvg{
     position: absolute;
     top: -10px;
     left: 50%;
     transform: translateX(-50%);
-}
+} */
 .footerElements{
     background-color: var(--c-theme);
     margin-top: -1px;
