@@ -22,9 +22,7 @@ class Donor(models.Model):
                                                         ('Male','M'),
                                                        ('Female','F'),
                                                        ('Other','O')))
-<<<<<<< HEAD
     address = models.CharField(max_length=250)
-=======
     any_blood_related_disease = models.TextField(blank=True)
     complete_address = models.TextField(blank=True)
     password = models.CharField(max_length=50 , default='0000')
@@ -78,4 +76,3 @@ class contact_us(models.Model):
     message = models.TextField(blank=True)                     
 
 
->>>>>>> 7d0f16749423d48d3d8c00fc0d9897e9ada21043
