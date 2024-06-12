@@ -54,10 +54,10 @@ export default function UserPanelHome() {
             </div>
             <div className='row py-2'>
                 <div className='col d-flex w-100 justify-content-around'>
-                    <LabelledImgCard img={Donor} imgClass="dataImg"  label="50K Donor" />
-                    <LabelledImgCard img={Seeker} imgClass="dataImg"  label="50K Donor" />
-                    <LabelledImgCard img={bank} imgClass="dataImg"  label="50K Donor" />
-                    <LabelledImgCard img={User} imgClass="dataImg"  label="50K Donor" />
+                    <LabelledImgCard img={Donor} imgClass="dataImg"  label="50K Donor" labelClass="labels" />
+                    <LabelledImgCard img={Seeker} imgClass="dataImg"  label="50K Donor" labelClass="labels" />
+                    <LabelledImgCard img={bank} imgClass="dataImg"  label="50K Donor" labelClass="labels" />
+                    <LabelledImgCard img={User} imgClass="dataImg"  label="50K Donor" labelClass="labels" />
                 </div>
             </div>
         </div>

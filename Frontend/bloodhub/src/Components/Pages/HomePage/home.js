@@ -18,15 +18,17 @@ import LabelledImgCard from 'Components/Molecules/cards/labelledImgCard/Labelled
 import Donor from "Assets/images/blooddonor.png"
 import bank from "Assets/images/blood-bank.png"
 import User from "Assets/images/target-user.png"
-
+import { GetData } from 'Services/FetchData';
 import { Element } from "react-scroll";
 
 import { useEffect,useState } from 'react' 
 
 export default function Home() {
     const [isScrolled, setIsScrolled] = useState(false);
-
+    const blogs = GetData("http://localhost:8000/api/blog-posts/");
+    console.log(blogs)
     useEffect(() => {
+
       const handleScroll = () => {
        
         if (window.scrollY > 0) {
@@ -257,10 +259,12 @@ export default function Home() {
                 </p>
             </div>
             <div className="row blogBlockContainer d-flex justify-content-center">
-                <BlogBlocks />
-                <BlogBlocks />
-                <BlogBlocks />
-                <BlogBlocks />
+                {
+                    blogs.slice(-4).map((blog) => (
+                        <BlogBlocks img={blog.image} title={blog.title} key={blog.id} />
+                    ))
+                }
+                
             </div>
         </div>
     </section>

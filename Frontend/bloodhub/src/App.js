@@ -6,7 +6,7 @@ import SeekerReg from 'Components/Pages/SeekerRegistration/SeekerReg';
 import Login from 'Components/Pages/Login/Login';
 import UserPanelHome from 'Components/Pages/userPanelHome/UserPanelHome';
 import BlogPage from 'Components/Pages/BlogPage/BlogPage';
-
+import Footer from 'Components/Molecules/footer/footer';
 
 function App() {
 
