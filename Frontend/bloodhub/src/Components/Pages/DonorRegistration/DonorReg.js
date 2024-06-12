@@ -105,7 +105,7 @@ export default function DonorReg() {
         <SectionT2 className="donorRegSection"  sectionHead="Become a Donor" sectionDesc={becomeAdonorSectionDesc} sectionImgSrc={Blooddonor} varColor="--c-theme" />
         <div className="container-fluid py-4">
             <div className='row m-auto'>
-                 <FormContainer FormHeading="Register as a Donor" FormElements={formElements} />
+                 <FormContainer btnTxt=" Register " FormHeading="Register as a Donor" FormElements={formElements} />
             </div>
         </div>
         <Footer color="white"/>

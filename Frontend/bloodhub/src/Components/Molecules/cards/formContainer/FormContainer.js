@@ -4,11 +4,11 @@ import ButtonT2 from 'Components/Atoms/Buttons/ButtonT2'
 
 
 
-export default function FormContainer({FormHeading,FormElements}) {
+export default function FormContainer({btnTxt,FormHeading,FormElements,style}) {
   return (
     <>
     <form>
-    <div className='formContainer py-4 col-md-8  m-auto d-flex flex-column '>
+    <div className='formContainer py-4 col-md-8  m-auto d-flex flex-column'  style={style}>
 
        <div className='formHeader text-center'>
             <h2>{FormHeading}</h2>
@@ -17,7 +17,7 @@ export default function FormContainer({FormHeading,FormElements}) {
           {FormElements}
        </div>
        <div className='formFooter text-center'  >
-            <ButtonT2 text="Register" type="submit" />
+            <ButtonT2 text={btnTxt} type="submit" />
        </div>
 
     </div>

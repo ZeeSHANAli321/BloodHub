@@ -1,0 +1,24 @@
+.navElementsContainer li{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+}
+.UserPanelNavBar{
+    position: fixed;
+    background-color: white;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 560px;
+}
+
+@media(max-width:600px){
+    .UserPanelNavBar{
+        width: 400px;
+    }
+}
+@media(max-width:400px){
+    .UserPanelNavBar{
+        width: 95vw;
+    }
+}

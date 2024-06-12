@@ -1,0 +1,25 @@
+.dataImg{
+    height: 150px;
+}
+
+@media(max-width:800px){
+    .dataImg{
+        height: 80px;
+    }
+}
+@media(max-width:600px){
+    .dataImg{
+        height: 60px;
+    }
+    .imgLabel h5{
+        font-size: 15px;
+    }
+}
+@media(max-width:425px){
+    .dataImg{
+        height: 60px;
+    }
+    .imgLabel h5{
+        font-size: 12px;
+    }
+}
