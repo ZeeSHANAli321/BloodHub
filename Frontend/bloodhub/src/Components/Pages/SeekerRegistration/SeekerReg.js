@@ -151,7 +151,7 @@ export default function SeekerReg() {
         <SectionT2 className="SeekerRegistration"  sectionHead="Become a Seeker" sectionDesc={becomeASeekerSectionDesc} sectionImgSrc={Seeker} varColor="--c-theme" />
         <div className="container-fluid py-4">
             <div className='row m-auto'>
-                 <FormContainer FormHeading="Register as a Seeker" FormElements={formElements} />
+                 <FormContainer btnTxt="Register" FormHeading="Register as a Seeker" FormElements={formElements} />
             </div>
         </div>
         <Footer color="white"/>
