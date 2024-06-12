@@ -5,17 +5,10 @@
   text-align: left;
 }
 
-.blog-card-image{
-  width: auto;
-  height: 300px;
+.blog-card-image img {
+  width: 90%;
+  height: 90%;
 }
-
-.blog-card-image img{
-  height: 100%;
-  width: auto;
-}
-
-
 
 .blog-card-content {
   padding: 16px 0;
