@@ -1,5 +1,6 @@
 from django.urls import path,include
 from .views import donorViewSets
+from .views import BlogPostList
 from .views import seekerViewSets
 from .views import login_DonorViewSets
 from .views import login_SeekerViewSets
@@ -15,5 +16,6 @@ router.register(r'contact_us',contact_usViewSets)
 
 
 urlpatterns = [
-        path('',include(router.urls))
+        path('',include(router.urls)),
+        path('blog-posts/', BlogPostList.as_view(), name='blog-post-list'),
 ]

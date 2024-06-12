@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets
+from rest_framework import generics
 from .models import Donor
 from .models import Seeker
 from .models import login_Donor
@@ -10,6 +11,9 @@ from .serializers import seekerSerializer
 from .serializers import login_DomorSerializer
 from .serializers import login_SeekerSerializer
 from .serializers import contact_usSerializer
+from .models import BlogPost
+from .serializers import BlogPostSerializer
+
 
 # Create your views here.
 class donorViewSets(viewsets.ModelViewSet):
@@ -30,4 +34,8 @@ class login_SeekerViewSets(viewsets.ModelViewSet):
 
 class contact_usViewSets(viewsets.ModelViewSet):
     queryset = contact_us.objects.all()
-    serializer_class = contact_usSerializer    
+    serializer_class = contact_usSerializer  
+
+class BlogPostList(generics.ListAPIView):
+    queryset = BlogPost.objects.all()
+    serializer_class = BlogPostSerializer    
