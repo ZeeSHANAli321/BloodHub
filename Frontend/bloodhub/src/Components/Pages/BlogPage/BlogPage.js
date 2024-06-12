@@ -1,16 +1,12 @@
-import React from 'react'
-import "./BlogPage.css"
-import Header from 'Components/Molecules/navBars/header'
-import Footer from 'Components/Molecules/footer/footer'
-// import BlogImage from 'Assets/images/BlogImage'
-import { useEffect,useState } from 'react'
-import { getHeight } from 'Utils/util'
-import Grid from 'Components/Molecules/Sections/BlogSections'
+// src/Pages/BlogPage.js
+import React, { useEffect, useState } from 'react';
+import './BlogPage.css';
+import Header from 'Components/Molecules/navBars/header';
+import Footer from 'Components/Molecules/footer/footer';
+import Grid from 'Components/Molecules/Sections/BlogSections';
+import { getHeight } from 'Utils/util';
 
-
-
-
-export default function BlogPage() {
+const BlogPage = () => {
   const [width, setWidth] = useState(window.innerWidth);  
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -22,16 +18,15 @@ export default function BlogPage() {
     return () => {
         window.removeEventListener('resize', handleResize);
     };
-}, []); 
+  }, []);
 
-useEffect(() => {
+  useEffect(() => {
     const donorRegSection = document.querySelector('.herocontainer');
     donorRegSection.style.setProperty('padding-top', `${getHeight('header')}px`, 'important');
-}, [width]);
+  }, [width]);
 
   useEffect(() => {
     const handleScroll = () => {
-     
       if (window.scrollY > 0) {
         setIsScrolled(true);
       } else {
@@ -39,20 +34,22 @@ useEffect(() => {
       }
     };
     window.addEventListener('scroll', handleScroll);
-
   }, []);
-    return (
+
+  return (
     <>
-        <Header  id="header"/>
-        <section className='herocontainer'>
-          <div className='HeroDiv'>
-            <h1 className='Text'>BLOGS</h1>
-          </div>
-        </section>
-        <div className="App">
-          <Grid />
+      <Header id="header" />
+      <section className="herocontainer">
+        <div className="HeroDiv">
+          <h1 className="Text">BLOGS</h1>
         </div>
-        <Footer color="White"/>
+      </section>
+      <div className="App">
+        <Grid />
+      </div>
+      <Footer color="var(--c-theme2)" />
     </>
-  )
-}
+  );
+};
+
+export default BlogPage;

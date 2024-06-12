@@ -1,17 +1,33 @@
-/* src/Box.css */
-.box {
-    padding: 16px;
-    text-align: center;
-  }
-  
-  .box-image img {
-    width: 70%;
-    height: 70%;
-  }
-  
-  .box-title {
-    font-size: 1.2em;
-    margin-top: 8px;
-    font-weight: 700;
-  }
-  
+/* src/cards/blogCards2/BlogCard.css */
+.blog-card {
+  padding: 30px;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.blog-card-image{
+  width: auto;
+  height: 300px;
+}
+
+.blog-card-image img{
+  height: 100%;
+  width: auto;
+}
+
+
+
+.blog-card-content {
+  padding: 16px 0;
+}
+
+.blog-card-title {
+  font-size: 1.5em;
+  margin: 0;
+  font-weight: 800;
+  text-align: center;
+}
+
+.blog-card-description {
+  margin-top: 8px;
+}
