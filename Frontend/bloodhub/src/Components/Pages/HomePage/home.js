@@ -14,7 +14,12 @@ import BlogBlocks from '../../Molecules/cards/blogCards/blogBlocks'
 import Header from "../../Molecules/navBars/header"
 import Footer from '../../Molecules/footer/footer'
 import SectionT1 from 'Components/Molecules/Sections/SectionT1';
-import { Link as Rlink ,Element } from "react-scroll";
+import LabelledImgCard from 'Components/Molecules/cards/labelledImgCard/LabelledImgCard';
+import Donor from "Assets/images/blooddonor.png"
+import bank from "Assets/images/blood-bank.png"
+import User from "Assets/images/target-user.png"
+
+import { Element } from "react-scroll";
 
 import { useEffect,useState } from 'react' 
 
@@ -91,6 +96,8 @@ export default function Home() {
             </div>
         </div>
     </section> */}
+
+    
 
     <Element  name='howItWork' id='howItWork' className='howItWork sectionPadding py-5'>
         <div className="container">
@@ -220,6 +227,24 @@ export default function Home() {
             </div>
         </div>
     </Element>
+
+    <section className='weHaveConnectedTo  py-5' style={{background:"var(--c-theme2)"}}>
+        <div className='container'>
+            <div className='row'>
+                <div className='col'>
+                <h3 className='jomhuria' style={{fontFamily:"jomhuria",fontSize:"50px"}}>We have Connected to ..</h3>
+                </div>
+            </div>
+            <div className='row py-2'>
+                <div className='col d-flex w-100 justify-content-around'>
+                    <LabelledImgCard img={Donor} imgClass="dataImg"  label="50K Donor" />
+                    <LabelledImgCard img={Seeker} imgClass="dataImg"  label="50K Donor" />
+                    <LabelledImgCard img={bank} imgClass="dataImg"  label="50K Donor" />
+                    <LabelledImgCard img={User} imgClass="dataImg"  label="50K Donor" />
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section className="blogs sectionPadding py-5">
         <div className="container">

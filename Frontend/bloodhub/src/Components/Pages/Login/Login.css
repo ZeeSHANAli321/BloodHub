@@ -35,3 +35,15 @@ option{
     width: 100%;
     font-weight: bold;
 }
+.imgContainerDiv{
+    position: relative;
+}
+.imgContainerDiv::after{
+    content: "";
+    display: block;
+    height: 80%;
+    width: 3px;
+    margin-left: 70px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.619);
+}
