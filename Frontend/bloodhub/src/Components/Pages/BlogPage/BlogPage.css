@@ -1,0 +1,31 @@
+.HeroDiv{
+    background: url('../../../Assets/images/BlogImage.png') no-repeat 0 0;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    height: 60vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.Text{
+    font-weight: 700;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  
+  @media (max-width: 768px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }

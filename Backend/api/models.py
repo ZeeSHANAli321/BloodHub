@@ -22,6 +22,7 @@ class Donor(models.Model):
                                                         ('Male','M'),
                                                        ('Female','F'),
                                                        ('Other','O')))
+
     address = models.CharField(max_length=250)
     any_blood_related_disease = models.TextField(blank=True)
     complete_address = models.TextField(blank=True)
@@ -74,5 +75,11 @@ class contact_us(models.Model):
     email = models.EmailField()
     subject = models.TextField(blank=True)
     message = models.TextField(blank=True)                     
+
+
+class BlogPost(models.Model):
+    title = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='blog_images/')
+    description = models.TextField()
 
 

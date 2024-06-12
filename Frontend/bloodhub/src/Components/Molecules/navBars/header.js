@@ -2,24 +2,13 @@ import React from "react";
 import "./header.css";
 import Logo from "../../../Assets/images/No-Bg-logo2.png";
 import  { useState } from 'react';
-import Button from "@mui/material/Button";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
-import { Link as Rlink ,Element } from "react-scroll";
+import { Link as Rlink  } from "react-scroll";
 import ButtonT1 from "Components/Atoms/Buttons/ButtonT1";
 
 export default function Header({ type,id }) {
-  const BtnStyle = {
-    color:"red",
-    borderColor: "red",
-    fontWeight: "bold",
-  };
-  const homeBtnStyle = {
-    color: "black",
-    borderColor: "red",
-    fontWeight: "bold",
-    background:'white',
-  };
+ 
   const [isActiveNav,setIsActiveNav]=useState(false);
   
 
