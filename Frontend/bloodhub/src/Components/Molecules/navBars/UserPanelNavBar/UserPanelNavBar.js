@@ -7,9 +7,9 @@ import map from "Assets/images/map.png"
 import messanger from "Assets/images/messenger.png"
 import logo from "Assets/images/No-Bg-logo2.png"
 
-export default function UserPanelNavBar() {
+export default function UserPanelNavBar({id}) {
   return (
-    <div className='UserPanelNavBar  mx-auto py-2 px-3' style={{border:"2px solid black",borderRadius:"20px"}}>
+    <div id={id} className='UserPanelNavBar  mx-auto py-2 px-3' style={{border:"2px solid black",borderRadius:"20px"}}>
         <div className='navElementsContainer d-flex list-unstyled justify-content-around'>
                 <li><Link to="/" style={{textDecoration:"none"}}>
                     <img src={messanger} style={{height:"30px"}} alt="chat link" />

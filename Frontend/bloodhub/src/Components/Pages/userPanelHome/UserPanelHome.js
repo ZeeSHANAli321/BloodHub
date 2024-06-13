@@ -10,19 +10,25 @@ import Seeker from "Assets/images/job-seeker.png"
 import bank from "Assets/images/blood-bank.png"
 import User from "Assets/images/target-user.png"
 import MapCard from 'Components/Molecules/cards/mapCard/MapCard';
+import BlogBlocks from 'Components/Molecules/cards/blogCards/blogBlocks';
 
 import { getHeight } from 'Utils/util';
 import { useEffect,useState } from 'react';
+import { GetData } from 'Services/FetchData';
 
 
 
 export default function UserPanelHome() {
     const [width, setWidth] = useState(window.innerWidth);
+    const [bottomPaddin,setBottomPaddin] = useState(0)
+    const blogs = GetData("http://localhost:8000/api/blog-posts/");
+
     useEffect(() => {
         const handleResize = () => {
             setWidth(window.innerWidth);
         };
         window.addEventListener('resize', handleResize);
+
         return () => {
             window.removeEventListener('resize', handleResize);
         };
@@ -31,6 +37,7 @@ export default function UserPanelHome() {
     useEffect(() => {
         const donorRegSection = document.querySelector('.firstSection');
         donorRegSection.style.setProperty('padding-top', `${getHeight('header')}px`, 'important');
+        setBottomPaddin(getHeight('userPanelNav') + 30 );
     }, [width]);
 
     const sectionDesc=(<>
@@ -70,15 +77,34 @@ export default function UserPanelHome() {
                 <h3 className='jomhuria' style={{fontFamily:"jomhuria",fontSize:"50px"}}>Users Nearby</h3>
                 </div>
             </div>
-            <div className='row py-2'>
-                <div className='col d-flex w-100 justify-content-around'>
-                    <MapCard />
-                </div>
+            <div className='row'>
+            <div className='col-12'>
+                  <div className='mapContainer bg-success' style={{height:"40vh"}}>
+                        <MapCard />
+                  </div>
+            </div>
+          </div>
+            
+        </div>
+    </section>
+    
+    <section className="blogs  py-5" style={{background:"var(--c-theme2)",marginBottom:`${bottomPaddin}px`}}>
+        <div className="container">
+            <div className="row">
+                <h3 className='jomhuria' style={{fontFamily:"jomhuria",fontSize:"50px"}}>Blogs</h3>
+            </div>
+            <div className="row blogBlockContainer d-flex justify-content-center">
+                {
+                    blogs.slice(-4).map((blog) => (
+                        <BlogBlocks img={blog.image} title={blog.title} key={blog.id} />
+                    ))
+                }
+                
             </div>
         </div>
     </section>
 
-    <UserPanelNavBar />
+    <UserPanelNavBar id="userPanelNav"/>
 
     </>
   )
