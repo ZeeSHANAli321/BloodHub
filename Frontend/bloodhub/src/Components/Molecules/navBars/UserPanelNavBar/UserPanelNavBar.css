@@ -1,7 +1,23 @@
 .navElementsContainer li{
-    display: flex;
-    justify-items: center;
-    align-items: center;
+    position: relative;
+
+    height: 60px;
+    width: 60px;
+    padding: 5px;
+    transition: all .3s ease-in-out;
+    border-radius: 50%;
+}
+.navElementsContainer li:hover{
+    background-color: var(--c-theme2);
+}
+.navElementsContainer li:active{
+    background-color: var(--c-theme);
+}
+.navElementsContainer li a{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 .UserPanelNavBar{
     position: fixed;

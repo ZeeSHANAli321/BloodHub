@@ -20,8 +20,8 @@ import bank from "Assets/images/blood-bank.png"
 import User from "Assets/images/target-user.png"
 import { GetData } from 'Services/FetchData';
 import { Element } from "react-scroll";
-
 import { useEffect,useState } from 'react' 
+
 
 export default function Home() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -40,6 +40,7 @@ export default function Home() {
       window.addEventListener('scroll', handleScroll);
   
     }, []);
+    
     const whoWeAreSectionDesc = `
     We're Zeeshan Ali, Gaurav Gupta, and Ashirwad Gupta, a trio from "Alpha." Studying Computer Science at Mahamaya IT Polytechnic Maharajganj, it's our final year. Our project, "BloodHub," is our minor project focus. BloodHub is all about helping people with blood needs. It's a website we're making to connect blood donors with those who need it urgently. Our goal is to make it easy for donors to help save lives. By creating this platform, we aim to make donating and receiving blood simpler and quicker. We're using what we've learned to make a real difference in healthcare and the community. As a team, we're excited to apply our skills to benefit others by making blood donation more accessible and impactful.
 `;
@@ -79,27 +80,6 @@ export default function Home() {
     </section>
 
     <SectionT1 name="whoWeAre" id="whoWeAre"  sectionHead="Who we are " sectionImgSrc={Teamwork}  varColor="--c-theme" sectionDesc={whoWeAreSectionDesc} />
-    {/* <section className='whoWeAre sectionPadding py-5'>
-        <div className="container">
-            <div className="row">
-                <h2 className='sectionHead'>Who we are </h2>
-
-            </div>
-            <div className="row">
-                 <div className="col-md-9 order-2 order-md-1 col-12 px-2 ps-md-3  interTxt  d-flex align-items-center">
-                    <p>
-                    We're Zeeshan Ali, Gaurav Gupta, and Ashirwad Gupta, a trio from "Alpha." Studying Computer Science at Mahamaya IT Polytechnic Maharajganj, it's our final year. Our project, "BloodHub," is our minor project focus. BloodHub is all about helping people with blood needs. It's a website we're making to connect blood donors with those who need it urgently. Our goal is to make it easy for donors to help save lives. By creating this platform, we aim to make donating and receiving blood simpler and quicker. We're using what we've learned to make a real difference in healthcare and the community. As a team, we're excited to apply our skills to benefit others by making blood donation more accessible and impactful.
-                    </p>
-                </div>
-                <div className="col-md-3 order-1 order-md-2 col-12 bloodDonationImg teamwokimg d-flex justify-content-center align-items-center">
-                    <img height='200px' width='200px' src={Teamwork} alt="BloodDonation png" />
-                </div>
-               
-            </div>
-        </div>
-    </section> */}
-
-    
 
     <Element  name='howItWork' id='howItWork' className='howItWork sectionPadding py-5'>
         <div className="container">
