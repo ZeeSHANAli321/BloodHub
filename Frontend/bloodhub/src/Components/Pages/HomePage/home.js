@@ -21,6 +21,7 @@ import { useEffect,useState } from 'react'
 import UserDataSection from 'Components/Molecules/Sections/UserDataSection';
 
 
+
 export default function Home() {
     const [Name,setName] = useState("");
     const [Email,setEmail] = useState("");
