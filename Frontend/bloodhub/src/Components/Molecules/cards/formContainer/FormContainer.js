@@ -4,7 +4,7 @@ import ButtonT2 from 'Components/Atoms/Buttons/ButtonT2'
 
 
 
-export default function FormContainer({btnTxt,FormHeading,FormElements,style}) {
+export default function FormContainer({btnTxt,FormHeading,FormElements,style,onClick , formMsg}) {
   return (
     <>
     <form>
@@ -17,7 +17,10 @@ export default function FormContainer({btnTxt,FormHeading,FormElements,style}) {
           {FormElements}
        </div>
        <div className='formFooter text-center'  >
-            <ButtonT2 text={btnTxt} type="submit" />
+            <ButtonT2 text={btnTxt} type="submit" onClick={onClick} />
+       </div>
+       <div className=' text-center formMsg'>
+            {formMsg}
        </div>
 
     </div>

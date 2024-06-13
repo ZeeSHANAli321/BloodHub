@@ -11,3 +11,17 @@ export function GetData(api){
     },[]);
     return items;
 }
+
+export function PostData(api,data){
+    fetch(api,{
+        method:'POST',
+        headers: {
+            'Content-Type': 'application/json'
+          },
+        body: JSON.stringify(data)                
+        
+    }).then((responce)=>{
+        console.log(responce)
+        return responce;
+    })
+}
