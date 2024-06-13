@@ -2,7 +2,7 @@ import React from "react";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 
-export default function ButtonT2({ text, classStyle, type, to }) {
+export default function ButtonT2({ text, classStyle, type, to,onClick }) {
   const btnStyle = {
     color: "black",
     fontWeight: "bold",
@@ -19,6 +19,7 @@ export default function ButtonT2({ text, classStyle, type, to }) {
           type={type}
           className={classStyle}
           style={btnStyle}
+          onClick={onClick}
         >
           {text}
         </Button>
