@@ -268,7 +268,7 @@ export default function Home() {
                                     <input className='formInput' placeholder='Subject' type="text" name='subject' />
                                     <textarea className='formInput'  name="Message" placeholder='Message' id="Message" cols="30" rows="5" />
 
-                                    <ButtonT1 text="Contact" classStyle="formInput mt-2" />
+                                    <ButtonT1 text="Contact"  classStyle="formInput mt-2" />
                             </div>
                            </form>
                    </div>

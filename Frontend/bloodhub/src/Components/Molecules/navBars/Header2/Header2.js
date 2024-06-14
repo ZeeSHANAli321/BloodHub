@@ -5,7 +5,7 @@ import Donor from "Assets/images/blooddonor.png"
 export default function Header2( {className,id} ) {
   return (
     <>
-    <section id={id} className={className} style={{background:"white",borderBottom:"5px solid black",boxShadow:"var(--box-shadow)",position:"fixed",width:"100%"} } >
+    <section id={id} className={className} style={{background:"white",borderBottom:"5px solid black",boxShadow:"var(--box-shadow)",position:"fixed",width:"100%",zIndex:"2"} } >
         <div className='container py-1'>
             <div className='row'>
                 <div className='col-md-6 col-8  '>
