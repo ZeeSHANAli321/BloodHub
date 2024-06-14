@@ -79,7 +79,7 @@ export default function UserPanelHome() {
             </div>
             <div className='row'>
             <div className='col-12'>
-                  <div className='mapContainer bg-success' style={{height:"40vh"}}>
+                  <div className='mapContainer  position-relative' style={{height:"40vh"}}>
                         <MapCard />
                   </div>
             </div>
