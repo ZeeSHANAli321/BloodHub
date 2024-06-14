@@ -50,11 +50,11 @@ const BlogDetailsPage = () => {
         </div>
       </section>
       
-      <section className="blogs sectionPadding">
+      <section className="blog sectionPadding">
       <hr className='horizontalLine'></hr>
         <div className="container">
             <div className="row">
-            <h2 className='sectionHead'>WHAT TO READ NEXT</h2>
+            <h2 className='blogSectionHead'>WHAT TO READ NEXT</h2>
             </div>
             <div className="row sectionDisc">
 
