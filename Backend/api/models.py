@@ -36,6 +36,9 @@ class Donor(models.Model):
     def __str__(self):
         return f"{self.firstName} {self.lastName}"
 
+    def __str__(self):
+        return f"{self.firstName} {self.lastName}"
+
 
 class Seeker(models.Model):
     firstName = models.CharField(max_length=50)
@@ -71,6 +74,9 @@ class Seeker(models.Model):
     
     lat = models.DecimalField(max_digits=9, decimal_places=6,null=True)
     lng = models.DecimalField(max_digits=9, decimal_places=6,null=True)
+    def __str__(self):
+        return f"{self.firstName} {self.lastName}"
+
     def __str__(self):
         return f"{self.firstName} {self.lastName}"
 

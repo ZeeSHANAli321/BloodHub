@@ -29,7 +29,6 @@ admin.site.index_title=" WELCOME TO BLOODHUB "
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/',include('api.urls')),
-    path('tinymce/', include('tinymce.urls')),
 
 ]
 
