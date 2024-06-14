@@ -1,6 +1,7 @@
 import React from 'react'
 import "./home.css";
 import ButtonT1 from '../../Atoms/Buttons/ButtonT1'
+import ButtonT2 from '../../Atoms/Buttons/ButtonT2'
 import BloodDonation from '../../../Assets/images/BloodDonation.png'
 import Teamwork from '../../../Assets/images/teamwork.png'
 import Blooddonor from '../../../Assets/images/blooddonor.png'
@@ -24,6 +25,12 @@ import { useEffect,useState } from 'react'
 
 
 export default function Home() {
+    const [Name,setName] = useState("");
+    const [Email,setEmail] = useState("");
+    const [Message,setMessage] = useState("");
+    const [Subject,setSubject] = useState("");
+    const [isRegistered,setIsRegistered] = useState(false);
+    const [failedRegMsg, setFailedRegMsg] = useState(<></>);
     const [isScrolled, setIsScrolled] = useState(false);
     const blogs = GetData("http://localhost:8000/api/blog-posts/");
     console.log(blogs)
@@ -45,6 +52,40 @@ export default function Home() {
     We're Zeeshan Ali, Gaurav Gupta, and Ashirwad Gupta, a trio from "Alpha." Studying Computer Science at Mahamaya IT Polytechnic Maharajganj, it's our final year. Our project, "BloodHub," is our minor project focus. BloodHub is all about helping people with blood needs. It's a website we're making to connect blood donors with those who need it urgently. Our goal is to make it easy for donors to help save lives. By creating this platform, we aim to make donating and receiving blood simpler and quicker. We're using what we've learned to make a real difference in healthcare and the community. As a team, we're excited to apply our skills to benefit others by making blood donation more accessible and impactful.
 `;
     
+    const resetForm = () =>{
+        setName("");
+        setEmail("");
+        setSubject("");
+        setMessage("");
+    }
+
+    function submitForm(){
+        console.log("clicked")
+        const userData = {
+            "name":Name,
+            "email":Email,
+            "subject":Subject,
+            "message":Message
+        }
+        console.log(JSON.stringify(userData))
+        fetch('http://127.0.0.1:8000/api/contact_us/',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(userData)
+        }).then((response)=>{
+            if(response.ok){
+                setIsRegistered(true);
+                resetForm();
+            }else{
+                setIsRegistered(false);
+                setFailedRegMsg(<b className='text-danger'>Message Is Not Send</b>);
+            }
+        })
+    }
+
+
   return (
     
     <>
@@ -263,14 +304,13 @@ export default function Home() {
                    <div className="contactForm">
                         <form >
                             <div className="formElement d-flex flex-column">
-                                    <input className='formInput' placeholder='Name' type="text" name='name' />
-                                    <input className='formInput' placeholder='Email' type="text" name='email' />
-                                    <input className='formInput' placeholder='Subject' type="text" name='subject' />
-                                    <textarea className='formInput'  name="Message" placeholder='Message' id="Message" cols="30" rows="5" />
-
-                                    <ButtonT1 text="Contact"  classStyle="formInput mt-2" />
+                                    <input className='formInput' placeholder='Name' type="text" name='name' value={Name} onChange={(e)=>{setName(e.target.value)}}/>
+                                    <input className='formInput' placeholder='Email' type="text" name='email' value={Email} onChange={(e)=>{setEmail(e.target.value)}} />
+                                    <input className='formInput' placeholder='Subject' type="text" name='subject' value={Subject} onChange={(e)=>{setSubject(e.target.value)}}/>
+                                    <textarea className='formInput'  name="Message" placeholder='Message' id="Message" cols="30" rows="5" value={Message} onChange={(e)=>{setMessage(e.target.value)}}/>
+                                    <ButtonT2 text="Contact" classStyle="formInput mt-2" onClick={submitForm} formMsg={isRegistered ? (<b className='py-2 text-success '>Message send Successfully</b>) : failedRegMsg}/>
                             </div>
-                           </form>
+                        </form>
                    </div>
                 </div>
             </div>        
