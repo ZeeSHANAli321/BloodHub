@@ -7,6 +7,7 @@ import Login from 'Components/Pages/Login/Login';
 import UserPanelHome from 'Components/Pages/userPanelHome/UserPanelHome';
 import BlogPage from 'Components/Pages/BlogPage/BlogPage';
 import Footer from 'Components/Molecules/footer/footer';
+import BlogDetailsPage from 'Components/Pages/BlogPage/BlogDetailsPage';
 
 function App() {
 
@@ -21,6 +22,8 @@ function App() {
         <Route path='/seekerRegistration' element={<SeekerReg />}/>
         {/* BlogPage */}
         <Route path = '/Blogs' element={<BlogPage/>}/>
+        {/* BlogDetailsPage */}
+        <Route path="/blog/:id" element={<BlogDetailsPage />} />
         <Route path='/Footer' element={<Footer />}/>
         <Route path='/Login' element={<Login />}/>
         <Route path='/UserPanelHome' element={<UserPanelHome />}/>
