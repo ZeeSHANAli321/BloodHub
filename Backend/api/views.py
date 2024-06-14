@@ -15,6 +15,7 @@ from .models import BlogPost
 from .serializers import BlogPostSerializer
 
 
+
 # Create your views here.
 class donorViewSets(viewsets.ModelViewSet):
     queryset = Donor.objects.all()
@@ -39,3 +40,5 @@ class contact_usViewSets(viewsets.ModelViewSet):
 class BlogPostList(generics.ListAPIView):
     queryset = BlogPost.objects.all()
     serializer_class = BlogPostSerializer    
+
+   
