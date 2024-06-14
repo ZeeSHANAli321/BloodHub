@@ -33,11 +33,11 @@
   font-weight: 500;
 }
 
-.sectionHead{
+.blogSectionHead{
   text-align: center;
 }
 
-.blogs{
+.blog{
   background: var(--c-theme2);
 }
 
