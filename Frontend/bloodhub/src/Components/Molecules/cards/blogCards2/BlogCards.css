@@ -1,26 +1,27 @@
-/* src/cards/blogCards2/BlogCard.css */
+/* src/cards/blogCards2/BlogCards.css */
 .blog-card {
-  padding: 30px;
-  margin-bottom: 16px;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  
+
 }
 
+
 .blog-card-image img {
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
 }
 
 .blog-card-content {
-  padding: 16px 0;
+  padding: 16px;
 }
 
 .blog-card-title {
   font-size: 1.5em;
-  margin: 0;
-  font-weight: 800;
-  text-align: center;
+  margin: 0 0 10px;
 }
 
 .blog-card-description {
-  margin-top: 8px;
+  font-size: 1em;
+  color: #555;
 }
