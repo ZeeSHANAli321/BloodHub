@@ -29,6 +29,9 @@ class Donor(models.Model):
     password = models.CharField(max_length=50 , default='0000')
     confirm_password = models.CharField(max_length=50 , default='0000')
 
+    def __str__(self):
+        return f"{self.firstName} {self.lastName}"
+
 
 class Seeker(models.Model):
     firstName = models.CharField(max_length=50)
@@ -62,6 +65,9 @@ class Seeker(models.Model):
     want_to_broadcast = models.BooleanField(default=False)
     broadcast_message = models.TextField(blank=True)
 
+    def __str__(self):
+        return f"{self.firstName} {self.lastName}"
+
 class login_Donor(models.Model):
     email = models.EmailField()  
     password = models.CharField(max_length=50 , default='0000')
@@ -74,7 +80,10 @@ class contact_us(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField()
     subject = models.TextField(blank=True)
-    message = models.TextField(blank=True)                     
+    message = models.TextField(blank=True)
+    def __str__(self):
+        return f"{self.name}"
+
 
 
 class BlogPost(models.Model):
