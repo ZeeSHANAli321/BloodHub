@@ -3,20 +3,20 @@ import React, { useEffect, useState } from 'react';
 import './BlogPage.css';
 import Header from 'Components/Molecules/navBars/header';
 import Footer from 'Components/Molecules/footer/footer';
-import Grid from 'Components/Molecules/Sections/BlogSections';
+import BlogSections from 'Components/Molecules/Sections/BlogSections';
 import { getHeight } from 'Utils/util';
 
 const BlogPage = () => {
-  const [width, setWidth] = useState(window.innerWidth);  
+  const [width, setWidth] = useState(window.innerWidth);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-        setWidth(window.innerWidth);
+      setWidth(window.innerWidth);
     };
     window.addEventListener('resize', handleResize);
     return () => {
-        window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -45,7 +45,7 @@ const BlogPage = () => {
         </div>
       </section>
       <div className="App">
-        <Grid />
+        <BlogSections />
       </div>
       <Footer color="var(--c-theme2)" />
     </>

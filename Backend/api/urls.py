@@ -6,6 +6,7 @@ from .views import login_DonorViewSets
 from .views import login_SeekerViewSets
 from .views import contact_usViewSets
 from rest_framework import routers
+from .views import BlogPostDetail
 
 
 
@@ -20,4 +21,5 @@ router.register(r'contact_us',contact_usViewSets)
 urlpatterns = [
         path('',include(router.urls)),
         path('blog-posts/', BlogPostList.as_view(), name='blog-post-list'),
+        path('api/blog-posts/<int:id>/', BlogPostDetail.as_view(), name='blog-post-detail'),
 ]

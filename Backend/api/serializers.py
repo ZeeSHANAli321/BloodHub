@@ -43,4 +43,4 @@ class contact_usSerializer(serializers.HyperlinkedModelSerializer):
 class BlogPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogPost
-        fields = ['id', 'title', 'image', 'description']                         
+        fields = '__all__'                       
