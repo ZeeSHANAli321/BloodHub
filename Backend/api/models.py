@@ -102,7 +102,7 @@ class BlogPost(models.Model):
     
     title = models.CharField(max_length=200)
     image = models.ImageField(upload_to='blog_images/')
-    description = HTMLField()
+    description = models.TextField()
     def __str__(self):
         return f"{self.title}"
 

@@ -7,6 +7,7 @@ from .views import login_SeekerViewSets
 from .views import contact_usViewSets
 from .views import blog_ViewSets
 from rest_framework import routers
+from .views import BlogPostDetail
 
 
 
@@ -24,4 +25,5 @@ urlpatterns = [
         path('login/',views.login_view,name="loging in "),
         path('get_user/',views.get_user,name="get_user")
         
+        path('api/blog-posts/<int:id>/', BlogPostDetail.as_view(), name='blog-post-detail'),
 ]
