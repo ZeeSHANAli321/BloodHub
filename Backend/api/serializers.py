@@ -38,9 +38,9 @@ class login_SeekerSerializer(serializers.HyperlinkedModelSerializer):
 class contact_usSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model=contact_us
-        fields = "__all__"   
+        fields = "__all__"  
 
-class BlogPostSerializer(serializers.ModelSerializer):
+class BlogPostSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BlogPost
-        fields = '__all__'                       
+        fields = ['title','image','description','id']                       

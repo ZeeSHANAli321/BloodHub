@@ -6,9 +6,16 @@ import FormContainer from 'Components/Molecules/cards/formContainer/FormContaine
 import { getHeight } from 'Utils/util';
 import './Login.css'; // Assuming this is your CSS file for Login component
 import Footer from 'Components/Molecules/footer/footer';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Login() {
+  let nevigate = useNavigate()
   const [width, setWidth] = useState(window.innerWidth);
+  const [email,setEmail] = useState("")
+  const [pass,setPass] = useState("")
+  const [type,setType] = useState("Donor")
+  
+  const [formMsg,setFormMsg] = useState(<b className='text-dark'>If not Registered click <Link style={{textDecoration:"none"}} to={"/donorRegistration"}>here .</Link></b>)
 
   useEffect(() => {
     const handleResize = () => {
@@ -31,23 +38,58 @@ export default function Login() {
         <tbody>
           <tr>
             <td><label>Email id </label></td>
-            <td><input type='text' /></td>
+            <td><input type='text' value={email} onChange={(e)=>{setEmail(e.target.value)}} /></td>
           </tr>
           <tr>
             <td><label> Password</label></td>
-            <td><input type='text' /></td>
+            <td><input type='text'value={pass} onChange={(e)=>{setPass(e.target.value)}} /></td>
           </tr>
           <tr>
             <td><label>Type </label></td>
-            <td><select>
+            <td><select value={type} onChange={(e)=>{setType(e.target.value)}}>
                 <option value="Donor">Donor</option>
-                <option value="Seeker">Seeker</option>
+                <option value="Seeker" >Seeker</option>
                 </select></td>
           </tr>
         </tbody>
       </table>
     </div>
   );
+  let loginData = {
+    'userEmail':email,
+    'password':pass,
+    'isDonor':type==='Donor'?true:false
+  }
+  function subMitForm() {
+    fetch('http://127.0.0.1:8000/api/login/', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(loginData)
+    }).then((response) => {
+      return response.json();
+    }).then((data) => {
+      if (data.status === 'success') {
+        setFormMsg(<b className='text-success'>{data.message}</b>)
+
+        sessionStorage.clear()
+        sessionStorage.setItem('user_id',data.user.emailId)
+        sessionStorage.setItem('user_pass',data.user.password)
+        sessionStorage.setItem('user_type',JSON.stringify(type==='Donor'?true:false))
+
+        return (nevigate("/userPanelHome"))
+      } else {
+        console.log("not done", data.message);
+        setFormMsg(<b className='text-danger'>{data.message}</b>)
+      }
+    }).catch((error) => {
+      console.error("Error:", error);
+      setFormMsg(error)
+    });
+  }
+  
 
   return (
     <>
@@ -63,7 +105,7 @@ export default function Login() {
             </div>
             <div className='col-md-6  d-flex align-items-center'>
               <div className='loginFormContainer w-100'>
-                <FormContainer btnTxt="Login" FormHeading="Login" FormElements={loginElements} style={{ width: "100%" }} />
+                <FormContainer formMsg={formMsg} onClick={subMitForm} btnTxt="Login" FormHeading="Login" FormElements={loginElements} style={{ width: "100%" }} />
               </div>
             </div>
           </div>

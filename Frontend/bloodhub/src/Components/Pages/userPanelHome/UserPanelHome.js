@@ -4,30 +4,39 @@ import Header2 from 'Components/Molecules/navBars/Header2/Header2'
 import UserPanelNavBar from 'Components/Molecules/navBars/UserPanelNavBar/UserPanelNavBar'
 import SectionT2 from 'Components/Molecules/Sections/SectionT2';
 import DonateBlood from "Assets/images/DonateBlood.png"
-import LabelledImgCard from 'Components/Molecules/cards/labelledImgCard/LabelledImgCard';
-import Donor from "Assets/images/blooddonor.png"
-import Seeker from "Assets/images/job-seeker.png"
-import bank from "Assets/images/blood-bank.png"
-import User from "Assets/images/target-user.png"
 import MapCard from 'Components/Molecules/cards/mapCard/MapCard';
 import BlogBlocks from 'Components/Molecules/cards/blogCards/blogBlocks';
-
+import { useNavigate } from 'react-router-dom';
 import { getHeight } from 'Utils/util';
 import { useEffect,useState } from 'react';
-import { GetData } from 'Services/FetchData';
+import { GetData,fetchUser } from 'Services/FetchData';
+import UserDataSection from 'Components/Molecules/Sections/UserDataSection';
 
 
 
 export default function UserPanelHome() {
+    let navigation = useNavigate()
     const [width, setWidth] = useState(window.innerWidth);
     const [bottomPaddin,setBottomPaddin] = useState(0)
-    const blogs = GetData("http://localhost:8000/api/blog-posts/");
+    const [user,setUser] = useState(null)
+    const blogs = GetData("http://localhost:8000/api/blogs/");
 
+    useEffect(() => {
+        fetchUser().then((user)=>{
+            if(user){
+                setUser(user)
+            }else{
+                navigation("/Error")
+            }
+        })
+    }, [navigation]); 
     useEffect(() => {
         const handleResize = () => {
             setWidth(window.innerWidth);
         };
         window.addEventListener('resize', handleResize);
+
+        
 
         return () => {
             window.removeEventListener('resize', handleResize);
@@ -35,10 +44,12 @@ export default function UserPanelHome() {
     }, []); 
 
     useEffect(() => {
-        const donorRegSection = document.querySelector('.firstSection');
-        donorRegSection.style.setProperty('padding-top', `${getHeight('header')}px`, 'important');
-        setBottomPaddin(getHeight('userPanelNav') + 30 );
-    }, [width]);
+        if(user){
+            const donorRegSection = document.querySelector('.firstSection');
+            donorRegSection.style.setProperty('padding-top', `${getHeight('header')}px`, 'important');
+            setBottomPaddin(getHeight('userPanelNav') + 30 );
+        }
+    }, [width,user]);
 
     const sectionDesc=(<>
     Join Us for an <span className='text-danger'> Upcoming Blood Drive</span>
@@ -48,9 +59,12 @@ export default function UserPanelHome() {
         Location:Falana diklana , dhanewa dhanei , Maharajganj
     </small>
     </>);
+
   return (
     <>
-    <Header2 id="header"/>
+    {user?<>
+    
+    <Header2 id="header" userName={user.firstName}/>
     <SectionT2 className="firstSection pb-4"  sectionHead="Save Blood , Donate Blood" sectionImgSrc={DonateBlood} varColor="--c-theme" sectionDesc={sectionDesc}/>
     <section className='weHaveConnectedTo  py-5' style={{background:"var(--c-theme2)"}}>
         <div className='container'>
@@ -59,14 +73,7 @@ export default function UserPanelHome() {
                     <h3 className='jomhuria' style={{fontFamily:"jomhuria",fontSize:"50px"}}>We have Connected to ..</h3>
                 </div>
             </div>
-            <div className='row py-2'>
-                <div className='col d-flex w-100 justify-content-around'>
-                    <LabelledImgCard img={Donor} imgClass="dataImg"  label="50K Donor" labelClass="labels" />
-                    <LabelledImgCard img={Seeker} imgClass="dataImg"  label="50K Donor" labelClass="labels" />
-                    <LabelledImgCard img={bank} imgClass="dataImg"  label="50K Donor" labelClass="labels" />
-                    <LabelledImgCard img={User} imgClass="dataImg"  label="50K Donor" labelClass="labels" />
-                </div>
-            </div>
+            <UserDataSection />
         </div>
     </section>
     
@@ -106,6 +113,10 @@ export default function UserPanelHome() {
 
     <UserPanelNavBar id="userPanelNav"/>
 
+    </>:<>
+
+
+    </>}
     </>
   )
 }
