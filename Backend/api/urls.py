@@ -7,7 +7,6 @@ from .views import login_SeekerViewSets
 from .views import contact_usViewSets
 from .views import blog_ViewSets
 from rest_framework import routers
-from .views import BlogPostDetail
 
 
 
