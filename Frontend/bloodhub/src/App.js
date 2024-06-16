@@ -6,11 +6,11 @@ import SeekerReg from 'Components/Pages/SeekerRegistration/SeekerReg';
 import Login from 'Components/Pages/Login/Login';
 import UserPanelHome from 'Components/Pages/userPanelHome/UserPanelHome';
 import BlogPage from 'Components/Pages/BlogPage/BlogPage';
-import Footer from 'Components/Molecules/footer/footer';
 import BlogDetailsPage from 'Components/Pages/BlogPage/BlogDetailsPage';
+import ErrorPage from 'Components/Pages/errorPage/ErrorPage';
 
 function App() {
-
+  
   return (
     <>
     <Router>
@@ -23,10 +23,10 @@ function App() {
         {/* BlogPage */}
         <Route path = '/Blogs' element={<BlogPage/>}/>
         {/* BlogDetailsPage */}
-        <Route path="/blog/:id" element={<BlogDetailsPage />} />
-        <Route path='/Footer' element={<Footer />}/>
+        <Route path="/blogs/:id" element={<BlogDetailsPage />} />
         <Route path='/Login' element={<Login />}/>
         <Route path='/UserPanelHome' element={<UserPanelHome />}/>
+        <Route path='/Error' element={<ErrorPage />}/>
         
       </Routes>
     </Router>

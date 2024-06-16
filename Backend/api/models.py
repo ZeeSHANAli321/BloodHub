@@ -5,7 +5,7 @@ class Donor(models.Model):
     firstName = models.CharField(max_length=50)
     lastName = models.CharField(max_length=50)
     mobileNo = models.IntegerField()
-    emailId = models.CharField(max_length=50)
+    emailId = models.CharField(max_length=50,unique=True)
     pincode = models.CharField(max_length=10, default='000000')
     bloodGroup = models.CharField(max_length=10,choices=(('',''),
                                                          ('A+','A+'),
@@ -37,7 +37,7 @@ class Seeker(models.Model):
     firstName = models.CharField(max_length=50)
     lastName = models.CharField(max_length=50)
     mobileNo = models.IntegerField()
-    emailId = models.CharField(max_length=50)
+    emailId = models.CharField(max_length=50,unique=True)
     bloodGroup = models.CharField(max_length=10,choices=(('',''),
                                                          ('A+','A+'),
                                                          ('A-','A-'),
@@ -87,6 +87,7 @@ class contact_us(models.Model):
 
 
 class BlogPost(models.Model):
+    
     title = models.CharField(max_length=200)
     image = models.ImageField(upload_to='blog_images/')
     description = models.TextField()

@@ -15,13 +15,10 @@ import BlogBlocks from '../../Molecules/cards/blogCards/blogBlocks'
 import Header from "../../Molecules/navBars/header"
 import Footer from '../../Molecules/footer/footer'
 import SectionT1 from 'Components/Molecules/Sections/SectionT1';
-import LabelledImgCard from 'Components/Molecules/cards/labelledImgCard/LabelledImgCard';
-import Donor from "Assets/images/blooddonor.png"
-import bank from "Assets/images/blood-bank.png"
-import User from "Assets/images/target-user.png"
 import { GetData } from 'Services/FetchData';
 import { Element } from "react-scroll";
 import { useEffect,useState } from 'react' 
+import UserDataSection from 'Components/Molecules/Sections/UserDataSection';
 
 
 export default function Home() {
@@ -32,8 +29,7 @@ export default function Home() {
     const [isRegistered,setIsRegistered] = useState(false);
     const [failedRegMsg, setFailedRegMsg] = useState(<></>);
     const [isScrolled, setIsScrolled] = useState(false);
-    const blogs = GetData("http://localhost:8000/api/blog-posts/");
-    console.log(blogs)
+    const blogs = GetData("http://localhost:8000/api/blogs/");
     useEffect(() => {
 
       const handleScroll = () => {
@@ -258,14 +254,7 @@ export default function Home() {
                 <h3 className='jomhuria' style={{fontFamily:"jomhuria",fontSize:"50px"}}>We have Connected to ..</h3>
                 </div>
             </div>
-            <div className='row py-2'>
-                <div className='col d-flex w-100 justify-content-around'>
-                    <LabelledImgCard img={Donor} imgClass="dataImg"  label="50K Donor" />
-                    <LabelledImgCard img={Seeker} imgClass="dataImg"  label="50K Donor" />
-                    <LabelledImgCard img={bank} imgClass="dataImg"  label="50K Donor" />
-                    <LabelledImgCard img={User} imgClass="dataImg"  label="50K Donor" />
-                </div>
-            </div>
+            <UserDataSection />
         </div>
     </section>
 
@@ -282,7 +271,7 @@ export default function Home() {
             <div className="row blogBlockContainer d-flex justify-content-center">
                 {
                     blogs.slice(-4).map((blog) => (
-                        <BlogBlocks img={blog.image} title={blog.title} key={blog.id} />
+                        <BlogBlocks blogUrl={blog.id} img={blog.image} title={blog.title} key={blog.id} />
                     ))
                 }
                 

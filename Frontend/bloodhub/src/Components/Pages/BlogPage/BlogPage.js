@@ -9,7 +9,9 @@ import { getHeight } from 'Utils/util';
 const BlogPage = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const [isScrolled, setIsScrolled] = useState(false);
-
+  if(isScrolled){
+    console.log("scrolled")
+  }
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);

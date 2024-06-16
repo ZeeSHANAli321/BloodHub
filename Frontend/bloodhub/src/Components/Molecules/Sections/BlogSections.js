@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import BlogCard from 'Components/Molecules/cards/blogCards2/BlogCard';
 import './BlogSections.css';
 
 const BlogSections = () => {
   const [blogs, setBlogs] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/blog-posts/'); 
+        const response = await fetch('http://localhost:8000/api/blogs/'); 
         const data = await response.json();
         setBlogs(data);
       } catch (error) {
@@ -21,17 +19,16 @@ const BlogSections = () => {
     fetchBlogs();
   }, []);
 
-  const handleImageClick = (id) => {
-    navigate(`/blog/${id}`);
-  };
+
 
   return (
     <div className="blog-grid">
       {blogs.map((blog) => (
-        <div key={blog.id} className="blog-item" onClick={() => handleImageClick(blog.id)}>
+        <div key={blog.id} className="blog-item" >
           <BlogCard
             image={blog.image}
             title={blog.title}
+            blogUrl={blog.id}
           />
         </div>
       ))}

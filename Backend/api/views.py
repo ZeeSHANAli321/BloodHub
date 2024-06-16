@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework import generics
+from django.core.serializers import serialize
 from .models import Donor
 from .models import Seeker
 from .models import login_Donor
@@ -22,13 +23,14 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import BlogPost
 from .serializers import BlogPostSerializer
+from django.contrib.auth.hashers import check_password
 
 
 # Create your views here.
 class donorViewSets(viewsets.ModelViewSet):
     queryset = Donor.objects.all()
-    serializer_class = donorSerializer
-     
+    serializer_class = donorSerializer  
+    
 class seekerViewSets(viewsets.ModelViewSet):
     queryset = Seeker.objects.all()
     serializer_class = seekerSerializer
@@ -49,28 +51,63 @@ class blog_ViewSets(viewsets.ModelViewSet):
     queryset =BlogPost.objects.all()
     serializer_class = BlogPostSerializer      
 
-class BlogPostList(generics.ListAPIView):
-    queryset = BlogPost.objects.all()
-    serializer_class = BlogPostSerializer  
-
-class BlogPostDetail(APIView):
-    def get(self, request, id, format=None):
-        try:
-            blog_post = BlogPost.objects.get(pk=id)
-            serializer = BlogPostSerializer(blog_post)
-            return Response(serializer.data)
-        except BlogPost.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)      
-
 @csrf_exempt
 def login_view(request):
     if request.method == "POST":
         data = json.loads(request.body)
-        username = data.get('username')
+        userEmail = data.get('userEmail')
         password = data.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return JsonResponse({"message": "Login successful"})
+        isDonor = data.get('isDonor')
+    
+        if isDonor:
+            user = Donor.objects.filter(emailId=userEmail,password=password).first()
+            user_type = "donor"
         else:
-            return JsonResponse({"message": "Invalid credentials"}, status=400)    
+            user = Seeker.objects.filter(emailId=userEmail,password=password).first()
+            user_type = "seeker"
+
+        if user is not None :
+            user_data = json.loads(serialize('json', [user]))[0]['fields']
+            user_data['id'] = user.id  
+            return JsonResponse({
+                "message": "Login successful",
+                "type": user_type,
+                'status': 'success',
+                "user": user_data,
+            }, status=200)
+        else:
+            return JsonResponse({
+                "message": "Invalid credentials",
+                'status': 'failed'
+            }, status=400)
+
+@csrf_exempt
+def get_user(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        userEmail = data.get('userEmail')
+        password = data.get('password')
+        isDonor = data.get('isDonor')
+        if isDonor:
+            user = Donor.objects.filter(emailId=userEmail, password=password).first()
+        else:
+            user = Seeker.objects.filter(emailId=userEmail, password=password).first()
+
+        if user is not None:
+            user_data = json.loads(serialize('json', [user]))[0]['fields']
+            user_data['id'] = user.id  
+            return JsonResponse({
+                "message": "Login successful",
+                'status': 'success',
+                "user": user_data,
+            }, status=200)
+        else:
+            return JsonResponse({
+                "message": "Invalid credentials",
+                'status': 'failed'
+            }, status=400)
+    return JsonResponse({
+        "message": "Invalid request method",
+        'status': 'failed'
+    }, status=405)
+    
