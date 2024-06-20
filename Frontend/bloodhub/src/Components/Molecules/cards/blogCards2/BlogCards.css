@@ -1,15 +1,23 @@
-/* src/cards/blogCards2/BlogCards.css */
 .blog-card {
   display: flex;
   flex-direction: column;
-  
-
+  overflow: hidden; 
 }
 
+.blog-card-image {
+  width: 100%;
+  position: relative;
+  padding-top: 56.25%; 
+  overflow: hidden;
+}
 
 .blog-card-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover; 
 }
 
 .blog-card-content {
@@ -24,4 +32,24 @@
 .blog-card-description {
   font-size: 1em;
   color: #555;
+}
+
+@media (max-width: 768px) {
+  .blog-card-title {
+    font-size: 1.25em;
+  }
+
+  .blog-card-description {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-card-title {
+    font-size: 1.1em;
+  }
+
+  .blog-card-description {
+    font-size: 0.8em;
+  }
 }
