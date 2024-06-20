@@ -11,6 +11,12 @@
   overflow: hidden;
 }
 
+.blog-card-image {
+  width: 100%;
+  position: relative;
+  padding-top: 56.25%; 
+  overflow: hidden;
+}
 
 .blog-card-image img {
   position: absolute;
