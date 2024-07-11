@@ -8,6 +8,7 @@ import UserPanelHome from 'Components/Pages/userPanelHome/UserPanelHome';
 import BlogPage from 'Components/Pages/BlogPage/BlogPage';
 import BlogDetailsPage from 'Components/Pages/BlogPage/BlogDetailsPage';
 import ErrorPage from 'Components/Pages/errorPage/ErrorPage';
+import UserProfile from 'Components/Pages/userProfile/UserProfile';
 
 function App() {
   
@@ -25,7 +26,10 @@ function App() {
         {/* BlogDetailsPage */}
         <Route path="/blogs/:id" element={<BlogDetailsPage />} />
         <Route path='/Login' element={<Login />}/>
+
+
         <Route path='/UserPanelHome' element={<UserPanelHome />}/>
+        <Route path='/UserPanelHome/profile' element={<UserProfile />}/>
         <Route path='/Error' element={<ErrorPage />}/>
         
       </Routes>

@@ -1,0 +1,36 @@
+.profile_pic_container{
+    display: flex;
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    background-color: var(--c-theme);
+    overflow: hidden;
+}
+.profileHeading{
+    font-family: Jomhuria;
+}
+#p-data-table{
+    width: 100%;
+    border-spacing: 0 10px;
+}
+tr{
+    display: table-row;
+    margin-bottom: 3px;
+}
+.ProfileCard{
+    background-color: var(--c-theme2);
+    border-radius: 20px;
+}
+.editProfile{
+    color: rgba(0, 0, 0, 0.415);
+}
+.editProfile:hover{
+    color: black;
+    cursor: pointer;
+    user-select: none;
+}
+.cancelEdit:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    user-select: none;
+}
