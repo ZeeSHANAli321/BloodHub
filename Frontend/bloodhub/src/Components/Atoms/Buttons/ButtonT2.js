@@ -13,7 +13,7 @@ export default function ButtonT2({ text, classStyle, type, to,onClick }) {
   };
   return (
     <>
-      <Link to={to} className="px-5 py-4" style={{textDecoration:"none"}}>
+      <Link to={to} className="" style={{textDecoration:"none"}}>
         <Button
           variant="contained"
           type={type}

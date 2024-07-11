@@ -33,9 +33,7 @@ export const fetchUser = async () => {
         'userEmail': sessionStorage.getItem('user_id'),
         'password': sessionStorage.getItem('user_pass'),
         'isDonor': JSON.parse(sessionStorage.getItem('user_type'))
-    };
-    console.log("session data", JSON.stringify(SessionData));
-    
+    };    
     try {
         const response = await fetch('http://127.0.0.1:8000/api/get_user/', {
             method: 'POST',
@@ -49,7 +47,6 @@ export const fetchUser = async () => {
         const data = await response.json();
 
         if (data.status === 'success') {
-            console.log("done == ", data.message, data.status, data.user);
             return data.user
         } else {
             console.log("not done", data.message);
@@ -59,3 +56,28 @@ export const fetchUser = async () => {
         console.error("Error:", error);
     }
 };
+
+export const patchUser = async (updatedData,userID)=>{
+    try {
+        const response = await fetch(`http://127.0.0.1:8000/api/donor/${userID}/`, {
+            method: 'PATCH',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(updatedData)
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+            console.log("HTTP error:", response.statusText);
+            return null;
+        }else{
+            
+            return data;
+        }
+        
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
