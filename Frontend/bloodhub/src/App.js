@@ -11,6 +11,7 @@ import ErrorPage from 'Components/Pages/errorPage/ErrorPage';
 import UserProfile from 'Components/Pages/userProfile/UserProfile';
 import Map from 'Components/Pages/Map/Map';
 import UserPanelBase from 'Components/Pages/UserPanelBase';
+import Chat from 'Components/Pages/ChatPage/Chat';
 
 function App() {
   
@@ -34,6 +35,7 @@ function App() {
             <Route path='' element={<UserPanelHome />}/>
             <Route path='profile' element={<UserProfile />}/>
             <Route path='map' element={<Map />}/>
+            <Route path='chat' element={<Chat />}/>
           </Route>
         
         <Route path='/Error' element={<ErrorPage />}/>
