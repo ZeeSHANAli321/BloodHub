@@ -9,6 +9,8 @@ import BlogPage from 'Components/Pages/BlogPage/BlogPage';
 import BlogDetailsPage from 'Components/Pages/BlogPage/BlogDetailsPage';
 import ErrorPage from 'Components/Pages/errorPage/ErrorPage';
 import UserProfile from 'Components/Pages/userProfile/UserProfile';
+import Map from 'Components/Pages/Map/Map';
+import UserPanelBase from 'Components/Pages/UserPanelBase';
 
 function App() {
   
@@ -27,10 +29,15 @@ function App() {
         <Route path="/blogs/:id" element={<BlogDetailsPage />} />
         <Route path='/Login' element={<Login />}/>
 
-
-        <Route path='/UserPanelHome' element={<UserPanelHome />}/>
-        <Route path='/UserPanelHome/profile' element={<UserProfile />}/>
+        {/* Nested Donor user panel  */}
+          <Route path='/UserPanelHome' element={<UserPanelBase />}> 
+            <Route path='' element={<UserPanelHome />}/>
+            <Route path='profile' element={<UserProfile />}/>
+            <Route path='map' element={<Map />}/>
+          </Route>
+        
         <Route path='/Error' element={<ErrorPage />}/>
+        <Route path='/RefactoringLayout' element={<UserPanelBase />}/>
         
       </Routes>
     </Router>

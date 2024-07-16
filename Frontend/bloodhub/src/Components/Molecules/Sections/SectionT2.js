@@ -6,7 +6,7 @@ export default function SectionT2({imgStyle,sectionHead,sectionDesc,sectionImgSr
         ...style
     };
   return (
-    <section className={`sectionPadding pt-5 pb-3 ${className}`} style={sectionStyle} >
+    <section className={`sectionPadding py-5 ${className}`} style={sectionStyle} >
         <div className="container">
             <div className="row">
                 <div className="col-md-9 order-1 order-md-1 col-12 px-2 ps-md-3  interTxt  d-flex flex-column align-items-start">

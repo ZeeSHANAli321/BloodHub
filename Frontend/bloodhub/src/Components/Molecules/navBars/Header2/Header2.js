@@ -1,11 +1,12 @@
 import React from 'react'
 import Logo from "Assets/images/No-Bg-logo2.png"
 import Donor from "Assets/images/blooddonor.png"
+import { Link } from 'react-router-dom'
 
 export default function Header2( {className,id,userName} ) {
   return (
     <>
-    <section id={id} className={className} style={{background:"white",borderBottom:"5px solid black",boxShadow:"var(--box-shadow)",position:"fixed",width:"100%",zIndex:"2"} } >
+    <section id={id} className={className} style={{background:"white",borderBottom:"5px solid black",boxShadow:"var(--box-shadow)",width:"100%",zIndex:"2"} } >
         <div className='container py-1'>
             <div className='row'>
                 <div className='col-md-6 col-8  '>
@@ -19,7 +20,7 @@ export default function Header2( {className,id,userName} ) {
                         <h3>Welcome <span className='text-danger me-3'>{userName}</span> </h3>
                     </div>
                     <div className='userProfileIcon ' style={{height:'50px',width:"50px",background:"var(--c-theme2)",borderRadius:"50%",overflow:"hidden",padding:"3px"}}>
-                        <img style={{height:"100%"}} src={Donor} alt="User Profile " />
+                       <Link to={"profile"} > <img style={{height:"100%"}} src={Donor} alt="User Profile " /></Link>
                     </div>
                 </div>
             </div>
