@@ -1,56 +1,17 @@
 import React from 'react'
 import "./UserPanelHome.css"
-import Header2 from 'Components/Molecules/navBars/Header2/Header2'
-import UserPanelNavBar from 'Components/Molecules/navBars/UserPanelNavBar/UserPanelNavBar'
 import SectionT2 from 'Components/Molecules/Sections/SectionT2';
 import DonateBlood from "Assets/images/DonateBlood.png"
 import MapCard from 'Components/Molecules/cards/mapCard/MapCard';
 import BlogBlocks from 'Components/Molecules/cards/blogCards/blogBlocks';
-import { useNavigate } from 'react-router-dom';
-import { getHeight } from 'Utils/util';
-import { useEffect,useState } from 'react';
-import { GetData,fetchUser } from 'Services/FetchData';
+import { GetData } from 'Services/FetchData';
+import { useOutletContext } from 'react-router-dom';
 import UserDataSection from 'Components/Molecules/Sections/UserDataSection';
 
 
-
 export default function UserPanelHome() {
-    let navigation = useNavigate()
-    const [width, setWidth] = useState(window.innerWidth);
-    const [bottomPaddin,setBottomPaddin] = useState(0)
-    const [user,setUser] = useState(null)
+    const {user} = useOutletContext();
     const blogs = GetData("http://localhost:8000/api/blogs/");
-
-    useEffect(() => {
-        fetchUser().then((user)=>{
-            if(user){
-                setUser(user)
-            }else{
-                navigation("/Error")
-            }
-        })
-    }, [navigation]); 
-    useEffect(() => {
-        const handleResize = () => {
-            setWidth(window.innerWidth);
-        };
-        window.addEventListener('resize', handleResize);
-
-        
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []); 
-
-    useEffect(() => {
-        if(user){
-            const donorRegSection = document.querySelector('.firstSection');
-            donorRegSection.style.setProperty('padding-top', `${getHeight('header')}px`, 'important');
-            setBottomPaddin(getHeight('userPanelNav') + 30 );
-        }
-    }, [width,user]);
-
     const sectionDesc=(<>
     Join Us for an <span className='text-danger'> Upcoming Blood Drive</span>
     <small >
@@ -64,8 +25,8 @@ export default function UserPanelHome() {
     <>
     {user?<>
     
-    <Header2 id="header" userName={user.firstName}/>
-    <SectionT2 className="firstSection pb-4"  sectionHead="Save Blood , Donate Blood" sectionImgSrc={DonateBlood} varColor="--c-theme" sectionDesc={sectionDesc}/>
+    <SectionT2 className="firstSection"  sectionHead="Save Blood , Donate Blood" sectionImgSrc={DonateBlood} varColor="--c-theme" sectionDesc={sectionDesc}/>
+
     <section className='weHaveConnectedTo  py-5' style={{background:"var(--c-theme2)"}}>
         <div className='container'>
             <div className='row'>
@@ -87,7 +48,7 @@ export default function UserPanelHome() {
             <div className='row'>
             <div className='col-12'>
                   <div className='mapContainer  position-relative' style={{height:"40vh"}}>
-                        <MapCard />
+                        <MapCard height={"40vh"}  />
                   </div>
             </div>
           </div>
@@ -95,7 +56,7 @@ export default function UserPanelHome() {
         </div>
     </section>
     
-    <section className="blogs  py-5" style={{background:"var(--c-theme2)",marginBottom:`${bottomPaddin}px`}}>
+    <section className="blogs  py-5 " style={{background:"var(--c-theme2)",marginBottom:`100px`}}>
         <div className="container">
             <div className="row">
                 <h3 className='jomhuria' style={{fontFamily:"jomhuria",fontSize:"50px"}}>Blogs</h3>
@@ -110,9 +71,6 @@ export default function UserPanelHome() {
             </div>
         </div>
     </section>
-
-    <UserPanelNavBar id="userPanelNav"/>
-
     </>:<>
 
 

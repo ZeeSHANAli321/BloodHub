@@ -28,6 +28,9 @@ class Donor(models.Model):
     complete_address = models.TextField(blank=True)
     password = models.CharField(max_length=50 , default='0000')
     confirm_password = models.CharField(max_length=50 , default='0000')
+    
+    lat = models.DecimalField(max_digits=9, decimal_places=6,null=True)
+    lng = models.DecimalField(max_digits=9, decimal_places=6,null=True)
 
     def __str__(self):
         return f"{self.firstName} {self.lastName}"
@@ -64,7 +67,9 @@ class Seeker(models.Model):
     hospital_name = models.TextField(blank=True)
     want_to_broadcast = models.BooleanField(default=False)
     broadcast_message = models.TextField(blank=True)
-
+    
+    lat = models.DecimalField(max_digits=9, decimal_places=6,null=True)
+    lng = models.DecimalField(max_digits=9, decimal_places=6,null=True)
     def __str__(self):
         return f"{self.firstName} {self.lastName}"
 

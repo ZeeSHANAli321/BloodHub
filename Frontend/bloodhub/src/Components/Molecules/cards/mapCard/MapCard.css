@@ -11,3 +11,119 @@
     justify-content: center;
     align-items: center;
 }
+.mainMapContainer{
+    position: relative;
+}
+.mapFunction{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 999;
+    top: 60px;
+    right: 7px;
+}
+.mapFunction div{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: white;
+    margin: 3px;
+    overflow: hidden;
+}
+.mapFunction div:hover i{
+    transform: scale(1.3);
+    transition: all .5s ease-in-out;
+}
+.searchBox{
+    display: block;
+    width: 560px;
+    background-color: white;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    box-shadow: var(--box-shadow);
+    border-radius: 20px;
+    overflow: hidden;
+    max-height: 69vh;
+}
+.searchInputContainer{
+    height: 45px;
+    padding: 10px;
+
+}
+.searchInputContainer input{
+    height: 100%;
+    width: 93%;
+    border: none;
+    padding: 10px;
+    font-size: large;
+    font-family: Inter;
+}
+.searchInputContainer input:active,.searchInputContainer input:focus{
+    border: none;
+    outline: none;
+}
+
+.searchOutput{
+    padding: 10px;
+
+}
+.searchBox{
+    transition: all 1s ease-in-out;
+}
+.searchOutput .d-flex .userProfileImg{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--c-theme2);
+}
+
+.searchOutput .d-flex .userDetails span{
+    font-weight: bold;
+}
+.searchOutput .d-flex .Link:hover{
+    cursor: pointer;
+}
+.searchElement{
+    max-height: 70vh;
+    overflow: auto;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+#remove-route{
+    background-color: white;
+}
+/* .locate{
+    border-radius: 50%;
+    transition: all .2s ease-in;
+} */
+/* .locate:hover{
+    background-color: var(--c-theme2);
+}
+.locate:active{
+    background-color: var(--c-theme);
+} */
+@media(max-width:772px){
+    .searchBox{
+        width: 400px;
+    }
+
+}
+@media(max-width:600px){
+    .searchBox{
+        width: 400px;
+    }
+
+}
+@media(max-width:400px){
+    .searchBox{
+        width: 95vw;
+    }
+}
