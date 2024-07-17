@@ -11,23 +11,23 @@ export default function UserPanelNavBar({id}) {
     <div id={id} className='UserPanelNavBar  mx-auto py-2 px-3' style={{border:"2px solid black",borderRadius:"20px"}}>
         <div className='navElementsContainer d-flex list-unstyled justify-content-around'>
                 <li><Link to="chat" style={{textDecoration:"none"}}>
-                    <img src={messanger} style={{height:"30px"}} alt="chat link" />
+                    <img src={messanger} style={{height:"30px"}} alt="chat" />
                 </Link></li>
                 
-                <li><Link to="/userPanelHome/map" style={{textDecoration:"none"}}>
-                    <img src={map} style={{height:"30px"}} alt="map link" />
+                <li><Link to="map" style={{textDecoration:"none"}}>
+                    <img src={map} style={{height:"30px"}} alt="map" />
                 </Link></li>
                 
                 <li><Link to="/userPanelHome" style={{textDecoration:"none"}}>
-                    <img src={logo} style={{height:"60px"}} alt="chat link" />
+                    <img src={logo} style={{height:"60px"}} alt="Home" />
                 </Link></li>
                 
-                <li title='Notifications'><Link to="/" style={{textDecoration:"none"}}>
-                    <img src={bell} style={{height:"30px"}} alt="chat link" />
+                <li title='Notifications'><Link to="Notifications" style={{textDecoration:"none"}}>
+                    <img src={bell} style={{height:"30px"}} alt="Notifications" />
                 </Link></li>
                 
-                <li title='Broadcast'><Link to="/" style={{textDecoration:"none"}}>
-                    <img src={broadcast} style={{height:"30px"}} alt="chat link" />
+                <li title='Broadcast'><Link to="Broadcast" style={{textDecoration:"none"}}>
+                    <img src={broadcast} style={{height:"30px"}} alt="BroadCast" />
                 </Link></li>
                 
             
