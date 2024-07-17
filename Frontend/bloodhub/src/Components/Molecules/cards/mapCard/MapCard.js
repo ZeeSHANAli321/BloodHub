@@ -79,9 +79,7 @@ const MyLocationMarker = (userId) => {
     </div>}
     </>) : (
     <Marker position={position} icon={myPin}>
-      <Popup>
-        <b className='text-success'>You are here</b>
-      </Popup>
+
     </Marker>
   );
 };
