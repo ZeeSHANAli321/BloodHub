@@ -1,0 +1,30 @@
+/* Loading.css */
+.loading-main {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.loading-logo {
+    z-index: 999;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: #ff737379;
+    backdrop-filter: grayscale;
+    transform: scale(0);
+    animation: ripple-animation 1.5s linear infinite;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}

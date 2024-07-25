@@ -38,3 +38,13 @@
         width: 95vw;
     }
 }
+@media (max-width:549.99px){
+    .UserPanelNavBar{
+        width: 100vw;
+        bottom: 0px;
+        border-radius: 0px !important ;
+        border-top-left-radius: 20px !important;
+        border-top-right-radius: 20px !important;
+    }
+    
+}
