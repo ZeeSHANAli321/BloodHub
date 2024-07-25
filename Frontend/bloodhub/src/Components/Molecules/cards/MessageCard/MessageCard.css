@@ -1,0 +1,22 @@
+.Message-card{
+    border-radius: 20px;
+    border: .5px solid black;
+
+    
+}
+.msg-start{
+    background-color: var(--c-theme2);
+    border-bottom-left-radius: 0px !important;
+    text-align: start;
+}
+.msg-end{
+    background-color: var(--c-theme);
+    border-bottom-right-radius: 0px !important;
+    text-align: start;
+}
+.Message_time span{
+    font-size: x-small;
+    padding: 0px;
+    margin: 0px;
+    font-weight: 100;
+}

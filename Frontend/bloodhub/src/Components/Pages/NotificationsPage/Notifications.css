@@ -1,0 +1,24 @@
+.notification-logo-container{
+    height: 60px;
+    width: 60px;
+    background: var(--c-theme2);
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.notification-card{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.537);
+}
+.notification-info-container p{
+    margin-bottom: 5px;
+}
+.notification-info-container{
+    width: 90%;
+
+}
+.notification-info-container small{
+    color: rgba(0, 0, 0, 0.629);
+    font-family: 'Times New Roman', Times, serif;
+}

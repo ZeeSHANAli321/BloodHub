@@ -1,0 +1,33 @@
+.chat-profile-pic{
+    height: 50px;
+    width: 50px;
+    background-color: aliceblue;
+    border-radius: 50%;
+    overflow: hidden;
+
+}
+.chat-info{
+    flex:1;
+    overflow: hidden;
+}
+.Chat-element{
+    border-bottom: .5px solid rgb(99, 99, 99);
+}
+.chat-date{
+    font-size: 10px;
+    font-weight: 100;
+}
+.chat-head{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.chat-last-msg{
+    font-size: 12px;
+    font-weight: 200;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    overflow: hidden;
+}
