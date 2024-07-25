@@ -40,47 +40,10 @@ class Donor(models.Model):
     address = models.CharField(max_length=250)
     any_blood_related_disease = models.TextField(blank=True)
     complete_address = models.TextField(blank=True)
-<<<<<<< HEAD
-    password = models.CharField(max_length=50)
-    
-    lat = models.DecimalField(max_digits=9, decimal_places=6,null=True)
-    lng = models.DecimalField(max_digits=9, decimal_places=6,null=True)
-=======
     password = models.CharField(max_length=50 , default='0000')
     confirm_password = models.CharField(max_length=50 , default='0000')
-    
-    lat = models.DecimalField(max_digits=9, decimal_places=6,null=True)
-    lng = models.DecimalField(max_digits=9, decimal_places=6,null=True)
 
-    def __str__(self):
-        return f"{self.firstName} {self.lastName}"
 
->>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
-
-    def __str__(self):
-        return f"{self.firstName} {self.lastName}"
-class BroadcastModel(models.Model):
-    bloodGroup = models.CharField(max_length=10,choices=(('',''),
-                                                        ('A+','A+'),
-                                                        ('A-','A-'),
-                                                        ('B+','B+'),
-                                                        ('B-','B-'),
-                                                        ('O+','O+'),
-                                                        ('O-','O-'),
-                                                        ('AB+','AB+'),
-                                                        ('AB-','AB-'),
-                                                        ))
-    requireUnit = models.IntegerField()
-    address = models.CharField(max_length=150)
-    msg = models.CharField(max_length=150)
-    userId = models.CharField(max_length=50)
-    created_at = models.DateTimeField(auto_now_add=True)
-    
-    class Meta:
-        ordering = ['created_at'] 
-    def __str__(self):
-        return f"{self.userId}'s created at {self.created_at}"
-        
 class Seeker(models.Model):
     type=models.CharField(default="Donor", max_length=50 )
     firstName = models.CharField(max_length=50)
@@ -112,18 +75,6 @@ class Seeker(models.Model):
     hospital_name = models.TextField(blank=True)
     want_to_broadcast = models.BooleanField(default=False)
     broadcast_message = models.TextField(blank=True)
-    
-    lat = models.DecimalField(max_digits=9, decimal_places=6,null=True)
-    lng = models.DecimalField(max_digits=9, decimal_places=6,null=True)
-<<<<<<< HEAD
-    
-    broadcastList = models.ManyToManyField(BroadcastModel)
-    
-    def __str__(self):
-        return f"{self.firstName} {self.lastName}"
-=======
-    def __str__(self):
-        return f"{self.firstName} {self.lastName}"
 
 class login_Donor(models.Model):
     email = models.EmailField()  
@@ -132,20 +83,13 @@ class login_Donor(models.Model):
 class login_Seeker(models.Model):
     email = models.EmailField()  
     password = models.CharField(max_length=50 , default='0000')
->>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
 
 class contact_us(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField()
     subject = models.TextField(blank=True)
-    message = models.TextField(blank=True)
-    def __str__(self):
-        return f"{self.name}"
-<<<<<<< HEAD
-=======
+    message = models.TextField(blank=True)                     
 
-
->>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
 
 class BlogPost(models.Model):
     
