@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import './Broadcast.css';
 import { useOutletContext } from 'react-router-dom';
@@ -231,4 +232,13 @@ export default function Broadcast() {
       </div>
     </div>
   );
+=======
+import React from 'react'
+import "./Broadcast.css"
+
+export default function Broadcast() {
+  return (
+    <div>Broadcast</div>
+  )
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
 }

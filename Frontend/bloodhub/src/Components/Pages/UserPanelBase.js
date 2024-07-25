@@ -6,6 +6,7 @@ import UserPanelNavBar from 'Components/Molecules/navBars/UserPanelNavBar/UserPa
 import { useNavigate } from 'react-router-dom';
 import { useEffect,useState } from 'react';
 import { fetchUser,GetData } from 'Services/FetchData';
+<<<<<<< HEAD
 import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 import { initializeApp } from 'firebase/app';
 import Button from "@mui/material/Button";
@@ -21,13 +22,18 @@ const firebaseConfig = {
   
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
+=======
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
 
 export default function UserPanelBase() {
     let navigation = useNavigate()
     const [user,setUser] = useState(null)
+<<<<<<< HEAD
     const [token, setToken] = useState(null);
     const [ignore,setIgnore] = useState(false);
     const [notificationPermission, setNotificationPermission] = useState(null);
+=======
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
     const Donors = GetData("http://localhost:8000/api/donor/");
     const Seeker = GetData("http://localhost:8000/api/seeker/");
     useEffect(() => {
@@ -38,6 +44,7 @@ export default function UserPanelBase() {
                 navigation("/Error")
             }
         })
+<<<<<<< HEAD
     }, [navigation]);
 
     useEffect(()=>{
@@ -75,6 +82,9 @@ export default function UserPanelBase() {
           console.error('Error requesting permission:', error);
         }
       };
+=======
+    }, [navigation]); 
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
 
 
   return (
@@ -83,6 +93,7 @@ export default function UserPanelBase() {
 
     <div className='mainContainer'>
         <div className='headContainer'>
+<<<<<<< HEAD
             {notificationPermission === 'default' && (!ignore && (<>
             <>
                 <div className='notification-msg py-1 bg-warning '>
@@ -107,6 +118,9 @@ export default function UserPanelBase() {
             <Header2 id="header" userName={user.firstName}/>
            
 
+=======
+            <Header2 id="header" userName={user.firstName}/>
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
         </div>
         <div className='bodyContainer '>
             <Outlet context={{user,Donors,Seeker}} />

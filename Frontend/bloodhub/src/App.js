@@ -14,6 +14,7 @@ import UserPanelBase from 'Components/Pages/UserPanelBase';
 import Chat from 'Components/Pages/ChatPage/Chat';
 import Broadcast from 'Components/Pages/BroadcastPage/Broadcast';
 import Notifications from 'Components/Pages/NotificationsPage/Notifications';
+<<<<<<< HEAD
 import Loading from 'Components/Pages/LoadingPage/Loading';
 import { useState,useEffect } from 'react';
 
@@ -38,6 +39,11 @@ function App() {
 
     fetchData();
 }, []);
+=======
+
+function App() {
+  
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
   return (
     <>
     {loading?(<Loading />):(<>
@@ -53,7 +59,10 @@ function App() {
         {/* BlogDetailsPage */}
         <Route path="/blogs/:id" element={<BlogDetailsPage />} />
         <Route path='/Login' element={<Login />}/>
+<<<<<<< HEAD
         <Route path='loading' element={<Loading />}/>
+=======
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
 
         {/* Nested Donor user panel  */}
           <Route path='/UserPanelHome' element={<UserPanelBase />}> 

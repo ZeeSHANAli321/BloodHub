@@ -23,9 +23,13 @@ class contact_usSerializer(serializers.HyperlinkedModelSerializer):
 class BlogPostSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BlogPost
+<<<<<<< HEAD
         fields = ['title','image','description','id']                       
         
 class BroadcastModelSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BroadcastModel
         fields = "__all__"
+=======
+        fields = ['title','image','description','id']                       
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react'
 import "./Notifications.css"
 import BloodDonor from "Assets/images/blooddonor.png"
@@ -63,5 +64,12 @@ export default function Notifications() {
 
       </div>
     </>
+=======
+import React from 'react'
+import "./Notifications.css"
+export default function Notifications() {
+  return (
+    <div>Notifications</div>
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
   )
 }

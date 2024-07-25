@@ -1,5 +1,6 @@
 import os
 from rest_framework import viewsets
+<<<<<<< HEAD
 from django.core.serializers import serialize
 from .models import *
 from .serializers import *
@@ -10,6 +11,33 @@ import requests
 from django.conf import settings
 import datetime
 import jwt
+=======
+from rest_framework import generics
+from django.core.serializers import serialize
+from .models import Donor
+from .models import Seeker
+from .models import login_Donor
+from .models import login_Seeker
+from .models import contact_us
+from .serializers import donorSerializer
+from .serializers import seekerSerializer
+from .serializers import login_DomorSerializer
+from .serializers import login_SeekerSerializer
+from .serializers import contact_usSerializer
+from .models import BlogPost
+from .serializers import BlogPostSerializer
+from django.contrib.auth import authenticate, login
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .models import BlogPost
+from .serializers import BlogPostSerializer
+from django.contrib.auth.hashers import check_password
+
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
 
 # Create your views here.
 class donorViewSets(viewsets.ModelViewSet):
@@ -26,11 +54,15 @@ class contact_usViewSets(viewsets.ModelViewSet):
 
 class blog_ViewSets(viewsets.ModelViewSet):
     queryset =BlogPost.objects.all()
+<<<<<<< HEAD
     serializer_class = BlogPostSerializer 
     
 class BroadcastModel_ViewSets(viewsets.ModelViewSet):
     queryset = BroadcastModel.objects.all()
     serializer_class = BroadcastModelSerializer     
+=======
+    serializer_class = BlogPostSerializer      
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
 
 @csrf_exempt
 def login_view(request):
@@ -91,6 +123,7 @@ def get_user(request):
         "message": "Invalid request method",
         'status': 'failed'
     }, status=405)
+<<<<<<< HEAD
 
 """ @csrf_exempt
 def NotificationSubscribe(request):
@@ -381,3 +414,6 @@ def BroadCastNotification(request):
         else:
             return JsonResponse({'error': 'Invalid request'}, status=400)  
         
+=======
+    
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096

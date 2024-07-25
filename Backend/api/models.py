@@ -40,10 +40,22 @@ class Donor(models.Model):
     address = models.CharField(max_length=250)
     any_blood_related_disease = models.TextField(blank=True)
     complete_address = models.TextField(blank=True)
+<<<<<<< HEAD
     password = models.CharField(max_length=50)
     
     lat = models.DecimalField(max_digits=9, decimal_places=6,null=True)
     lng = models.DecimalField(max_digits=9, decimal_places=6,null=True)
+=======
+    password = models.CharField(max_length=50 , default='0000')
+    confirm_password = models.CharField(max_length=50 , default='0000')
+    
+    lat = models.DecimalField(max_digits=9, decimal_places=6,null=True)
+    lng = models.DecimalField(max_digits=9, decimal_places=6,null=True)
+
+    def __str__(self):
+        return f"{self.firstName} {self.lastName}"
+
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
 
     def __str__(self):
         return f"{self.firstName} {self.lastName}"
@@ -103,11 +115,24 @@ class Seeker(models.Model):
     
     lat = models.DecimalField(max_digits=9, decimal_places=6,null=True)
     lng = models.DecimalField(max_digits=9, decimal_places=6,null=True)
+<<<<<<< HEAD
     
     broadcastList = models.ManyToManyField(BroadcastModel)
     
     def __str__(self):
         return f"{self.firstName} {self.lastName}"
+=======
+    def __str__(self):
+        return f"{self.firstName} {self.lastName}"
+
+class login_Donor(models.Model):
+    email = models.EmailField()  
+    password = models.CharField(max_length=50 , default='0000')
+
+class login_Seeker(models.Model):
+    email = models.EmailField()  
+    password = models.CharField(max_length=50 , default='0000')
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
 
 class contact_us(models.Model):
     name = models.CharField(max_length=50)
@@ -116,6 +141,11 @@ class contact_us(models.Model):
     message = models.TextField(blank=True)
     def __str__(self):
         return f"{self.name}"
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
 
 class BlogPost(models.Model):
     

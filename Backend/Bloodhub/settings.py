@@ -148,5 +148,8 @@ SESSION_COOKIE_SECURE = False  # Set to True if using HTTPS
 SESSION_COOKIE_SAMESITE = None  # or 'None' if needed for cross-site requests
 
 CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
+<<<<<<< HEAD
 
 ACCESS_TOKEN = "7d0f2c5d24c92fc30eecedc5d93c4d88cc9e55b6"
+=======
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
