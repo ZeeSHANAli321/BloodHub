@@ -1,4 +1,5 @@
 from django.db import models
+from tinymce.models import HTMLField
 
 # Create your models here.
 class Donor(models.Model):
@@ -95,7 +96,7 @@ class BlogPost(models.Model):
     
     title = models.CharField(max_length=200)
     image = models.ImageField(upload_to='blog_images/')
-    description = models.TextField()
+    description = HTMLField()
     def __str__(self):
         return f"{self.title}"
 

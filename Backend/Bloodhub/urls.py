@@ -20,9 +20,16 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
+#admin customization
+admin.site.site_header=" LOGIN IN BLOODHUB "
+admin.site.site_title=" WELCOME TO BLOODHUB DASHBOARD "
+admin.site.index_title=" WELCOME TO BLOODHUB "
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/',include('api.urls')),
+    path('tinymce/', include('tinymce.urls')),
 
 ]
 
