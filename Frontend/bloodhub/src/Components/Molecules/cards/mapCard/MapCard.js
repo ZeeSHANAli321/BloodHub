@@ -151,8 +151,13 @@ const SearchBox = ({Donors,Seeker,myLocation,setSearchBox})=>{
               <div className='searchElement'>
               {
                 filteredUser?
+<<<<<<< HEAD
+                filteredUser.map((user,index)=>(
+                  <div className='searchOutput' key={index}>
+=======
                 filteredUser.map((user)=>(
                   <div className='searchOutput' key={user.firstName+user.lastName}>
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
                     <div className='d-flex'>
                       <div className='userProfileImg'>
                           <img height={"100%"} width={"100%"} src={BloodDonor} alt={user.firstName} />
@@ -233,6 +238,15 @@ export default function MapCard({ className,style,height,mapFunction=false }) {
 
         {/* Other map pins */}
           <LayersControl position='topright' >
+<<<<<<< HEAD
+            <LayersControl.Overlay checked name='Donors' key={"donor"} >
+              <LayerGroup>
+                {
+                  Donors.filter(donor => donor.lat && donor.lng && (donor.emailId !== user.emailId))
+                  .map((donor,index)=>(
+                    <>
+                    <Marker position={{ lat: donor.lat, lng: donor.lng }} icon={donorPin} key={index}>
+=======
             <LayersControl.Overlay checked name='Donors' >
               <LayerGroup>
                 {
@@ -240,6 +254,7 @@ export default function MapCard({ className,style,height,mapFunction=false }) {
                   .map((donor)=>(
                     <>
                     <Marker position={{ lat: donor.lat, lng: donor.lng }} icon={donorPin} key={donor.firstName+user.lastName}>
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
                       <Popup>
                         <MapPopup data={donor} type="Donor" start={start} GetRouteButton={GetRouteButton} GetRecenterUser={GetRecenterUser}/>
 {/*                         <GetRouteButton start={{lat:start.lat,lng:start.lng}} end={{ lat: donor.lat, lng: donor.lng }} />
@@ -252,6 +267,15 @@ export default function MapCard({ className,style,height,mapFunction=false }) {
               </LayerGroup>
             </LayersControl.Overlay>
 
+<<<<<<< HEAD
+            <LayersControl.Overlay checked name='Seeker' key={"seeker"}>
+              <LayerGroup>
+                {
+                  Seeker.filter(seeker => seeker.lat && seeker.lng && (seeker.emailId !== user.emailId))
+                  .map((seeker,index)=>(
+                    <>
+                    <Marker position={{ lat: seeker.lat, lng: seeker.lng }} icon={seekerPin} key={index}>
+=======
             <LayersControl.Overlay checked name='Seeker'>
               <LayerGroup>
                 {
@@ -259,6 +283,7 @@ export default function MapCard({ className,style,height,mapFunction=false }) {
                   .map((seeker)=>(
                     <>
                     <Marker position={{ lat: seeker.lat, lng: seeker.lng }} icon={seekerPin} key={seeker.firstName}>
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
                       <Popup>
                         <MapPopup data={seeker} type="Seeker" start={start} GetRouteButton={GetRouteButton} GetRecenterUser={GetRecenterUser}/>
                       </Popup>
@@ -269,7 +294,11 @@ export default function MapCard({ className,style,height,mapFunction=false }) {
               </LayerGroup>
             </LayersControl.Overlay>
             
+<<<<<<< HEAD
+            <LayersControl.Overlay  name='100km Range' key={"range"}>
+=======
             <LayersControl.Overlay  name='100km Range'>
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
             <Circle
               center={[user.lat,user.lng]}
               pathOptions={{ fillColor: 'blue' }}

@@ -1,10 +1,6 @@
 from rest_framework import serializers
-from .models import Donor
-from .models import Seeker
-from .models import login_Donor
-from .models import login_Seeker
-from .models import contact_us
-from .models import BlogPost
+from .models import *
+
 
 class donorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -19,16 +15,6 @@ class seekerSerializer(serializers.HyperlinkedModelSerializer):
         model=Seeker
         fields="__all__"
 
-class login_DomorSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model=login_Donor
-        fields="__all__"
-
-class login_SeekerSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model=login_Seeker
-        fields="__all__"  
-
 class contact_usSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model=contact_us
@@ -37,4 +23,13 @@ class contact_usSerializer(serializers.HyperlinkedModelSerializer):
 class BlogPostSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BlogPost
+<<<<<<< HEAD
         fields = ['title','image','description','id']                       
+        
+class BroadcastModelSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = BroadcastModel
+        fields = "__all__"
+=======
+        fields = ['title','image','description','id']                       
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096

@@ -1,0 +1,54 @@
+.main-title{
+    font-family: Jomhuria;
+    font-size: 5rem;
+   
+    text-decoration: underline;
+    text-decoration-thickness: 4px;
+    
+}
+.highlight-text{
+    color: red;
+    font-weight: bold;
+}
+.broadcast-form{
+    border-radius: 30px;
+    background-color: var(--c-theme2);
+    box-shadow: 0px 10px 18px 3px #888888;;
+}
+
+.broadcast-form-elements table {
+    width: 100%;
+}
+/* .broadcast-form-elements table tr{
+    border: 1px solid black;
+}
+.broadcast-form-elements table tr td {
+    border: 1px solid yellow;
+} */
+.broadcast-form-elements table tr td input,.broadcast-form-elements table tr td select{
+    width: 100%;
+    padding: 5px;
+    margin: 0px !important ;
+
+}
+
+@media(max-width:576px){
+    .main-title{
+        font-size: 4rem;
+    }
+}
+@media(max-width:440px){
+    .main-title{
+        font-size: 3.5rem;
+    }
+}
+@media(max-width:390px){
+    .main-title{
+        font-size: 3rem;
+    }
+}
+@media(max-width:300px){
+    .main-title{
+        font-size: 2rem;
+    }
+}

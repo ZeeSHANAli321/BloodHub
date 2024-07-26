@@ -1,0 +1,47 @@
+.Chat-base-container{
+    height: 100%;
+    width: 100%;
+    
+}
+.chat-base-header{
+    width: 100%;
+    border-bottom: 2px groove;
+    
+}
+.chat-base-body{
+    flex: 1;
+    background-image: url("Assets/images/chatBackground.jpg");
+    border-top: 1px groove black;
+    border-bottom: 1px groove black;
+    box-shadow: inset 0px 0 3px 0px black;;
+}
+.chat-base-input{
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+}
+.chat-base-user-name{
+    font-size: large;
+
+}
+.cb-input{
+    flex: 1;
+}
+.cb-input textarea{
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: inherit;
+    resize: none;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.cb-send-button{
+    padding: 7px 15px;
+}
+.cb-send-button:hover{
+    background-color: rgb(139, 255, 139);
+}
+.cb-send-button:active{
+    background-color: var(--c-theme);
+}

@@ -14,12 +14,40 @@ import UserPanelBase from 'Components/Pages/UserPanelBase';
 import Chat from 'Components/Pages/ChatPage/Chat';
 import Broadcast from 'Components/Pages/BroadcastPage/Broadcast';
 import Notifications from 'Components/Pages/NotificationsPage/Notifications';
+<<<<<<< HEAD
+import Loading from 'Components/Pages/LoadingPage/Loading';
+import { useState,useEffect } from 'react';
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/firebase-messaging-sw.js')
+  .then(function(registration) {
+    console.log('Service Worker registration successful with scope: ', registration.scope);
+  }, function(err) {
+    console.log('Service Worker registration failed: ', err);
+  });
+}
+
+function App() {
+  const [loading,setLoading] = useState(true)
+  useEffect(() => {
+    
+    const fetchData = async () => {
+        setLoading(true);
+        await new Promise(resolve => setTimeout(resolve, 500));
+        setLoading(false);
+    };
+
+    fetchData();
+}, []);
+=======
 
 function App() {
   
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
   return (
     <>
-    <Router>
+    {loading?(<Loading />):(<>
+      <Router>
       <Routes>
 
         <Route path='/' element={<Home />}/>
@@ -31,6 +59,10 @@ function App() {
         {/* BlogDetailsPage */}
         <Route path="/blogs/:id" element={<BlogDetailsPage />} />
         <Route path='/Login' element={<Login />}/>
+<<<<<<< HEAD
+        <Route path='loading' element={<Loading />}/>
+=======
+>>>>>>> 74adefbcd49cfd5b286f1236fdd16d657ffda096
 
         {/* Nested Donor user panel  */}
           <Route path='/UserPanelHome' element={<UserPanelBase />}> 
@@ -47,6 +79,8 @@ function App() {
         
       </Routes>
     </Router>
+    </>)}
+    
     </>
   );
 }
