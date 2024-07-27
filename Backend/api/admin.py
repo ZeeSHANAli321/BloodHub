@@ -8,4 +8,5 @@ admin.site.register(contact_us)
 admin.site.register(BlogPost)
 admin.site.register(UserDevice)
 admin.site.register(BroadcastModel)
+admin.site.register(Notifications)
 

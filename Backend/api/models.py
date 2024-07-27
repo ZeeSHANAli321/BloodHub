@@ -1,5 +1,4 @@
 from django.db import models
-from tinymce.models import HTMLField
 
 # Create your models here.
 class Notifications(models.Model):
@@ -127,8 +126,8 @@ class BlogPost(models.Model):
         return f"{self.title}"
 
 class UserDevice(models.Model):
-    user = models.CharField(max_length=200,default="User not found",unique=True)
+    user = models.CharField(max_length=100,default="User not found",unique=True)
     device_token = models.CharField(max_length=255)
     def __str__(self):
-        return self.user
+        return F"{self.user}'s Device Token"
 

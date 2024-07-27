@@ -210,7 +210,7 @@ print("Access Token:", access_token)
  """
 def generate_jwt():
     try:
-        SERVICE_ACCOUNT_FILE = os.path.join(settings.BASE_DIR, 'api', 'bloodhub-8eabb-firebase-adminsdk-3a06t-55779d0f45.json')
+        SERVICE_ACCOUNT_FILE = os.path.join(settings.BASE_DIR, 'api', 'bloodhub-8eabb-firebase-adminsdk-3a06t-51904c9206.json')
         
         with open(SERVICE_ACCOUNT_FILE) as f:
             service_account_info = json.load(f)
@@ -336,6 +336,7 @@ def BroadCastNotification(request):
         
         user_device = UserDevice.objects.all()
         ACCESS_TOKEN = GenerateTokenView()
+        print(ACCESS_TOKEN)
         SUCCESS_COUNT = 0
         FAILURE_COUNT = 0
         if message and title :
@@ -374,7 +375,8 @@ def BroadCastNotification(request):
                 return JsonResponse({
                                             'message':'Notification send successfully',
                                             'SUCCESS_COUNT':SUCCESS_COUNT,
-                                            'FAILURE_COUNT':FAILURE_COUNT
+                                            'FAILURE_COUNT':FAILURE_COUNT,
+                                            'Device Count':UserDevice.objects.count()
                                             })
             except Exception as e:
                 return JsonResponse({'error': str(e)}, status=404)
