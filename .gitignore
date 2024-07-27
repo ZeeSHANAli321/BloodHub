@@ -1,7 +1,27 @@
-my vap ids {
-    Public Key: BNtU_fLJHZwXuFaeilQnKRAL4kw2axbxkSTyX-ycWppy1dBE7RJErxLNQ7FiTUVgWIbveMF4QKTV5KqnSIliG1g
-    Private Key: xYvAHBvtVhaA396uuvx4HCn1_sdGu3QaafpveKFzLFc
-}
-firebase ids 
+firebase ids Vap
 {public : BDLJvN_ZtX4pZR0IFveWn7eZBLrBRLvqJUPagYSzLB7s17BginbN7AMcGgU1kPSQXP6GmXrh507ISvAjADMeH0s
 Private : jMnzif2dsTxMeIAh72zOMjBEl_vMZHmBRzsKFnscIHg}
+
+# Python compiled files
+*.pyc
+*.pyo
+__pycache__/
+
+# Django specific files
+db.sqlite3
+
+# Environment variables
+.env
+
+# Node specific files
+node_modules/
+
+# Django static and media files
+staticfiles/
+media/
+
+# VSCode settings folder
+.vscode/
+
+# Firebase Admin SDK JSON key
+Backend/api/bloodhub-8eabb-firebase-adminsdk-3a06t-51904c9206.json
