@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 
 export default function ButtonT2({ text, classStyle, type, to,onClick }) {
@@ -7,22 +6,24 @@ export default function ButtonT2({ text, classStyle, type, to,onClick }) {
     color: "black",
     fontWeight: "bold",
     background: "var(--c-theme)",
-    borderRadius:"40px",
-    fontSize:"1rem"
+    borderRadius:"20px",
+    fontSize:"1rem",
+    padding:"5px 10px"
+
     
   };
   return (
     <>
       <Link to={to} className="" style={{textDecoration:"none"}}>
-        <Button
-          variant="contained"
+        <button
+          /* variant="contained" */
           type={type}
           className={classStyle}
           style={btnStyle}
           onClick={onClick}
         >
           {text}
-        </Button>
+        </button>
       </Link>
     </>
   );

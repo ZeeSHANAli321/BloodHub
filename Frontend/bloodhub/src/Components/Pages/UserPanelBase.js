@@ -6,9 +6,8 @@ import UserPanelNavBar from 'Components/Molecules/navBars/UserPanelNavBar/UserPa
 import { useNavigate } from 'react-router-dom';
 import { useEffect,useState } from 'react';
 import { fetchUser,GetData } from 'Services/FetchData';
-import { getMessaging, getToken, onMessage } from 'firebase/messaging';
+import { getMessaging, getToken } from 'firebase/messaging';
 import { initializeApp } from 'firebase/app';
-import Button from "@mui/material/Button";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBnc91I-geh5tktZOI8cee-On3l7lMLUj4",
@@ -25,6 +24,7 @@ const firebaseConfig = {
 export default function UserPanelBase() {
     let navigation = useNavigate()
     const [user,setUser] = useState(null)
+    const [showNotification,setShowNotification] = useState(false)
     const [token, setToken] = useState(null);
     const [ignore,setIgnore] = useState(false);
     const [notificationPermission, setNotificationPermission] = useState(null);
@@ -43,6 +43,13 @@ export default function UserPanelBase() {
     useEffect(()=>{
         const permission = Notification.permission;
         setNotificationPermission(permission);
+
+        const timer = setTimeout(() => {
+          setShowNotification(true);
+      }, 2000); 
+
+     
+      return () => clearTimeout(timer);
     },[])
 
     const requestPermission = async () => {
@@ -83,26 +90,28 @@ export default function UserPanelBase() {
 
     <div className='mainContainer'>
         <div className='headContainer'>
-            {notificationPermission === 'default' && (!ignore && (<>
-            <>
-                <div className='notification-msg py-1 bg-warning '>
+        {notificationPermission === 'default' && !ignore && showNotification && (
+                <div className='notification-msg py-1 bg-warning'>
                     <div className='container d-flex justify-content-between align-items-center'>
-                        <span style={{fontWeight:"bold"}}>Allow Notification to Get Seekers Blood request or other important Notifications</span>
+                        <span style={{ fontWeight: "bold" }}>
+                            Allow Notification to Get Seekers Blood request or other important Notifications
+                        </span>
                         <div className='d-flex align-items-center'>
-                        <Button
-                        variant="outlined"
-                        onClick={requestPermission}
-                        className='bg-white text-dark'
-                        style={{borderColor:"red",fontWeight:"bolder"}}
-                        >
-                        Allow
-                        </Button>
-                            <i className='fa-solid fa-xmark fa-lg ms-3 cursor-pointer' onClick={() => setIgnore(true)}></i>
-                        </div> 
+                            <button
+                                onClick={requestPermission}
+                                className='bg-white text-dark'
+                                style={{ borderColor: "red", fontWeight: "bolder", padding: "3px 10px", borderRadius: "5px" }}
+                            >
+                                Allow
+                            </button>
+                            <i
+                                className='fa-solid fa-xmark fa-lg ms-3 cursor-pointer'
+                                onClick={() => setIgnore(true)}
+                            ></i>
+                        </div>
                     </div>
                 </div>
-            </>
-            </>))}
+            )}
              
             <Header2 id="header" userName={user.firstName}/>
            

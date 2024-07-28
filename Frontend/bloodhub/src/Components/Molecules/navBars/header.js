@@ -2,7 +2,6 @@ import React from "react";
 import "./header.css";
 import Logo from "../../../Assets/images/No-Bg-logo2.png";
 import  { useState } from 'react';
-import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import { Link as Rlink  } from "react-scroll";
 import ButtonT1 from "Components/Atoms/Buttons/ButtonT1";
@@ -36,7 +35,8 @@ export default function Header({ type,id }) {
             </div>
             </Link>
             <div className="hamContainer d-md-none">
-            <MenuIcon fontSize="large" style={{color:'white'}} onClick={()=>{isActiveNav?setIsActiveNav(false):setIsActiveNav(true)}} />
+            <i className="fa-solid fa-bars fa-2xs" style={{color:'white'}} onClick={()=>{isActiveNav?setIsActiveNav(false):setIsActiveNav(true)}}></i>
+            {/* <MenuIcon fontSize="large"  /> */}
             </div>
           </div>
 
@@ -67,8 +67,9 @@ export default function Header({ type,id }) {
             </div>
           </Link>
             <div className="hamContainer d-md-none">
-            <MenuIcon fontSize="large" onClick={()=>{isActiveNav?setIsActiveNav(false):setIsActiveNav(true)}} />
-            </div>
+            <i className="fa-solid fa-bars fa-2xs" onClick={()=>{isActiveNav?setIsActiveNav(false):setIsActiveNav(true)}}></i>
+{/*             <MenuIcon fontSize="large" onClick={()=>{isActiveNav?setIsActiveNav(false):setIsActiveNav(true)}} />
+ */}            </div>
           </div>
 
           <div className="  d-md-flex justify-content-center  " style={navList}>
