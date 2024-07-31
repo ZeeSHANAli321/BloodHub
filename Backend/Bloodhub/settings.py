@@ -23,7 +23,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'material',
+    'material.admin',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -153,3 +155,17 @@ SESSION_COOKIE_SAMESITE = None  # or 'None' if needed for cross-site requests
 CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
 
 ACCESS_TOKEN = "7d0f2c5d24c92fc30eecedc5d93c4d88cc9e55b6"
+
+MATERIAL_ADMIN_SITE = {
+    # 'FAVICON':  'path/to/favicon',  # Admin site favicon (path to static should be specified)
+    # 'MAIN_BG_COLOR':  'color',  # Admin site main color, css color should be specified
+    # 'MAIN_HOVER_COLOR':  'color',  # Admin site main hover color, css color should be specified
+      'PROFILE_PICTURE':  "admin/No-Bg-logo2.png",  # Admin site profile picture (path to static should be specified)
+      'PROFILE_BG':  'admin/backLogin.jpg',  # Admin site profile background (path to static should be specified)
+      'LOGIN_LOGO':  "admin/No-Bg-logo2.png",  # Admin site logo on login page (path to static should be specified)
+      'LOGOUT_BG':  'admin/backLogin.jpg',  # Admin site background on login/logout pages (path to static should be specified)
+      'SHOW_THEMES':  True,  #  Show default admin themes button
+      'TRAY_REVERSE': True,  # Hide object-tools and additional-submit-line by default
+      'NAVBAR_REVERSE': True,  # Hide side navbar by default
+      'SHOW_COUNTS': True, # Show instances counts for each model
+}

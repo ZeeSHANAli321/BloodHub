@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 
 
 #admin customization
-admin.site.site_header=" LOGIN IN BLOODHUB "
+admin.site.site_header="BLOODHUB MODELS "
 admin.site.site_title=" WELCOME TO BLOODHUB DASHBOARD "
 admin.site.index_title=" WELCOME TO BLOODHUB "
 
