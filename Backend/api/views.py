@@ -30,8 +30,18 @@ class blog_ViewSets(viewsets.ModelViewSet):
     
 class BroadcastModel_ViewSets(viewsets.ModelViewSet):
     queryset = BroadcastModel.objects.all()
-    serializer_class = BroadcastModelSerializer     
+    serializer_class = BroadcastModelSerializer  
 
+class NotificationModel_ViewSets(viewsets.ModelViewSet):
+    queryset = Notifications.objects.all()
+    serializer_class = NotificationModelSerializer   
+class ChatBaseModel_Viewsets(viewsets.ModelViewSet):
+    queryset = ChatBase.objects.all()
+    serializer_class = ChatBaseModelSerializer
+class MessageModel_Viewsets(viewsets.ModelViewSet):
+    queryset = Message.objects.all()
+    serializer_class = MessageModelSerializer
+    
 @csrf_exempt
 def login_view(request):
     if request.method == "POST":
@@ -259,7 +269,8 @@ def GenerateTokenView():
             return token_json['access_token']
         except Exception as e:
             return "Error Getting TOken : "+ str(e)
-
+""" def saveNotification(title,desc,logo,url,created_at,type):
+    pass """
 @csrf_exempt         
 def SendNotification(request):
     if request.method=="POST":
@@ -339,8 +350,17 @@ def BroadCastNotification(request):
         print(ACCESS_TOKEN)
         SUCCESS_COUNT = 0
         FAILURE_COUNT = 0
+        NOTIFIED = 0    
         if message and title :
             try:
+                
+                notificationInstance = Notifications.objects.create(title=title,description=message,type='Broadcast')
+                #adding notification in all donors
+                for donor in Donor.objects.all():
+                    donor.notifications.add(notificationInstance)
+                    NOTIFIED += 1
+                    
+                #notifying about broadcast to all the donors which allowes notifications
                 for device in user_device:
                     device_token = device.device_token
                 
@@ -371,11 +391,13 @@ def BroadCastNotification(request):
                     else:
                         response_data = response.json()
                         FAILURE_COUNT+1
+                        print(f"**Failure {device.user}**: {response_data}")
                         #return JsonResponse({'error': 'Failed to send notification','RESPONSE':response_data,'SUCCESS_COUNT':SUCCESS_COUNT,'FAILURE_COUNT':FAILURE_COUNT}, status=500)
                 return JsonResponse({
                                             'message':'Notification send successfully',
                                             'SUCCESS_COUNT':SUCCESS_COUNT,
                                             'FAILURE_COUNT':FAILURE_COUNT,
+                                            'NOTIFIED':NOTIFIED,
                                             'Device Count':UserDevice.objects.count()
                                             })
             except Exception as e:
@@ -383,3 +405,23 @@ def BroadCastNotification(request):
         else:
             return JsonResponse({'error': 'Invalid request'}, status=400)  
         
+@csrf_exempt 
+def removeNotification(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        notification_id = data.get('id')
+        userId = data.get('userId')
+        userType = data.get('userType')
+        
+        if not notification_id and userId and userType:
+            return {"error":"invalid data","removed":False}
+        if userType.upper() == "DONOR":
+            user = Donor.objects.get(emailId = userId)
+        elif userType.upper() == "SEEKER":
+            user = Seeker.objects.get(emailId = userId)
+        else:
+            return JsonResponse({"error":"Invalid User Type","removed":False})
+        
+        notification = Notifications.objects.get(id=notification_id)
+        user.notifications.remove(notification)
+        return JsonResponse({"status":"successfully deleted ","removed":True})

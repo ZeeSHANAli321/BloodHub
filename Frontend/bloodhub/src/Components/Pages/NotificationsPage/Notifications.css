@@ -8,8 +8,17 @@
     align-items: center;
     justify-content: center;
 }
+.empty-icon-container{
+    height: 200px;
+    width: auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .notification-card{
     border-bottom: 1px solid rgba(0, 0, 0, 0.537);
+    position: relative;
 }
 .notification-info-container p{
     margin-bottom: 5px;
@@ -22,3 +31,66 @@
     color: rgba(0, 0, 0, 0.629);
     font-family: 'Times New Roman', Times, serif;
 }
+
+/* norification type css */
+.notificationType{
+    position: absolute;
+    bottom: 10%;
+    right: 5%;
+}
+.notificationType{
+    text-align: center;
+ }
+ .notificationType span{
+     text-transform: uppercase;
+     padding: 5px 15px;
+     border: 1px solid rgb(80, 80, 80);
+     border-radius: 20px;
+     color: rgb(59, 59, 59);
+     font-family: Jamhura;
+     position: relative;
+     cursor: pointer;
+     user-select: none;
+
+     font-size: .7rem;
+     
+ }
+/*  .notificationType span::after,.notificationType span::before{
+     content: "";
+     height: 5px;
+     width: 5px;
+     background-color: goldenrod;
+     position: absolute;
+     top: 50%;
+     transform: translateY(-50%);
+     border-radius: 50%;
+ }
+ .notificationType span::after{
+
+     right: 5%;
+ }
+ .notificationType span::before{
+     
+     left: 5%;
+ } */
+/*  .notificationType span:hover {
+     background-color: goldenrod;
+     color: white;
+ }
+ .notificationType span:hover::before,
+ .notificationType span:hover::after{
+     background-color: white;
+ } */
+
+ @media(max-width:425px){
+    .notificationType span{
+        font-size: 10px;
+        padding: 2px 8px;
+        background-color: rgb(255, 255, 255);
+    }
+    .notificationType{
+        bottom: -8px;
+        
+        z-index: 9999;
+    }
+ }

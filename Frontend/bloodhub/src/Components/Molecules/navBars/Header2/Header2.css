@@ -1,0 +1,41 @@
+.UserType{
+   text-align: center;
+}
+.UserType span{
+    text-transform: uppercase;
+    padding: 5px 15px;
+    border: 1px solid goldenrod;
+    border-radius: 20px;
+    color: goldenrod;
+    font-family: Jamhura;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    
+}
+.UserType span::after,.UserType span::before{
+    content: "";
+    height: 5px;
+    width: 5px;
+    background-color: goldenrod;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+}
+.UserType span::after{
+    
+    right: 5%;
+}
+.UserType span::before{
+    
+    left: 5%;
+}
+.UserType span:hover {
+    background-color: goldenrod;
+    color: white;
+}
+.UserType span:hover::before,
+.UserType span:hover::after{
+    background-color: white;
+}

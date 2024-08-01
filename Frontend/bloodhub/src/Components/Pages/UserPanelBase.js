@@ -113,7 +113,7 @@ export default function UserPanelBase() {
                 </div>
             )}
              
-            <Header2 id="header" userName={user.firstName}/>
+            <Header2 id="header" userName={user.firstName} userType={user.type} />
            
 
         </div>
@@ -123,7 +123,9 @@ export default function UserPanelBase() {
     </div>
     
     {/* Absolute Components */}
-    <UserPanelNavBar id="userPanelNav"/>
+    <UserPanelNavBar id="userPanelNav" canBroadcast={
+      user.type.toUpperCase() === "DONOR"?false:true
+    } />
 
     </>:<>
 

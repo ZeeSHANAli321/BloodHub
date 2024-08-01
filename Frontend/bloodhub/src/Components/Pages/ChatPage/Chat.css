@@ -84,6 +84,27 @@
 .chat-search-input {
   flex: 1;
 }
+.no-cb{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.no-cb-logo-container{
+  height: 250px;
+  width: 250px;
+}
+.no-cb-logo-container img{
+  filter: grayscale(1);
+}
+.no-cb-chat-bar{
+  position: absolute;
+  top: 5%;
+  left: 2%;
+}
 @media(max-width:549.99px){
     .chat-list{
         width: 100vw !important;

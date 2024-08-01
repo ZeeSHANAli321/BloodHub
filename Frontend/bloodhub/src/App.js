@@ -16,6 +16,7 @@ import Broadcast from 'Components/Pages/BroadcastPage/Broadcast';
 import Notifications from 'Components/Pages/NotificationsPage/Notifications';
 import Loading from 'Components/Pages/LoadingPage/Loading';
 import { useState,useEffect } from 'react';
+import NoBroadcast from 'Components/Pages/BroadcastPage/NoBroadcast';
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/firebase-messaging-sw.js')
@@ -63,6 +64,7 @@ function App() {
             <Route path='chat' element={<Chat />}/>
             <Route path='notifications' element={<Notifications />}/>
             <Route path='broadcast' element={<Broadcast />}/>
+            <Route path='noBroadcast' element={<NoBroadcast />}/>
           </Route>
         
         <Route path='/Error' element={<ErrorPage />}/>
