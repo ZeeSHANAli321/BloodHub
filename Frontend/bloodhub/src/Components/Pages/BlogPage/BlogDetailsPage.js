@@ -9,6 +9,7 @@ import { GetData } from 'Services/FetchData';
 
 
 const BlogDetailsPage = () => {
+  
   const id  = useParams();
   const blog = GetData(`http://localhost:8000/api/blogs/${id.id}/`);
   const blogs = GetData('http://localhost:8000/api/blogs/')

@@ -39,7 +39,9 @@
     border-bottom: 0px solid transparent !important ;
     box-shadow: none;
 }
-
+.hamContainer i { 
+    cursor: pointer;
+}
 
 @media (max-width: 767.98px) {
     .logoImage{
@@ -60,12 +62,19 @@
         display: block;
         text-align: center;
         border-top:1px solid rgb(0, 0, 0);
-
-        
     }
     .nav li{
         margin-left: 0px;
     }
-   
+   .navItems button{
+    font-size: 1.9rem;
+   }
     
 }
+
+/* 995px - 767.98px */
+@media (max-width: 995px) and (min-width: 768px) {
+    .logoImageContainer{
+        margin: auto;
+    }
+  }

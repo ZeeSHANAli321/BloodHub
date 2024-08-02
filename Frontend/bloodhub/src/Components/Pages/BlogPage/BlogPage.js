@@ -7,6 +7,9 @@ import BlogSections from 'Components/Molecules/Sections/BlogSections';
 import { getHeight } from 'Utils/util';
 
 const BlogPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top on mount
+  }, []);
   const [width, setWidth] = useState(window.innerWidth);
   const [isScrolled, setIsScrolled] = useState(false);
   if(isScrolled){

@@ -17,6 +17,8 @@ import Notifications from 'Components/Pages/NotificationsPage/Notifications';
 import Loading from 'Components/Pages/LoadingPage/Loading';
 import { useState,useEffect } from 'react';
 import NoBroadcast from 'Components/Pages/BroadcastPage/NoBroadcast';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/firebase-messaging-sw.js')
@@ -39,6 +41,32 @@ function App() {
 
     fetchData();
 }, []);
+
+//Aos initilization
+useEffect(() => {
+  AOS.init({
+    // Global settings:
+    disable: 'phone', 
+    startEvent: 'DOMContentLoaded',
+    initClassName: 'aos-init', 
+    animatedClassName: 'aos-animate',
+    useClassNames: false, 
+    disableMutationObserver: false, 
+    debounceDelay: 50, 
+    throttleDelay: 99,
+
+    offset: 120, 
+    delay: 0, 
+    duration: 600, 
+    easing: 'ease', 
+    once: false, 
+    mirror: false, 
+    anchorPlacement: 'top-bottom', 
+  });
+  }, []);
+
+
+
   return (
     <>
     {loading?(<Loading />):(<>

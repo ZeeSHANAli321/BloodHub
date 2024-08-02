@@ -14,6 +14,9 @@ import { Link } from 'react-router-dom';
 
 
 export default function DonorReg() {
+    useEffect(() => {
+        window.scrollTo(0, 0); // Scroll to the top on mount
+      }, []);
     const becomeAdonorSectionDesc = `"Be a hero in someone's story. Donate blood, save a life, and leave an everlasting legacy of compassion and hope."`;
     const [width, setWidth] = useState(window.innerWidth);
 
