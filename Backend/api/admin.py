@@ -8,9 +8,9 @@ class BlogPostAdmin(admin.ModelAdmin):
     list_editable=('image',)
 
 class NotificationsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'created_at', 'type')  
+    list_display = ('title', 'description', 'type')  
     search_fields = ('title', 'description')  
-    list_filter = ('type', 'created_at') 
+    list_filter = ('type','title') 
 
 class DonorAdmin(admin.ModelAdmin):
     list_display = ('firstName', 'lastName', 'emailId', 'bloodGroup', 'mobileNo')  # Customize list view
@@ -20,7 +20,7 @@ class DonorAdmin(admin.ModelAdmin):
 class BroadcastModelAdmin(admin.ModelAdmin):
     list_display = ('bloodGroup', 'requireUnit', 'address', 'userId', 'created_at')
     search_fields = ('userId', 'msg')
-    list_filter = ('bloodGroup', 'created_at')
+    list_filter = ('bloodGroup','userId')
 
 class SeekerAdmin(admin.ModelAdmin):
     list_display = ('firstName', 'lastName', 'emailId', 'bloodGroup', 'required_unit', 'want_to_broadcast')
