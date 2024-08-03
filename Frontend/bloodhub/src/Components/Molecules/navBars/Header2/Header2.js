@@ -46,13 +46,13 @@ export default function Header2( {className,id,userName,userType} ) {
     <section id={id} className={className} style={{background:"white",borderBottom:"5px solid black",boxShadow:"var(--box-shadow)",width:"100%",zIndex:"2"} } >
         <div className='container py-1'>
             <div className='row'>
-                <div className='col-md-6 col-8  '>
+                <div className='col-md-4 col-8 col-sm-6  '>
                     <div className="align-items-center d-inline-flex">
                         <img src={Logo} height="70px" width="70px" className="logoImage" alt="BloodHub Logo" />
                         <h1 className="logoName " >BLOODHUB</h1>
                     </div>
                 </div>
-                <div className='col-md-6  col-4 d-flex align-items-center justify-content-end '>
+                <div className='col-md-8 col-sm-6  col-4 d-flex align-items-center justify-content-end '>
                     <div className='UserType d-none d-sm-block  text-end  ms-auto'>
                         <span className=' me-3'>{userType}</span>
                     </div>

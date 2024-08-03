@@ -42,6 +42,10 @@ class MessageModel_Viewsets(viewsets.ModelViewSet):
     queryset = Message.objects.all()
     serializer_class = MessageModelSerializer
     
+class Slider_viewsets(viewsets.ModelViewSet):
+    queryset = Slider.objects.all()
+    serializer_class = sliderSerialiszer
+    
 @csrf_exempt
 def login_view(request):
     if request.method == "POST":

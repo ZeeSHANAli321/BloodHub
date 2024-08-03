@@ -1,31 +1,31 @@
 import React from 'react'
 import "./UserPanelHome.css"
-import SectionT2 from 'Components/Molecules/Sections/SectionT2';
-import DonateBlood from "Assets/images/DonateBlood.png"
 import MapCard from 'Components/Molecules/cards/mapCard/MapCard';
 import BlogBlocks from 'Components/Molecules/cards/blogCards/blogBlocks';
 import { GetData } from 'Services/FetchData';
 import { useOutletContext } from 'react-router-dom';
 import UserDataSection from 'Components/Molecules/Sections/UserDataSection';
+import Slider from 'Components/Molecules/Sections/Slider';
+import UserDetail from 'Components/Molecules/Sections/UserDetail';
 
 
 export default function UserPanelHome() {
     const {user} = useOutletContext();
     const blogs = GetData("http://localhost:8000/api/blogs/");
-    const sectionDesc=(<>
-    Join Us for an <span className='text-danger'> Upcoming Blood Drive</span>
-    <small >
-        Date:12/12/2022
-        <br/>
-        Location:Falana diklana , dhanewa dhanei , Maharajganj
-    </small>
-    </>);
+    const sliderImages = GetData("http://localhost:8000/api/Slider/");
 
   return (
     <>
     {user?<>
     
-    <SectionT2 className="firstSection"  sectionHead="Save Blood , Donate Blood" sectionImgSrc={DonateBlood} varColor="--c-theme" sectionDesc={sectionDesc}/>
+    {/* <SectionT2 className="firstSection"  sectionHead="Save Blood , Donate Blood" sectionImgSrc={DonateBlood} varColor="--c-theme" sectionDesc={sectionDesc}/> */}
+    <Slider sliderImgList={sliderImages} />
+
+    <section className='UserInfo py-3  py-sm-5' /* style={{background:"var(--c-theme2)"}} */>
+        <div className='container'>
+            <UserDetail user={user} />
+        </div>
+    </section>
 
     <section className='weHaveConnectedTo  py-5' style={{background:"var(--c-theme2)"}}>
         <div className='container'>

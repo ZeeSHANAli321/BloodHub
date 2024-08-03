@@ -45,3 +45,8 @@ class seekerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Seeker
         fields = "__all__"
+        
+class sliderSerialiszer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Slider
+        fields = "__all__"
