@@ -14,10 +14,10 @@ export default function UserDataSection() {
     <div>
         <div className='row py-2'>
                 <div className='col d-flex w-100 justify-content-around'>
-                    <LabelledImgCard img={Donor} imgClass="dataImg"  label={donor.length+"k Donor"} labelClass="labels" />
-                    <LabelledImgCard img={Seeker} imgClass="dataImg"  label={seeker.length+"k Seeker"} labelClass="labels" />
-                    <LabelledImgCard img={bank} imgClass="dataImg"  label="50K Donor" labelClass="labels" />
-                    <LabelledImgCard img={User} imgClass="dataImg"  label="50K Donor" labelClass="labels" />
+                    <LabelledImgCard data_aos={"fade-right"} img={Donor} imgClass="dataImg"  label={donor.length+"k Donor"} labelClass="labels" />
+                    <LabelledImgCard data_aos={"fade-up-right"} img={Seeker} imgClass="dataImg"  label={seeker.length+"k Seeker"} labelClass="labels" />
+                    <LabelledImgCard data_aos={"fade-up-left"} img={bank} imgClass="dataImg"  label="50K Donor" labelClass="labels" />
+                    <LabelledImgCard data_aos={"fade-left"} img={User} imgClass="dataImg"  label="50K Donor" labelClass="labels" />
                 </div>
         </div>
     </div>

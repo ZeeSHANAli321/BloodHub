@@ -23,6 +23,7 @@ import UserDataSection from 'Components/Molecules/Sections/UserDataSection';
 
 
 export default function Home() {
+    let blogDelays = 200
     const [Name,setName] = useState("");
     const [Email,setEmail] = useState("");
     const [Message,setMessage] = useState("");
@@ -31,6 +32,7 @@ export default function Home() {
     const [failedRegMsg, setFailedRegMsg] = useState(<></>);
     const [isScrolled, setIsScrolled] = useState(false);
     const blogs = GetData("http://localhost:8000/api/blogs/");
+    
     useEffect(() => {
 
       const handleScroll = () => {
@@ -87,21 +89,21 @@ export default function Home() {
     
     <>
     <Header type={isScrolled?'none':'home'}/>
-    <section id='home' className='hero mb-2 mb-md-5'>
+    <section id='home'  className='hero mb-2 mb-md-5'>
         <div className='heroDiv'>
-            <div className="heroTxtContainer d-flex flex-column ">
+            <div className="heroTxtContainer d-flex flex-column  " data-aos="fade-up" >
                 <div className='heroTxt px-2'>
                     <h1 >"The joy of saving lives is in your veins. Donate blood."</h1>
                 </div>
                 <div className="heroNavs d-flex flex-row justify-content-center">
-                    <ButtonT1 to="/donorRegistration" text="Become a Donor"/>
-                    <ButtonT1 to="/seekerRegistration" text="Become a Seeker" classStyle="ms-2"/>
+                    <ButtonT1 data_aos={"fade-up-right"} data_aos_delay={"500"} to="/donorRegistration" text="Become a Donor"/>
+                    <ButtonT1 data_aos={"fade-up-left"}  data_aos_delay={"500"} to="/seekerRegistration" text="Become a Seeker" classStyle="ms-2"/>
                 </div>
             </div>
         </div>
     </section>
     
-    <section className='section2 sectionPadding'>
+    <section className='section2 sectionPadding' >
         <div className="container">
             <div className="row">
                 <div className="col-md-3 col-12 bloodDonationImg d-flex justify-content-center align-items-center">
@@ -117,7 +119,7 @@ export default function Home() {
         </div>
     </section>
 
-    <SectionT1 name="whoWeAre" id="whoWeAre"  sectionHead="Who we are " sectionImgSrc={Teamwork}  varColor="--c-theme" sectionDesc={whoWeAreSectionDesc} />
+    <SectionT1 data_aos="fade-up" name="whoWeAre" id="whoWeAre"  sectionHead="Who we are " sectionImgSrc={Teamwork}  varColor="--c-theme" sectionDesc={whoWeAreSectionDesc} />
 
     <Element  name='howItWork' id='howItWork' className='howItWork sectionPadding py-5'>
         <div className="container">
@@ -126,18 +128,18 @@ export default function Home() {
             </div>
             <div className="row">
  
-                <div className="stepContainer position-relative">
+                <div className="stepContainer position-relative" >
                    
-                    <div className="step position-relative  my-5">
+                    <div className="step position-relative  my-5" >
                         <h2 className='stepHeader'>Register or Login</h2>
-                        <div className="stepDisc d-flex justify-content-between align-items-center">
+                        <div className="stepDisc d-flex justify-content-between align-items-center" data-aos="zoom-in-up">
                          
                             <div className="stepTxt">
                             <p className='lead'>
                             Sign up as a Donor or Seeker, accessing your account.
                             </p>
                             </div>
-                            <div className="stepImg">
+                            <div className="stepImg" >
                                 <img src={Login} className='me-md-5'  alt="Blood donor img " />
                             </div>
 
@@ -146,9 +148,10 @@ export default function Home() {
                             1
                         </div>
                     </div>
+
                     <div className="step position-relative  my-5">
                         <h2 className='stepHeader'>Donor's action</h2>
-                        <div className="stepDisc d-inline-flex justify-content-between align-items-center">
+                        <div className="stepDisc d-inline-flex justify-content-between align-items-center" data-aos="zoom-in-up">
                             <div className="stepImg">
                                 <img src={Blooddonor} className='me-md-5'  alt="Blood donor img " />
                             </div>
@@ -167,7 +170,7 @@ export default function Home() {
                     </div>
                     <div className="step position-relative  my-5">
                         <h2 className='stepHeader'>Chat and Arrangement</h2>
-                        <div className="stepDisc d-flex justify-content-between align-items-center">
+                        <div className="stepDisc d-flex justify-content-between align-items-center" data-aos="zoom-in-up">
                          
                             <div className="stepTxt">
                             <p className='lead'>
@@ -185,7 +188,7 @@ export default function Home() {
                     </div>
                     <div className="step position-relative  my-5">
                         <h2 className='stepHeader'>Seeker's Actions</h2>
-                        <div className="stepDisc d-inline-flex justify-content-between align-items-center">
+                        <div className="stepDisc d-inline-flex justify-content-between align-items-center" data-aos="zoom-in-up">
                             <div className="stepImg">
                                 <img src={Seeker} className='me-md-5'  alt="Blood donor img " />
                             </div>
@@ -203,7 +206,7 @@ export default function Home() {
 
                     <div className="step position-relative  my-5">
                         <h2 className='stepHeader'>Donation Process</h2>
-                        <div className="stepDisc d-flex justify-content-between align-items-center">
+                        <div className="stepDisc d-flex justify-content-between align-items-center" data-aos="zoom-in-up">
                          
                             <div className="stepTxt">
                             <p className='lead'>
@@ -222,7 +225,7 @@ export default function Home() {
 
                     <div className="step position-relative  my-5">
                         <h2 className='stepHeader'>User Panel Features   </h2>
-                        <div className="stepDisc d-inline-flex justify-content-between align-items-center">
+                        <div className="stepDisc d-inline-flex justify-content-between align-items-center" data-aos="zoom-in-up">
                             <div className="stepImg">
                                 <img src={Uipanel} className='me-md-5'  alt="Blood donor img " />
                             </div>
@@ -271,9 +274,10 @@ export default function Home() {
             </div>
             <div className="row blogBlockContainer d-flex justify-content-center">
                 {
-                    blogs.slice(-4).map((blog) => (
-                        <BlogBlocks blogUrl={blog.id} img={blog.image} title={blog.title} key={blog.id} />
-                    ))
+                    blogs.slice(-4).map((blog,index) => {
+                        blogDelays=blogDelays+50
+                        return (<BlogBlocks data_aos={"fade-up"} data_aos_delay={blogDelays} blogUrl={blog.id} img={blog.image} title={blog.title} key={index} />)
+                        })
                 }
                 
             </div>

@@ -22,4 +22,10 @@
   padding: 0;
 }
 
+.blogBlockContainer div:hover{
+  background-color: var(--c-theme2);
+  
+  
+}
+
 

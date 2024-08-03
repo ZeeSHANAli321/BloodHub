@@ -9,6 +9,9 @@ import Footer from 'Components/Molecules/footer/footer';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Login() {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top on mount
+  }, []);
   let nevigate = useNavigate()
   const [width, setWidth] = useState(window.innerWidth);
   const [email,setEmail] = useState("")

@@ -1,10 +1,11 @@
 import React, { useEffect, useState,useRef } from 'react'
 import "./Chat.css"
-import BloodDonor from "Assets/images/blooddonor.png"
+import logo from "Assets/images/No-Bg-logo2.png"
 import ChatElement from 'Components/Molecules/cards/chatElement/ChatElement';
 import ChatBase from 'Components/Molecules/cards/ChatBase/ChatBase';
 import { useOutletContext } from 'react-router-dom';
-const data = [
+import { getChatBase } from './ChatFunctions';
+/* const data = [
   { id:1,
     logo:BloodDonor,
     name:"Broadcast msg  ",
@@ -23,8 +24,8 @@ const data = [
     date:"20/20/2020",
     description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta, temporibus nostrum dignissimos offic Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta, temporibus nostrum dignissimos officia deserunt tempore modi laboriosam a distinctio ab."
   }
-];
-const chatdata = [
+]; */
+/* const chatdata = [
   {
     id:1,
     msg:"Hi i am trying to make my chat base ",
@@ -58,7 +59,8 @@ const chatdata = [
     time:"12:13am",
     status:'send'
   },
-];
+]; */
+
 const ChatBarIcon = ({collapsed,setChatListCollapsed})=>{
   const toggleChatList = () => {
     if(collapsed){
@@ -73,10 +75,12 @@ const ChatBarIcon = ({collapsed,setChatListCollapsed})=>{
 }
 export default function Chat() {
     const {Donors,Seeker,user} = useOutletContext();
+    //console.log(user)
     const chatListRef = useRef(null);
     const [chatListCollapsed,setChatListCollapsed] = useState(false)
-    const chatbases = data;
-    const chatbase = chatdata;
+    const [chatbases,setChatbases] = useState([]);
+    const [chatbase,setChatBase] = useState(null)
+    //const chatbase = chatdata;
 
     useEffect(()=>{
       if(chatListRef.current){
@@ -88,6 +92,23 @@ export default function Chat() {
         
       }
     },[chatListCollapsed])
+
+    //Funcunalities 
+    useEffect(()=>{
+      const getChats = async () => {
+        const chats = await getChatBase(user.ChatBases)
+        setChatbases(chats);
+      }
+      getChats()
+    },[user.ChatBases])
+
+  const changeChatBase = (chat) => {
+      setChatBase(chat)
+      const screenWidth = window.screen.width;
+      if(screenWidth<="549.99"){
+        setChatListCollapsed(true)
+      }
+  }
   return (
     <>
       <div className='chat-container'>
@@ -115,17 +136,31 @@ export default function Chat() {
 
                 </div>
                 <hr key={"hr1"} style={{margin:".5rem 0px"}}/>
-
                 <div className='chat-elements-container'>
                   {
                     chatbases.map((chat,index)=>(
-                      <ChatElement key={index} chat={chat} />
+                      <ChatElement key={index} chat={chat} onClick={()=>{changeChatBase(chat)}} />
                     ))
                   }
                 </div>
               </div>
               <div className='chat-base'>
-                  <ChatBase chatBase={chatbase} collapsed={chatListCollapsed} chatBarIcon={<ChatBarIcon  collapsed={chatListCollapsed} setChatListCollapsed={setChatListCollapsed} />} userName={"Gaurav "}/>
+                {chatbase?(
+                  <ChatBase chatBase={chatbase} collapsed={chatListCollapsed} chatBarIcon={<ChatBarIcon  collapsed={chatListCollapsed} setChatListCollapsed={setChatListCollapsed} />}/>
+                ):(
+                  <div className='no-cb text-center'>
+                    <div className='no-cb-logo-container '>
+                      <img src={logo} height={"100%"} width={"100%"} /> 
+                    </div>
+                    <span className='display-4'>Select any Chat to start chating.</span>
+                    <div className='no-cb-chat-bar'>
+                      {chatListCollapsed?
+                      <ChatBarIcon collapsed={chatListCollapsed} setChatListCollapsed={setChatListCollapsed} />
+                      :<></>
+                      }
+                    </div>
+                  </div>
+                )}
               </div>
           </div>
         </div>

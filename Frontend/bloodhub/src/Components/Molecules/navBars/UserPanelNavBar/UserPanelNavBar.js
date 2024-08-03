@@ -6,7 +6,7 @@ import map from "Assets/images/map.png"
 import messanger from "Assets/images/messenger.png"
 import logo from "Assets/images/No-Bg-logo2.png"
 import bell from "Assets/images/bell.png"   
-export default function UserPanelNavBar({id}) {
+export default function UserPanelNavBar({id,canBroadcast}) {
   return (
     <div id={id} className='UserPanelNavBar  mx-auto py-2 px-3' style={{border:"2px solid black",borderRadius:"20px"}}>
         <div className='navElementsContainer d-flex list-unstyled justify-content-around'>
@@ -26,7 +26,7 @@ export default function UserPanelNavBar({id}) {
                     <img src={bell} style={{height:"30px"}} alt="Notifications" />
                 </Link></li>
                 
-                <li title='Broadcast'><Link to="Broadcast" style={{textDecoration:"none"}}>
+                <li title='Broadcast'><Link to={canBroadcast?"Broadcast":"noBroadcast"} style={{textDecoration:"none"}}>
                     <img src={broadcast} style={{height:"30px"}} alt="BroadCast" />
                 </Link></li>
                 

@@ -11,6 +11,10 @@ router.register(r'seeker',seekerViewSets)
 router.register(r'contact_us',contact_usViewSets)
 router.register(r'blogs',blog_ViewSets)
 router.register(r'BroadcastModel',BroadcastModel_ViewSets)
+router.register(r'Notifications',NotificationModel_ViewSets)
+router.register(r'ChatBase',ChatBaseModel_Viewsets)
+router.register(r'Message',MessageModel_Viewsets)
+router.register(r'Slider',Slider_viewsets)
 
 
 urlpatterns = [
@@ -20,4 +24,5 @@ urlpatterns = [
         path('save_token/',views.saveDeviceToken,name='save token'),
         path('send_notification/',views.SendNotification,name='sendNotification'),
         path('broadcast_notification/',views.BroadCastNotification,name='broadcast_notification'),
+        path('remove_notification/',views.removeNotification,name='remove_notification'),
 ]

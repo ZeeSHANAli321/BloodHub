@@ -24,15 +24,24 @@
 }
 .socials i{
     margin-right: 10px;
+    transition: all .5s ease-in-out;
 }
 .footerLinks li{
     margin-right: 7px;
     font-weight: lighter;
+    transition: all .5s ease-in-out;
    
+}
+.footerLinks li a:hover{
+    transition: all .5s ease-in-out;
+    color: var(--c-theme2) !important;
 }
 .subFooter{
     border-top: 2px solid black;
     background-color: var(--c-theme);
+}
+.socials i:hover{
+    color: var(--c-theme2);
 }
 @media (max-width:575.98px){
 .footerElements li{

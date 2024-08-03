@@ -50,7 +50,6 @@ export default function Broadcast() {
           console.log("success");
       
           const date_time = parseISO(response.created_at);
-      
           const formattedDate = format(date_time, 'yyyy-MM-dd HH:mm:ssXXX');
           const last_broadcast_date = new Date(formattedDate);
       

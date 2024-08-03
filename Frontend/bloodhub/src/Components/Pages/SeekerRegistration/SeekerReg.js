@@ -9,6 +9,9 @@ import Seeker from 'Assets/images/seeker.png';
 import { getHeight } from 'Utils/util';
 
 export default function SeekerReg() {
+    useEffect(() => {
+        window.scrollTo(0, 0); // Scroll to the top on mount
+      }, []);
     const [width, setWidth] = useState(window.innerWidth);
     const [toBroadcast, setToBroadcast] = useState(false);
     const [broadcastMessage, setBroadcastMessage] = useState("");

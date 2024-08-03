@@ -1,14 +1,14 @@
 import React from 'react'
 import "../../Pages/HomePage/home.css"
-import { Link as Rlink ,Element } from "react-scroll";
+import { Element } from "react-scroll";
 
-export default function SectionT1({name,sectionHead,sectionDesc,sectionImgSrc,varColor,className,style,id}) {
+export default function SectionT1({data_aos,name,sectionHead,sectionDesc,sectionImgSrc,varColor,className,style,id}) {
     const sectionStyle = {
         backgroundColor: `var(${varColor})`,
         ...style
     };
   return (
-    <Element name={name} id={id} className={`sectionPadding py-5 ${className}`} style={sectionStyle} >
+    <Element data-aos={data_aos} name={name} id={id} className={`sectionPadding py-5 ${className}`} style={sectionStyle} >
         <div className="container">
             <div className="row">
                 <h2 className='sectionHead'>{sectionHead}</h2>

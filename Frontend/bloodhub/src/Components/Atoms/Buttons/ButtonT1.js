@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-export default function ButtonT1({ text, classStyle, type, to=null,onClick}) {
+export default function ButtonT1({data_aos_delay, data_aos,text, classStyle, type, to=null,onClick}) {
   const navigate = useNavigate()
   const homeBtnStyle = {
        color: "black",
@@ -20,7 +20,7 @@ export default function ButtonT1({ text, classStyle, type, to=null,onClick}) {
   }
   return (
     <>
-      <Link to={to} style={{textDecoration:"none"}}>
+      <Link to={to} style={{textDecoration:"none"}} data-aos={data_aos} data-aos-delay={data_aos_delay}>
         <button
           /* variant="outlined" */
           type={type}

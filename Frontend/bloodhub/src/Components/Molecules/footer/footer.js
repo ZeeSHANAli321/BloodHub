@@ -1,6 +1,7 @@
 import React from "react";
 import "./footer.css";
 import Logo from "../../../Assets/images/No-Bg-logo2.png";
+import { Link } from "react-router-dom";
 export default function Footer({color}) {
   return (
     <>
@@ -42,20 +43,20 @@ export default function Footer({color}) {
                 </div>
                 <div className="col-6 d-inline-flex justify-content-end  align-items-center">
                     <div className="socials px-1 w-md-25 d-inline-flex justify-content-around align-items-center">
-                    <i className="fa fa-instagram fa-2x" aria-hidden="true"></i>
-                    <i className="fa fa-github fa-2x" aria-hidden="true"></i>
-                    <i className="fa fa-facebook fa-2x" aria-hidden="true"></i>
-                    <i className="fa fa-twitter fa-2x" aria-hidden="true"></i>
+                    <Link to={"https://github.com/ZeeSHANAli321"} style={{textDecoration:"none",color:"black"}} ><i className="fa fa-instagram fa-2x cursor-pointer" aria-hidden="true"></i></Link>
+                    <Link to={"https://github.com/ZeeSHANAli321"} style={{textDecoration:"none",color:"black"}} ><i className="fa fa-github fa-2x cursor-pointer" aria-hidden="true"></i></Link>
+                    <Link to={"https://github.com/ZeeSHANAli321"} style={{textDecoration:"none",color:"black"}} ><i className="fa fa-facebook fa-2x cursor-pointer" aria-hidden="true"></i></Link>
+                    <Link to={"https://github.com/ZeeSHANAli321"} style={{textDecoration:"none",color:"black"}} ><i className="fa fa-twitter fa-2x cursor-pointer" aria-hidden="true"></i></Link>
                     </div>
                 </div>
               </div>
               <div className="row">
                 <div className="col-md-10 mx-auto d-inline-flex justify-content-center">
                     <ul className="d-inline-flex footerLinks  ">
-                        <li>Privacy Policy</li>
-                        <li>Terms and Condition </li>
-                        <li>About Us</li>
-                        <li>Contact Us</li>
+                        <li><Link to={""} style={{textDecoration:"none",color:"black"}}>Privacy Policy</Link></li>
+                        <li><Link to={""} style={{textDecoration:"none",color:"black"}}>Terms and Condition</Link></li>
+                        <li><Link to={""} style={{textDecoration:"none",color:"black"}}>About Us</Link></li>
+                        <li><Link to={""} style={{textDecoration:"none",color:"black"}}>Contact Us</Link></li>
                     </ul>
                 </div>
               </div>
@@ -70,7 +71,7 @@ export default function Footer({color}) {
                     <span>@2024 BloodHub</span>
                 </div>
                 <div className="col-6 " style={{textAlign:'right'}}>
-                <span >Designed and Develop by Group Alpha</span>
+                <span >Designed and Develop by Group <span className="highlight-text">Alpha</span> </span>
                 </div>
               </div>
                 </div>

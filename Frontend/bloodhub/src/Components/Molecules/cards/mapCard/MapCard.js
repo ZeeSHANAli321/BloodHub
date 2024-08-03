@@ -240,12 +240,10 @@ export default function MapCard({ className,style,height,mapFunction=false }) {
                   .map((donor,index)=>(
                     <>
                     <Marker position={{ lat: donor.lat, lng: donor.lng }} icon={donorPin} key={index}>
-                      <Popup>
-                        <MapPopup data={donor} type="Donor" start={start} GetRouteButton={GetRouteButton} GetRecenterUser={GetRecenterUser}/>
-{/*                         <GetRouteButton start={{lat:start.lat,lng:start.lng}} end={{ lat: donor.lat, lng: donor.lng }} />
- */}
-                      </Popup>
-                    </Marker>
+                    <Popup>
+                      <MapPopup data={donor} type="Donor" start={start} GetRouteButton={GetRouteButton} GetRecenterUser={GetRecenterUser}/>
+                    </Popup>
+                  </Marker>
                     </>
                   ))
                 }
@@ -258,7 +256,7 @@ export default function MapCard({ className,style,height,mapFunction=false }) {
                   Seeker.filter(seeker => seeker.lat && seeker.lng && (seeker.emailId !== user.emailId))
                   .map((seeker,index)=>(
                     <>
-                    <Marker position={{ lat: seeker.lat, lng: seeker.lng }} icon={seekerPin} key={index}>
+                    <Marker position={{ lat: seeker.lat, lng: seeker.lng }} icon={seekerPin} key={index} >
                       <Popup>
                         <MapPopup data={seeker} type="Seeker" start={start} GetRouteButton={GetRouteButton} GetRecenterUser={GetRecenterUser}/>
                       </Popup>

@@ -45,4 +45,7 @@ admin.site.register(BlogPost , BlogPostAdmin)
 admin.site.register(UserDevice,UserDeviceAdmin)
 admin.site.register(BroadcastModel , BroadcastModelAdmin)
 admin.site.register(Notifications , NotificationsAdmin)
+admin.site.register(Message)
+admin.site.register(ChatBase)
+admin.site.register(Slider)
 
