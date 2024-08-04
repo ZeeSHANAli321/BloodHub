@@ -19,6 +19,7 @@ import { useState,useEffect } from 'react';
 import NoBroadcast from 'Components/Pages/BroadcastPage/NoBroadcast';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import BroadcastDetail from 'Components/Pages/BroadcastPage/BroadcastDetail';
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/firebase-messaging-sw.js')
@@ -89,9 +90,11 @@ useEffect(() => {
             <Route path='' element={<UserPanelHome />}/>
             <Route path='profile' element={<UserProfile />}/>
             <Route path='map' element={<Map />}/>
+            <Route path='map/:lat/:lng' element={<Map />}/>
             <Route path='chat' element={<Chat />}/>
             <Route path='notifications' element={<Notifications />}/>
             <Route path='broadcast' element={<Broadcast />}/>
+            <Route path='broadcast/:id' element={<BroadcastDetail />}/>
             <Route path='noBroadcast' element={<NoBroadcast />}/>
           </Route>
         

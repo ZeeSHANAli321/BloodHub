@@ -358,14 +358,20 @@ def BroadCastNotification(request):
         if message and title :
             try:
                 
-                notificationInstance = Notifications.objects.create(title=title,description=message,type='Broadcast')
+                notificationInstance = Notifications.objects.create(title=title,description=message,type='Broadcast',broadcastId=broadcastInstance.id)
                 #adding notification in all donors
+                
                 for donor in Donor.objects.all():
                     donor.notifications.add(notificationInstance)
+                    broadcastInstance.notified_donors.add(donor)
                     NOTIFIED += 1
+                    
+                loopCount = 0
                     
                 #notifying about broadcast to all the donors which allowes notifications
                 for device in user_device:
+                    loopCount+=1
+                    print(f"Loop : {loopCount}")
                     device_token = device.device_token
                 
                     # Construct the FCM request
@@ -394,9 +400,10 @@ def BroadCastNotification(request):
                         SUCCESS_COUNT=SUCCESS_COUNT+1
                     else:
                         response_data = response.json()
-                        FAILURE_COUNT+1
+                        FAILURE_COUNT+=1
                         print(f"**Failure {device.user}**: {response_data}")
                         #return JsonResponse({'error': 'Failed to send notification','RESPONSE':response_data,'SUCCESS_COUNT':SUCCESS_COUNT,'FAILURE_COUNT':FAILURE_COUNT}, status=500)
+                print("done")
                 return JsonResponse({
                                             'message':'Notification send successfully',
                                             'SUCCESS_COUNT':SUCCESS_COUNT,
@@ -405,9 +412,12 @@ def BroadCastNotification(request):
                                             'Device Count':UserDevice.objects.count()
                                             })
             except Exception as e:
+                print("there is the haramakhor ",str(e))
                 return JsonResponse({'error': str(e)}, status=404)
         else:
             return JsonResponse({'error': 'Invalid request'}, status=400)  
+    else:
+        return JsonResponse({'error':"Invalid Method"},status = 404)
         
 @csrf_exempt 
 def removeNotification(request):
@@ -429,3 +439,102 @@ def removeNotification(request):
         notification = Notifications.objects.get(id=notification_id)
         user.notifications.remove(notification)
         return JsonResponse({"status":"successfully deleted ","removed":True})
+@csrf_exempt 
+def get_my_broadcast(request, id):
+    if id is not None:
+        try:
+            user = Seeker.objects.get(id=id)
+            broadcast_list = list(user.broadcastList.values()) 
+            return JsonResponse({'status': 'success', 'broadcastList': broadcast_list})
+        except Seeker.DoesNotExist:
+            return JsonResponse({'error': 'Seeker not found'})
+    return JsonResponse({'error': 'Invalid response'})
+@csrf_exempt
+def update_donors(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            broadcast_id = data.get('id')
+            user_id = data.get('userId')
+            accept = data.get('accept')
+
+            if not (broadcast_id and user_id and accept is not None):
+                return JsonResponse({'error': "Invalid Parameters"}, status=400)
+
+            try:
+                broadcast = BroadcastModel.objects.get(id=broadcast_id)
+            except BroadcastModel.DoesNotExist:
+                return JsonResponse({'error': "Broadcast not found"}, status=404)
+
+            try:
+                donor = Donor.objects.get(id=user_id)
+            except Donor.DoesNotExist:
+                return JsonResponse({'error': "Donor not found"}, status=404)
+
+            if accept:
+                broadcast.accepted_donors.add(donor)
+                msg = "Successfully added to accepted"
+            else:
+                broadcast.denied_donors.add(donor)
+                msg = "Successfully added to denied"
+
+            return JsonResponse({'status': 'success', 'msg': msg})
+
+        except json.JSONDecodeError:
+            return JsonResponse({'error': "Invalid JSON"}, status=400)
+
+    return JsonResponse({'error': "Invalid HTTP method"}, status=405)
+@csrf_exempt
+def assign_donors(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            donor_id = data.get('id')
+            broadcast_id = data.get('b_id')
+
+            if not (broadcast_id and donor_id):
+                return JsonResponse({'error': "Invalid Parameters"}, status=400)
+
+            try:
+                broadcast = BroadcastModel.objects.get(id=broadcast_id)
+            except BroadcastModel.DoesNotExist:
+                return JsonResponse({'error': "Broadcast not found"}, status=404)
+
+            try:
+                donor = Donor.objects.get(emailId=donor_id)
+            except Donor.DoesNotExist:
+                return JsonResponse({'error': "Donor not found"}, status=404)
+
+            broadcast.donor_assign = donor
+            broadcast.save()
+            print(broadcast.id ,"this is br id , assigned to " , donor.firstName ," status : " ,broadcast.donor_assign)
+            return JsonResponse({'status': 'success'})
+
+        except json.JSONDecodeError:
+            return JsonResponse({'error': "Invalid JSON"}, status=400)
+
+    return JsonResponse({'error': "Invalid HTTP method"}, status=405)
+@csrf_exempt
+def remove_assign_donors(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            broadcast_id = data.get('b_id')
+            
+
+            if not (broadcast_id ):
+                return JsonResponse({'error': "Invalid Parameters"}, status=400)
+
+            try:
+                broadcast = BroadcastModel.objects.get(id=broadcast_id)
+            except BroadcastModel.DoesNotExist:
+                return JsonResponse({'error': "Broadcast not found"}, status=404)
+
+            broadcast.donor_assign = None
+            broadcast.save()
+            return JsonResponse({'status': 'success'})
+
+        except json.JSONDecodeError:
+            return JsonResponse({'error': "Invalid JSON"}, status=400)
+
+    return JsonResponse({'error': "Invalid HTTP method"}, status=405)

@@ -1,0 +1,48 @@
+.error-div{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: var(--c-theme); */
+}
+.broadcast-detail {
+    border-radius: 20px;
+    background-color: var(--c-theme2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.broadcast-detail-table tr td {
+    max-width: 200px;
+}
+
+/* pop up stayels  */
+.PopUp{
+    display: block;
+
+    
+
+    background-color: white;
+    border: 2px solid green;
+    border-radius: 10px;
+}
+.popupcontainer{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(1.5px);
+}
+
+.isDonatedSection{
+    background-color: var(--c-theme);
+    border-radius: 20px;
+
+}

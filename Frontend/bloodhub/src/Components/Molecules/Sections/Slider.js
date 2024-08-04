@@ -9,7 +9,7 @@ function Slider({sliderImgList}) {
         <div className="carousel-inner">
             {   sliderImgList.map((img,index)=>(
 
-                <div className={`carousel-item ${index===0 && "active"}`}  data-bs-interval="2000" key={index}>
+                <div className={`carousel-item ${index===0 && "active"}`} title={img.capTitle}  data-bs-interval="2000" key={index}>
                     <div className='carousel_item_img_container' >
                         <img src={img.img} className="d-block w-100" alt={img.title}/>
                     </div>

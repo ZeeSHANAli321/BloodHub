@@ -11,10 +11,7 @@ class BlogPostSerializer(serializers.HyperlinkedModelSerializer):
         model = BlogPost
         fields = ['title', 'image', 'description', 'id']
 
-class BroadcastModelSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = BroadcastModel
-        fields = "__all__"
+
 
 class NotificationModelSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -38,7 +35,16 @@ class donorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Donor
         fields = "__all__"
-
+        
+class BroadcastModelSerializer(serializers.HyperlinkedModelSerializer):
+    notified_donors = donorSerializer(many=True, read_only=True)
+    accepted_donors = donorSerializer(many=True, read_only=True)
+    denied_donors = donorSerializer(many=True, read_only=True)
+    donor_assign = donorSerializer()
+    class Meta:
+        model = BroadcastModel
+        fields = "__all__"
+        
 class seekerSerializer(serializers.HyperlinkedModelSerializer):
     notifications = NotificationModelSerializer(many=True, read_only=True)
     ChatBases = ChatBaseModelSerializer(many=True, read_only=True)
@@ -50,3 +56,4 @@ class sliderSerialiszer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Slider
         fields = "__all__"
+    

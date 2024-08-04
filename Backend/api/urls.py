@@ -25,4 +25,8 @@ urlpatterns = [
         path('send_notification/',views.SendNotification,name='sendNotification'),
         path('broadcast_notification/',views.BroadCastNotification,name='broadcast_notification'),
         path('remove_notification/',views.removeNotification,name='remove_notification'),
+        path('get_broadcastList/<int:id>/',views.get_my_broadcast,name='get_broadcast'),
+        path('update_donors/',views.update_donors,name='update_donors'),
+        path('assign_donors/',views.assign_donors,name='assign_donors'),
+        path('remove_assign_donors/',views.remove_assign_donors,name='remove_assign_donors'),
 ]

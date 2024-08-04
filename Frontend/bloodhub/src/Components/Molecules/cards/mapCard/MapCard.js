@@ -14,7 +14,7 @@ import { useState,useEffect } from 'react';
 import { patchUser } from 'Services/FetchData';
 import MapPopup from '../MapPopup/MapPopup';
 import { LayersControl,Circle } from 'react-leaflet';
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useParams } from 'react-router-dom';
 const myPin = new L.Icon({
   iconUrl: myPinImg, // Replace with your image URL
   iconSize: [40, 40], // Size of the icon
@@ -47,6 +47,7 @@ const activeDrivePin = new L.Icon({
 });
  */
 const MyLocationMarker = (userId) => {
+  const {lat,lng} = useParams();
   const [position, setPosition] = useState(null);
   const map = useMapEvents({
     locationfound(e) {
@@ -56,10 +57,20 @@ const MyLocationMarker = (userId) => {
         "lat":parseFloat(e.latlng.lat.toFixed(6)),
         "lng":parseFloat(e.latlng.lng.toFixed(6))
       }
-      map.flyTo(e.latlng, map.getMaxZoom("15"), {
-        animate: true,
-        duration: 1.5, 
-      });
+      //to zoom to specific loction in url 
+      if(lat && lng){
+        const viewUserLatLngs = { lat: lat, lng: lng }
+        map.flyTo(viewUserLatLngs, map.getMaxZoom("15"), {
+          animate: true,
+          duration: 1.5, 
+        });
+      }else{
+        map.flyTo(e.latlng, map.getMaxZoom("15"), {
+          animate: true,
+          duration: 1.5, 
+        });
+      }
+      
       patchUser(updatedLocation,userId.userId).then((data)=>{
         if(!data){
           console.log("Location not set")

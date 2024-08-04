@@ -81,3 +81,29 @@ export const patchUser = async (updatedData,userID)=>{
         console.error("Error:", error);
     }
 }
+
+export const patchModel = async (updatedData,api) => {
+    try {
+        const response = await fetch(api, {
+            method: 'PATCH',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(updatedData)
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+            console.log("HTTP error:", response.statusText);
+            return null;
+        }else{
+            
+            return data;
+        }
+        
+    } catch (error) {
+        console.error("Error:", error);
+        return null;
+    }
+}

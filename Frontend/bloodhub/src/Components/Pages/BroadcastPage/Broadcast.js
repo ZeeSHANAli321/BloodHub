@@ -3,6 +3,7 @@ import './Broadcast.css';
 import { useOutletContext } from 'react-router-dom';
 import ButtonT2 from 'Components/Atoms/Buttons/ButtonT2';
 import { differenceInDays, format, addDays, parseISO } from 'date-fns';
+import BroadcastTable from './BroadcastTable';
 
 export default function Broadcast() {
   const { user } = useOutletContext();
@@ -77,7 +78,7 @@ export default function Broadcast() {
     } else {
       setCanBroadcast(true);
     }
-  }, []);
+  }, []); 
 
   const updateTimeRemaining = (threeDaysLater) => {
     const now = new Date();
@@ -149,6 +150,7 @@ export default function Broadcast() {
       console.log('Notification sent successfully:', response);
   }
   }
+
   return (
     <div className='container p-md-2 ' style={{marginBottom:"100px"}}>
       <div className='row'>
@@ -228,6 +230,8 @@ export default function Broadcast() {
            
         </div>
       </div>
+                
+      <BroadcastTable />
     </div>
   );
 }

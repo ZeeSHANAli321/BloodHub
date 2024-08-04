@@ -5,6 +5,7 @@ class Slider(models.Model):
     img = models.ImageField(upload_to="Slider_imgs/",null=False)
     def __str__(self):
         return f"{self.title}"
+    
 class Notifications(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=250)
@@ -16,6 +17,12 @@ class Notifications(models.Model):
                                                    ('Map','Map'),
                                                    ('BloodCamp','BloodCamp'),
                                                    ('','')))
+    status = models.CharField(max_length=10,choices=(('Pending','Pending'),
+                                                   ('Accepted','Accepted'),
+                                                   ('Ignore','Ignore'),
+                                                   ('Deny','Deny')),default='Pending')
+    broadcastId = models.CharField(max_length=10,blank=True)
+    
 class Message(models.Model):
     text = models.TextField()
     msg_from = models.CharField(max_length=100)
@@ -33,6 +40,7 @@ class ChatBase(models.Model):
     def __str__(self):
         return f"{self.name}'s"
     
+
 class Donor(models.Model):
     type=models.CharField(default="DONOR", max_length=50 )
     dp = models.ImageField(upload_to='dp_images/',default="default_pics/blooddonor.png")
@@ -65,8 +73,14 @@ class Donor(models.Model):
     lat = models.DecimalField(max_digits=9, decimal_places=6,null=True)
     lng = models.DecimalField(max_digits=9, decimal_places=6,null=True)
 
-    notifications = models.ManyToManyField(Notifications,related_name='donors')
-    ChatBases = models.ManyToManyField(ChatBase,related_name='donors')
+    notifications = models.ManyToManyField(Notifications,related_name='donors',blank=True)
+    ChatBases = models.ManyToManyField(ChatBase,related_name='donors',blank=True)
+    bloodDonated = models.ManyToManyField('BroadcastModel',related_name='donors')
+    
+    
+    eligible = models.BooleanField(default=True)
+    totalBloodDonated =models.DecimalField(max_digits=10,decimal_places=2,default=0.00)
+    
     def __str__(self):
         return f"{self.firstName} {self.lastName}"
 class BroadcastModel(models.Model):
@@ -85,6 +99,13 @@ class BroadcastModel(models.Model):
     msg = models.CharField(max_length=150)
     userId = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
+    
+    donated = models.BooleanField(default=False)
+    
+    donor_assign = models.ForeignKey(Donor, related_name='assigned_broadcasts', on_delete=models.SET_NULL, null=True, blank=True)
+    notified_donors = models.ManyToManyField(Donor, related_name='notified_broadcasts', blank=True)
+    accepted_donors = models.ManyToManyField(Donor, related_name='accepted_broadcasts', blank=True)
+    denied_donors = models.ManyToManyField(Donor, related_name='denied_broadcasts', blank=True)
     
     class Meta:
         ordering = ['created_at'] 
@@ -127,10 +148,11 @@ class Seeker(models.Model):
     lat = models.DecimalField(max_digits=9, decimal_places=6,null=True)
     lng = models.DecimalField(max_digits=9, decimal_places=6,null=True)
     
-    broadcastList = models.ManyToManyField(BroadcastModel,related_name='Seeker')
-    notifications = models.ManyToManyField(Notifications,related_name='Seeker')
-    ChatBases = models.ManyToManyField(ChatBase,related_name='Seeker')
-
+    broadcastList = models.ManyToManyField(BroadcastModel,related_name='Seeker',blank=True)
+    notifications = models.ManyToManyField(Notifications,related_name='Seeker',blank=True)
+    ChatBases = models.ManyToManyField(ChatBase,related_name='Seeker',blank=True)
+    bloodSeeked = models.DecimalField(max_digits=10, decimal_places=2,default=0.00)
+    
     def __str__(self):
         return f"{self.firstName} {self.lastName}"
 
