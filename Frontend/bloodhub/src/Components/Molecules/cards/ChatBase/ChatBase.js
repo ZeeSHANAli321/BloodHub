@@ -4,7 +4,6 @@ import MessageCard from '../MessageCard/MessageCard'
 import { useRef,useEffect,useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { postView } from 'Services/FetchData'
-import { getChatBase } from 'Components/Pages/ChatPage/ChatFunctions'
 
 function ChatBase({chatBase,chatBarIcon,setChatBase,collapsed}) {
     const {Donors,user,Seeker} = useOutletContext();
@@ -19,15 +18,16 @@ function ChatBase({chatBase,chatBarIcon,setChatBase,collapsed}) {
         if (chatBody.current) {
             chatBody.current.scrollTop = chatBody.current.scrollHeight;
         }
-    },[chatBase])
+    },[chatBase],)
 
     useEffect(()=>{
         const combined_users = [...Donors,...Seeker];
         const sender_user = combined_users.find(e => e.uId === senderId);
         setSender(sender_user || {}); 
-    },[Donors,Seeker,chatBase])
+    },[Donors,Seeker,chatBase,senderId])
     const sendMsg = async () => {
         console.log('msg called ')
+        setMessage('')
         const data= {
             'msg_text':messgae,
             'msg_from':user.uId,
@@ -38,6 +38,7 @@ function ChatBase({chatBase,chatBarIcon,setChatBase,collapsed}) {
         console.log('msg called ',chatBase.name)
         console.log('chaatbase length',chatBase.messages.length)
         //create new chatbase with both user and add msg 
+        
         if(chatBase.messages.length === 0){
             await postView(data,`http://127.0.0.1:8000/api/initilise_Chatbase/`)
             .then(data => {
@@ -57,6 +58,9 @@ function ChatBase({chatBase,chatBarIcon,setChatBase,collapsed}) {
         .then(data => {
             if(data){
                 console.log("successfully added new msg ")
+                console.log(data)
+                setChatBase(data.chatBase)
+
                 /* const upDatedChatbase = getChatBase */
             }else{
                 console.log("some eror cause not to send message",data)
@@ -64,6 +68,14 @@ function ChatBase({chatBase,chatBarIcon,setChatBase,collapsed}) {
         })
         }
     }
+    const sendByEnter = (event) => {
+        if (event.key === 'Enter') {
+          console.log('Enter key pressed:');
+          // Add your logic here
+          sendMsg()
+          event.preventDefault();
+        }
+      };
   return (
     <>
         <div className='Chat-base-container d-flex flex-column'>
@@ -72,7 +84,10 @@ function ChatBase({chatBase,chatBarIcon,setChatBase,collapsed}) {
                 <div className='chat-profile-pic'>
                     <img src={sender.dp} alt='Profile pic' height={"100%"} width='100%' />
                 </div>
-                <b className='chat-base-user-name ms-2'>{sender.firstName+" "+sender.lastName}</b>
+                <div className='d-flex flex-column ms-2'>
+                <b className='chat-base-user-name pb-0'>{sender.firstName+" "+sender.lastName}</b>
+                <small>{sender.emailId}</small>
+                </div>
             </div>
 
             <div className='chat-base-body p-3 d-flex flex-column overflow-auto' ref={chatBody}>
@@ -91,7 +106,7 @@ function ChatBase({chatBase,chatBarIcon,setChatBase,collapsed}) {
 
             <div className='chat-base-input p-1 px-3 d-flex justify-content-start align-items-center'>
                 <div className='cb-input'>
-                    <textarea rows="1" placeholder='Type your Message' value={messgae} onChange={(e)=>setMessage(e.target.value)}/>
+                    <textarea onKeyDown={sendByEnter} rows="1" placeholder='Type your Message' value={messgae} onChange={(e)=>setMessage(e.target.value)}/>
                 </div>
                 <div className='cb-send-button' onClick={sendMsg}>
                     <i className="fa-regular fa-lg fa-paper-plane"></i>

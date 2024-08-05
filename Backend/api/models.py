@@ -34,7 +34,7 @@ class Message(models.Model):
         return f"{self.msg_from} to {self.msg_to} : {self.text}"
     
 class ChatBase(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100,unique=True)
     messages = models.ManyToManyField(Message,related_name='chat_bases',blank=True)
     
     def __str__(self):

@@ -552,15 +552,23 @@ def initilise_Chatbase(request):
             if not (name and msg_text and msg_from and msg_to ):
                 return JsonResponse({'error': "Invalid Parameters"}, status=400)
 
+            if ChatBase.objects.filter(name=name):
+                return JsonResponse({'error':"Chatbase already present"})
             chatBase = ChatBase.objects.create(name=name)
             messageInstance = Message.objects.create(text=msg_text,msg_from=msg_from,msg_to=msg_to)
             messageInstance.save()
             chatBase.save()
             chatBase.messages.add(messageInstance)
             
-            return JsonResponse({'status': 'success','chatBaseId':chatBase.id})
+            serializedChatBase = ChatBaseModelSerializer(chatBase, context={'request': request})
 
+            
+            return JsonResponse({'status': 'success','chatBase':serializedChatBase.data})
+
+        except json.JSONDecodeError:
+            return JsonResponse({'error': "Invalid JSON"}, status=400)
         except Exception as e:
+            print(f"Exception occurred: {str(e)}")
             return JsonResponse({'error': str(e)}, status=400)
 
     return JsonResponse({'error': "Invalid HTTP method"}, status=405)
@@ -574,8 +582,8 @@ def send_msg(request):
             msg_text = data.get('msg_text')
             msg_from = data.get('msg_from')
             msg_to = data.get('msg_to')
-            print(f"from {msg_from} to {msg_to} : msg:{msg_text} in {name}")
-            if not (name and msg_text and msg_from and msg_to ):
+
+            if not (name and msg_text and msg_from and msg_to):
                 return JsonResponse({'error': "Invalid Parameters"}, status=400)
 
             try:
@@ -583,16 +591,20 @@ def send_msg(request):
             except ChatBase.DoesNotExist:
                 return JsonResponse({'error': "Chatbase not found"}, status=404)
 
-            messageInstance = Message.objects.create(text=msg_text,msg_from=msg_from,msg_to=msg_to)
-            messageInstance.save()
+            messageInstance = Message.objects.create(text=msg_text, msg_from=msg_from, msg_to=msg_to)
             chatbaseInstance.messages.add(messageInstance)
-            
-            serializedChatBase = serializers.serialize('json', [chatbaseInstance], use_natural_primary_keys=True)
-            serializedChatBase = json.loads(serializedChatBase)[0]
-            
-            return JsonResponse({'status': 'success','chatBase':serializedChatBase})
 
+            serializedChatBase = ChatBaseModelSerializer(chatbaseInstance, context={'request': request})
+            #serializedChatBase = json.loads(serializedChatBase)[0]
+
+            return JsonResponse({'status': 'success', 'chatBase': serializedChatBase.data})
+
+        except ChatBase.DoesNotExist:
+            return JsonResponse({'error': "Chatbase not found"}, status=404)
+        except json.JSONDecodeError:
+            return JsonResponse({'error': "Invalid JSON"}, status=400)
         except Exception as e:
+            print(f"Exception occurred: {str(e)}")
             return JsonResponse({'error': str(e)}, status=400)
 
     return JsonResponse({'error': "Invalid HTTP method"}, status=405)
