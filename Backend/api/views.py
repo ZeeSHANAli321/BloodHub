@@ -10,6 +10,18 @@ import requests
 from django.conf import settings
 import datetime
 import jwt
+from django.http import StreamingHttpResponse
+import time
+
+#Colors 
+RESET = "\033[0m"
+RED = "\033[31m"
+GREEN = "\033[32m"
+YELLOW = "\033[33m"
+BLUE = "\033[34m"
+MAGENTA = "\033[35m"
+CYAN = "\033[36m"
+WHITE = "\033[37m"
 
 # Create your views here.
 class donorViewSets(viewsets.ModelViewSet):
@@ -35,9 +47,11 @@ class BroadcastModel_ViewSets(viewsets.ModelViewSet):
 class NotificationModel_ViewSets(viewsets.ModelViewSet):
     queryset = Notifications.objects.all()
     serializer_class = NotificationModelSerializer   
+
 class ChatBaseModel_Viewsets(viewsets.ModelViewSet):
     queryset = ChatBase.objects.all()
     serializer_class = ChatBaseModelSerializer
+
 class MessageModel_Viewsets(viewsets.ModelViewSet):
     queryset = Message.objects.all()
     serializer_class = MessageModelSerializer
@@ -180,6 +194,7 @@ def broadCastNotification(request):
             })
     else:
         return JsonResponse(status=405, data={"status": "Method not allowed"}) """
+
 @csrf_exempt     
 def saveDeviceToken(request):
         if request.method == "POST":
@@ -194,6 +209,7 @@ def saveDeviceToken(request):
                     return JsonResponse({'message':'already Exists'})
             else:
                 return JsonResponse({'error': 'Invalid request'}, status=400)
+
 """ 
 def _get_access_token():
     # Define the path to your service account file
@@ -222,6 +238,7 @@ access_token = _get_access_token()
 print("Access Token:", access_token)
 
  """
+
 def generate_jwt():
     try:
         SERVICE_ACCOUNT_FILE = os.path.join(settings.BASE_DIR, 'api', 'bloodhub-8eabb-firebase-adminsdk-3a06t-51904c9206.json')
@@ -273,8 +290,10 @@ def GenerateTokenView():
             return token_json['access_token']
         except Exception as e:
             return "Error Getting TOken : "+ str(e)
+
 """ def saveNotification(title,desc,logo,url,created_at,type):
     pass """
+
 @csrf_exempt         
 def SendNotification(request):
     if request.method=="POST":
@@ -326,6 +345,7 @@ def SendNotification(request):
                 return JsonResponse({'error': 'User device not found'}, status=404)
         else:
             return JsonResponse({'error': 'Invalid request'}, status=400)  
+
 @csrf_exempt  
 def BroadCastNotification(request):
     if request.method=="POST":
@@ -439,6 +459,7 @@ def removeNotification(request):
         notification = Notifications.objects.get(id=notification_id)
         user.notifications.remove(notification)
         return JsonResponse({"status":"successfully deleted ","removed":True})
+
 @csrf_exempt 
 def get_my_broadcast(request, id):
     if id is not None:
@@ -449,6 +470,7 @@ def get_my_broadcast(request, id):
         except Seeker.DoesNotExist:
             return JsonResponse({'error': 'Seeker not found'})
     return JsonResponse({'error': 'Invalid response'})
+
 @csrf_exempt
 def update_donors(request):
     if request.method == "POST":
@@ -484,6 +506,7 @@ def update_donors(request):
             return JsonResponse({'error': "Invalid JSON"}, status=400)
 
     return JsonResponse({'error': "Invalid HTTP method"}, status=405)
+
 @csrf_exempt
 def assign_donors(request):
     if request.method == "POST":
@@ -514,6 +537,7 @@ def assign_donors(request):
             return JsonResponse({'error': "Invalid JSON"}, status=400)
 
     return JsonResponse({'error': "Invalid HTTP method"}, status=405)
+
 @csrf_exempt
 def remove_assign_donors(request):
     if request.method == "POST":
@@ -608,3 +632,38 @@ def send_msg(request):
             return JsonResponse({'error': str(e)}, status=400)
 
     return JsonResponse({'error': "Invalid HTTP method"}, status=405)
+@csrf_exempt
+def chatBase_eventStream(uId,request):
+    last_update = None
+    print(f"{MAGENTA}User ID : {uId}{RESET}")
+    while True:
+        if(uId.startswith("DO")):
+            user = Donor.objects.filter(uId=uId).first()
+            serialisedUser = donorSerializer(user, context={'request': request}).data
+
+        else:
+            user = Seeker.objects.filter(uId=uId).first()
+            serialisedUser = seekerSerializer(user, context={'request': request}).data
+
+            
+        #print(f"{GREEN}User:{user.firstName}({user.type}),{RESET}")
+                   
+        if user and serialisedUser:
+            U_chatBases = serialisedUser.get('ChatBases',[])
+            if last_update!=U_chatBases:
+                last_update = U_chatBases
+                yield f"data: {json.dumps(U_chatBases)}\n\n"
+        else:
+            # Optionally handle cases where the instance is not found
+            yield "data: {\"error\": \"Something unexpected happens\"}\n\n"
+        time.sleep(3)
+@csrf_exempt
+def chatBase_stream(request,uId):
+    response = StreamingHttpResponse(
+        chatBase_eventStream(uId,request),
+        content_type='text/event-stream'
+    )
+    response['Cache-Control'] = 'no-cache'
+    response['X-Accel-Buffering'] = 'no'
+    return response
+        

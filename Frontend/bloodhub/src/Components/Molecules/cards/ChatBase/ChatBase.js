@@ -1,7 +1,7 @@
 import React from 'react'
 import "./ChatBase.css"
 import MessageCard from '../MessageCard/MessageCard'
-import { useRef,useEffect,useState } from 'react'
+import { useRef,useEffect,useState,useLayoutEffect } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import { postView } from 'Services/FetchData'
 
@@ -14,11 +14,13 @@ function ChatBase({chatBase,chatBarIcon,setChatBase,collapsed}) {
 
     const chatBody = useRef(null);
 
-    useEffect(()=>{
+    useLayoutEffect(() => {
         if (chatBody.current) {
+          setTimeout(() => {
             chatBody.current.scrollTop = chatBody.current.scrollHeight;
+          }, 0);
         }
-    },[chatBase],)
+      }, [chatBase]);
 
     useEffect(()=>{
         const combined_users = [...Donors,...Seeker];
@@ -26,7 +28,21 @@ function ChatBase({chatBase,chatBarIcon,setChatBase,collapsed}) {
         setSender(sender_user || {}); 
     },[Donors,Seeker,chatBase,senderId])
     const sendMsg = async () => {
-        console.log('msg called ')
+        const initilise_Chatbase = chatBase.messages.length === 0;
+
+        const newMessage = {
+            'text':messgae,
+            'msg_from':user.uId,
+            'msg_to':sender.uId,
+            'status':'Pending',
+            'dateTime':null
+        }
+        setChatBase(prevChatBase => ({
+            ...prevChatBase,
+            messages: [...prevChatBase.messages, newMessage]
+        }));
+
+        console.log(chatBase.messages)
         setMessage('')
         const data= {
             'msg_text':messgae,
@@ -35,11 +51,11 @@ function ChatBase({chatBase,chatBarIcon,setChatBase,collapsed}) {
             'name':chatBase.name
         }
         console.log('msg called ',data)
-        console.log('msg called ',chatBase.name)
+        console.log('msg called in ',chatBase.name)
         console.log('chaatbase length',chatBase.messages.length)
         //create new chatbase with both user and add msg 
         
-        if(chatBase.messages.length === 0){
+        if(initilise_Chatbase){
             await postView(data,`http://127.0.0.1:8000/api/initilise_Chatbase/`)
             .then(data => {
                 if(data){
@@ -59,9 +75,7 @@ function ChatBase({chatBase,chatBarIcon,setChatBase,collapsed}) {
             if(data){
                 console.log("successfully added new msg ")
                 console.log(data)
-                setChatBase(data.chatBase)
-
-                /* const upDatedChatbase = getChatBase */
+                // const upDatedChatbase = getChatBase 
             }else{
                 console.log("some eror cause not to send message",data)
             }
@@ -76,6 +90,9 @@ function ChatBase({chatBase,chatBarIcon,setChatBase,collapsed}) {
           event.preventDefault();
         }
       };
+
+    
+        
   return (
     <>
         <div className='Chat-base-container d-flex flex-column'>

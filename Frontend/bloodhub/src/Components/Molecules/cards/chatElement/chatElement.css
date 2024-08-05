@@ -12,6 +12,8 @@
 }
 .Chat-element{
     border-bottom: .5px solid rgb(99, 99, 99);
+    padding: 3px;
+    border-radius: 7px;
 }
 .chat-date{
     font-size: 10px;

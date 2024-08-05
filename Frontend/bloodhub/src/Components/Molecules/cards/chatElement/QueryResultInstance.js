@@ -18,7 +18,7 @@ function QueryResultInstance({filterd_user,setChatBase,setChatListCollapsed}) {
 
   return (
 
-    <div className='Chat-element py-1 d-flex ' onClick={updateChatBase}>
+    <div className='Chat-element cursor-pointer py-1 d-flex ' onClick={updateChatBase}>
             <div className='chat-profile-pic'>
                 <img src={filterd_user.dp} alt='Sender profile' height={"100%"} width='100%' />
             </div>

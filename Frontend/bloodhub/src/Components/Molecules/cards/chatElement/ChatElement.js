@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "./chatElement.css"
 import { format, parseISO } from 'date-fns';
 import { useOutletContext } from 'react-router-dom';
-function ChatElement({chat,onClick}) {
+function ChatElement({chat,onClick,className}) {
 
     const {Donors,user,Seeker} = useOutletContext();
     const [sender,setSender] = useState({});
@@ -26,10 +26,10 @@ function ChatElement({chat,onClick}) {
         
     }, [Donors,Seeker,senderId,chat.messages,lastMsg.dateTime,formattedDate]);
     
-    
+
   return (
     <>
-        <div className='Chat-element py-1 d-flex ' onClick={onClick}>
+        <div className={"Chat-element cursor-pointer py-1 d-flex "+className}  onClick={onClick}>
             <div className='chat-profile-pic'>
                 <img src={sender.dp} alt='Sender profile' height={"100%"} width='100%' />
             </div>

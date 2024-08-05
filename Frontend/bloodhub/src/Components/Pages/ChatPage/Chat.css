@@ -108,6 +108,9 @@
   top: 5%;
   left: 2%;
 }
+.selectedChat{
+  background-color: var(--c-theme2);
+}
 @media(max-width:549.99px){
     .chat-list{
         width: 100vw !important;
