@@ -48,7 +48,7 @@ export default function Home() {
     }, []);
     
     const whoWeAreSectionDesc = `
-    We're Zeeshan Ali, Gaurav Gupta, and Ashirwad Gupta, a trio from "Alpha." Studying Computer Science at Mahamaya IT Polytechnic Maharajganj, it's our final year. Our project, "BloodHub," is our minor project focus. BloodHub is all about helping people with blood needs. It's a website we're making to connect blood donors with those who need it urgently. Our goal is to make it easy for donors to help save lives. By creating this platform, we aim to make donating and receiving blood simpler and quicker. We're using what we've learned to make a real difference in healthcare and the community. As a team, we're excited to apply our skills to benefit others by making blood donation more accessible and impactful.
+    We're Zeeshan Ali, Gaurav Gupta, and Ashirwad Gupta, a trio from "Alpha." Studying Computer Science at Mahamaya IT Polytechnic Maharajganj, it's our final year. Our project, "BloodHub," is our major project focus. BloodHub is all about helping people with blood needs. It's a website we're making to connect blood donors with those who need it urgently. Our goal is to make it easy for donors to help save lives. By creating this platform, we aim to make donating and receiving blood simpler and quicker. We're using what we've learned to make a real difference in healthcare and the community. As a team, we're excited to apply our skills to benefit others by making blood donation more accessible and impactful.
 `;
     
     const resetForm = () =>{
