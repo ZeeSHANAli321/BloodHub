@@ -538,3 +538,61 @@ def remove_assign_donors(request):
             return JsonResponse({'error': "Invalid JSON"}, status=400)
 
     return JsonResponse({'error': "Invalid HTTP method"}, status=405)
+
+@csrf_exempt
+def initilise_Chatbase(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            name = data.get('name')
+            msg_text = data.get('msg_text')
+            msg_from = data.get('msg_from')
+            msg_to = data.get('msg_to')
+            print(f"from {msg_from} to {msg_to} : msg:{msg_text} in {name}")
+            if not (name and msg_text and msg_from and msg_to ):
+                return JsonResponse({'error': "Invalid Parameters"}, status=400)
+
+            chatBase = ChatBase.objects.create(name=name)
+            messageInstance = Message.objects.create(text=msg_text,msg_from=msg_from,msg_to=msg_to)
+            messageInstance.save()
+            chatBase.save()
+            chatBase.messages.add(messageInstance)
+            
+            return JsonResponse({'status': 'success','chatBaseId':chatBase.id})
+
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+
+    return JsonResponse({'error': "Invalid HTTP method"}, status=405)
+
+@csrf_exempt
+def send_msg(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            name = data.get('name')
+            msg_text = data.get('msg_text')
+            msg_from = data.get('msg_from')
+            msg_to = data.get('msg_to')
+            print(f"from {msg_from} to {msg_to} : msg:{msg_text} in {name}")
+            if not (name and msg_text and msg_from and msg_to ):
+                return JsonResponse({'error': "Invalid Parameters"}, status=400)
+
+            try:
+                chatbaseInstance = ChatBase.objects.get(name=name)
+            except ChatBase.DoesNotExist:
+                return JsonResponse({'error': "Chatbase not found"}, status=404)
+
+            messageInstance = Message.objects.create(text=msg_text,msg_from=msg_from,msg_to=msg_to)
+            messageInstance.save()
+            chatbaseInstance.messages.add(messageInstance)
+            
+            serializedChatBase = serializers.serialize('json', [chatbaseInstance], use_natural_primary_keys=True)
+            serializedChatBase = json.loads(serializedChatBase)[0]
+            
+            return JsonResponse({'status': 'success','chatBase':serializedChatBase})
+
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+
+    return JsonResponse({'error': "Invalid HTTP method"}, status=405)

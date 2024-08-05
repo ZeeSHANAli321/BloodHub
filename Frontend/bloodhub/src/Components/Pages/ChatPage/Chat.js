@@ -5,61 +5,8 @@ import ChatElement from 'Components/Molecules/cards/chatElement/ChatElement';
 import ChatBase from 'Components/Molecules/cards/ChatBase/ChatBase';
 import { useOutletContext } from 'react-router-dom';
 import { getChatBase } from './ChatFunctions';
-/* const data = [
-  { id:1,
-    logo:BloodDonor,
-    name:"Broadcast msg  ",
-    date:"20/20/2020",
-    description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta, temporibus nostrum dignissimos officia deserunt tempore modi laboriosam a distinctio ab."
-  },
-  { id:2,
-    logo:BloodDonor,
-    name:"Chat msg  ",
-    date:"20/20/2020",
-    description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta, temporibus nostrum dignissimos officia deserunt tempore modi laboriosam a distinctio ab."
-  },
-  { id:3,
-    logo:BloodDonor,
-    name:"THis is name ",
-    date:"20/20/2020",
-    description:"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta, temporibus nostrum dignissimos offic Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta, temporibus nostrum dignissimos officia deserunt tempore modi laboriosam a distinctio ab."
-  }
-]; */
-/* const chatdata = [
-  {
-    id:1,
-    msg:"Hi i am trying to make my chat base ",
-    by:"me",
-    date:"01-01-2001",
-    time:"12am",
-    status:'read'
-  },
-  {
-    id:2,
-    msg:"Good made it  ",
-    by:"you",
-    date:"01-01-2001",
-    time:"12:11am",
-    status:'read'
+import QueryResultInstance from 'Components/Molecules/cards/chatElement/QueryResultInstance';
 
-  },
-  {
-    id:3,
-    msg:"OK, I will try my best",
-    by:"me",
-    date:"01-01-2001",
-    time:"12:12am",
-    status:'pending'
-  },
-  {
-    id:4,
-    msg:"Good Luck Hero  ",
-    by:"you",
-    date:"01-01-2001",
-    time:"12:13am",
-    status:'send'
-  },
-]; */
 
 const ChatBarIcon = ({collapsed,setChatListCollapsed})=>{
   const toggleChatList = () => {
@@ -74,13 +21,14 @@ const ChatBarIcon = ({collapsed,setChatListCollapsed})=>{
   </>)
 }
 export default function Chat() {
-    const {Donors,Seeker,user} = useOutletContext();
-    //console.log(user)
+    const {user,Donors,Seeker} = useOutletContext();
+    const totalUsers = [...Donors,...Seeker].filter((u)=>!(u.emailId === user.emailId && u.type === user.type))   
+    
     const chatListRef = useRef(null);
     const [chatListCollapsed,setChatListCollapsed] = useState(false)
     const [chatbases,setChatbases] = useState([]);
     const [chatbase,setChatBase] = useState(null)
-    //const chatbase = chatdata;
+    const [query,setQuery] = useState('');
 
     useEffect(()=>{
       if(chatListRef.current){
@@ -101,7 +49,7 @@ export default function Chat() {
       }
       getChats()
     },[user.ChatBases])
-
+    
   const changeChatBase = (chat) => {
       setChatBase(chat)
       const screenWidth = window.screen.width;
@@ -126,10 +74,8 @@ export default function Chat() {
                   <div className='chat-search-box w-100'>
                     
                     <i className="fa-solid fa-magnifying-glass fa-lg p-1"></i>
-                    
-
                     <div className='chat-search-input'>
-                        <input type='text'placeholder='Search Users'/>
+                        <input type='text'placeholder='Search Users' value={query} onChange={(e)=>setQuery(e.target.value)}/>
                     </div>
                     
                   </div>
@@ -137,20 +83,29 @@ export default function Chat() {
                 </div>
                 <hr key={"hr1"} style={{margin:".5rem 0px"}}/>
                 <div className='chat-elements-container'>
-                  {
+                  {query === ''
+                  ?
+                    chatbases.length > 0 ?
                     chatbases.map((chat,index)=>(
                       <ChatElement key={index} chat={chat} onClick={()=>{changeChatBase(chat)}} />
+                    )):(<div className='text-center'>No Chats to Display </div>)
+                  
+                  :
+                    totalUsers.filter((item)=> item.firstName.toLowerCase().includes(query.toLowerCase()) || item.lastName.toLowerCase().includes(query.toLowerCase())).map((U,index)=>(
+                      <QueryResultInstance key={index} filterd_user={U} setChatBase={setChatBase} setChatListCollapsed={setChatListCollapsed} />
                     ))
+                  
                   }
+                  
                 </div>
               </div>
               <div className='chat-base'>
                 {chatbase?(
-                  <ChatBase chatBase={chatbase} collapsed={chatListCollapsed} chatBarIcon={<ChatBarIcon  collapsed={chatListCollapsed} setChatListCollapsed={setChatListCollapsed} />}/>
+                  <ChatBase chatBase={chatbase} setChatBase={setChatBase} collapsed={chatListCollapsed} chatBarIcon={<ChatBarIcon  collapsed={chatListCollapsed} setChatListCollapsed={setChatListCollapsed} />}/>
                 ):(
                   <div className='no-cb text-center'>
                     <div className='no-cb-logo-container '>
-                      <img src={logo} height={"100%"} width={"100%"} /> 
+                      <img src={logo} height={"100%"} width={"100%"} alt='Chat_logo'/> 
                     </div>
                     <span className='display-4'>Select any Chat to start chating.</span>
                     <div className='no-cb-chat-bar'>

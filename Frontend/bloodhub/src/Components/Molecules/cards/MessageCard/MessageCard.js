@@ -6,7 +6,7 @@ import { format, parseISO } from 'date-fns';
 function MessageCard({msg}) {
     const {user} = useOutletContext();
     const [formattedtime,setFormattedTime] = useState(null)
-    const me = user.emailId;
+    const me = user.uId;
     const dateTimeString = msg.dateTime;
     useEffect(()=>{
         if(dateTimeString) {
@@ -17,7 +17,6 @@ function MessageCard({msg}) {
             console.warn('Invalid dateTimeString:', dateTimeString);
         }
     },[dateTimeString])
-    console.log(formattedtime)
   return (
     <div className='Message-box-container w-100 d-flex align-items-center pb-2'style={{justifyContent:msg.msg_from === me ? "end" : "start" }} >
          <div className='Message-box  px-md-3'>

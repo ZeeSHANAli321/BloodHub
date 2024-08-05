@@ -107,3 +107,29 @@ export const patchModel = async (updatedData,api) => {
         return null;
     }
 }
+export const postView = async (content,api) => {
+    try {
+        console.warn("POST_VIEW:",api,content)
+        const response = await fetch(api, {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(content)
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            console.log("HTTP error:", response);
+            return null;
+        }else{
+            return data;
+        }
+        
+    } catch (error) {
+        console.error("Error:", error);
+        return null;
+    }
+}

@@ -43,6 +43,8 @@
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   /* border: 2px solid red; */
+  background-image: url("Assets/images/chatBackground.jpg");
+
   border-right: 2px groove black;
   width: 300px;
   display: flex;
@@ -92,6 +94,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
+
 }
 .no-cb-logo-container{
   height: 250px;

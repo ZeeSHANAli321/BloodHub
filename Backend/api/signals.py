@@ -1,14 +1,29 @@
-from django.db.models.signals import m2m_changed
+from django.db.models.signals import m2m_changed,post_save
 from django.dispatch import receiver
 from django.db import transaction
 
 from .models import *
 
-""" @receiver(pre_save, sender=Slider)
-def update_cap_title(sender, instance, **kwargs):
-    if instance.title:
-        instance.capTitle = instance.title.capitalize()
- """
+@receiver(post_save, sender=ChatBase)
+def assign_chatBase(sender, instance, **kwargs):
+    if instance.name:
+        users = instance.name.split('+')
+        
+        if users[0].startswith("DO"):
+            user1 = Donor.objects.get(uId=users[0])
+        else :
+            user1 = Seeker.objects.get(uId=users[0])
+        if users[1].startswith("SE"):
+            user2 = Seeker.objects.get(uId=users[1])
+        else :
+            user2 = Donor.objects.get(uId=users[1])
+        user1.ChatBases.add(instance)
+        user2.ChatBases.add(instance)
+        user1.save()
+        user2.save()
+        
+
+
  
 @receiver(m2m_changed, sender=Seeker.broadcastList.through)
 def update_bloodSeeked(sender, instance, action, **kwargs):
@@ -54,5 +69,16 @@ def add_bloodDonated(sender, instance, action, **kwargs):
                 for donor in instance.accepted_donors.all():
                     donor.broadcastList.remove(instance)
             
-            
+@receiver(post_save, sender=Donor)
+def create_uid(sender, instance,created, **kwargs):
+    if created and instance.emailId:
+        uid = f"DO{instance.emailId}"
+        instance.uId = uid
+        instance.save()
         
+@receiver(post_save, sender=Seeker)
+def create_uid(sender, created,instance, **kwargs):
+    if created and instance.emailId:
+        uid = f"SE{instance.emailId}"
+        instance.uId = uid
+        instance.save()

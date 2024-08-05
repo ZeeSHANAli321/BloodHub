@@ -29,4 +29,6 @@ urlpatterns = [
         path('update_donors/',views.update_donors,name='update_donors'),
         path('assign_donors/',views.assign_donors,name='assign_donors'),
         path('remove_assign_donors/',views.remove_assign_donors,name='remove_assign_donors'),
+        path('initilise_Chatbase/',views.initilise_Chatbase,name='initilise_Chatbase'),
+        path('send_msg/',views.send_msg,name='send_msg'),
 ]

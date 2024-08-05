@@ -29,19 +29,20 @@ class Message(models.Model):
     msg_to = models.CharField(max_length=100)
     dateTime = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=15,choices=(('saved','saved'),
-                                                     ('read','read')))
+                                                     ('read','read')),default="saved")
     def __str__(self):
         return f"{self.msg_from} to {self.msg_to} : {self.text}"
     
 class ChatBase(models.Model):
     name = models.CharField(max_length=100)
-    messages = models.ManyToManyField(Message,related_name='chat_bases')
+    messages = models.ManyToManyField(Message,related_name='chat_bases',blank=True)
     
     def __str__(self):
         return f"{self.name}'s"
     
 
 class Donor(models.Model):
+    uId = models.CharField(max_length=50,unique=True,blank=True)
     type=models.CharField(default="DONOR", max_length=50 )
     dp = models.ImageField(upload_to='dp_images/',default="default_pics/blooddonor.png")
     firstName = models.CharField(max_length=50)
@@ -75,7 +76,7 @@ class Donor(models.Model):
 
     notifications = models.ManyToManyField(Notifications,related_name='donors',blank=True)
     ChatBases = models.ManyToManyField(ChatBase,related_name='donors',blank=True)
-    bloodDonated = models.ManyToManyField('BroadcastModel',related_name='donors')
+    bloodDonated = models.ManyToManyField('BroadcastModel',related_name='donors',blank=True)
     
     
     eligible = models.BooleanField(default=True)
@@ -113,6 +114,7 @@ class BroadcastModel(models.Model):
         return f"{self.userId}'s created at {self.created_at}"
         
 class Seeker(models.Model):
+    uId = models.CharField(default="SE",max_length=50,unique=True)
     type=models.CharField(default="SEEKER", max_length=50 )
     dp = models.ImageField(upload_to='dp_images/',default="default_pics/job-seeker.png")
     firstName = models.CharField(max_length=50)
