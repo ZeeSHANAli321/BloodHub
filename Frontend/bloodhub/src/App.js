@@ -12,6 +12,7 @@ import UserProfile from 'Components/Pages/userProfile/UserProfile';
 import Map from 'Components/Pages/Map/Map';
 import UserPanelBase from 'Components/Pages/UserPanelBase';
 import Chat from 'Components/Pages/ChatPage/Chat';
+import PrivacyPolicy from 'Components/Pages/PrivacyPolicy/PrivacyPolicy';
 import Broadcast from 'Components/Pages/BroadcastPage/Broadcast';
 import Notifications from 'Components/Pages/NotificationsPage/Notifications';
 import Loading from 'Components/Pages/LoadingPage/Loading';
