@@ -182,13 +182,16 @@ class UserDevice(models.Model):
     
     #blood drive model
 class BloodDrive(models.Model):
-    drive_name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     organizer = models.CharField(max_length=100)
     date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
-    location = models.CharField(max_length=200)
-    contact_person = models.CharField(max_length=100)
+    address = models.CharField(max_length=200)
+
+    lat = models.DecimalField(max_digits=9, decimal_places=6,null=True)
+    lng = models.DecimalField(max_digits=9, decimal_places=6,null=True)
+
     contact_phone = models.CharField(max_length=15)
     contact_email = models.EmailField()
     description = models.TextField(blank=True, null=True)
@@ -199,19 +202,23 @@ class BloodDrive(models.Model):
         return self.drive_name 
 
 class BloodBank(models.Model):
-    bank_name = models.CharField(max_length=100)
-    location = models.CharField(max_length=200)
-    contact_person = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    address = models.CharField(max_length=200)
     contact_phone = models.CharField(max_length=15)
+
+    lat = models.DecimalField(max_digits=9, decimal_places=6,null=True)
+    lng = models.DecimalField(max_digits=9, decimal_places=6,null=True)
+
     contact_email = models.EmailField()
-    a_positive = models.IntegerField(default=0)
+    """ a_positive = models.IntegerField(default=0)
     a_negative = models.IntegerField(default=0)
     b_positive = models.IntegerField(default=0)
     b_negative = models.IntegerField(default=0)
     ab_positive = models.IntegerField(default=0)
     ab_negative = models.IntegerField(default=0)
     o_positive = models.IntegerField(default=0)
-    o_negative = models.IntegerField(default=0)
+    o_negative = models.IntegerField(default=0) """
+    blood_Quantity = models.DecimalField(max_digits=10, decimal_places=2,default=0.00)
     last_updated = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='blood_bank_images/', blank=True, null=True)
 

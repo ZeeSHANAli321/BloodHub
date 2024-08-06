@@ -28,6 +28,8 @@ export default function UserPanelBase() {
     const [token, setToken] = useState(null);
     const [ignore,setIgnore] = useState(false);
     const [notificationPermission, setNotificationPermission] = useState(null);
+    const BloodBanks = GetData(`http://localhost:8000/api/BloodBank/`)
+    const BloodDrives = GetData(`http://localhost:8000/api/BloodDrive/`)
     const Donors = GetData("http://localhost:8000/api/donor/");
     const Seeker = GetData("http://localhost:8000/api/seeker/");
     useEffect(() => {
@@ -83,6 +85,8 @@ export default function UserPanelBase() {
         }
       };
 
+console.log(BloodDrives)
+
 
   return (
     <>
@@ -118,7 +122,7 @@ export default function UserPanelBase() {
 
         </div>
         <div className='bodyContainer '>
-            <Outlet context={{user,Donors,Seeker}} />
+            <Outlet context={{user,Donors,Seeker,BloodBanks,BloodDrives}} />
         </div>
     </div>
     

@@ -59,6 +59,12 @@ class MessageModel_Viewsets(viewsets.ModelViewSet):
 class Slider_viewsets(viewsets.ModelViewSet):
     queryset = Slider.objects.all()
     serializer_class = sliderSerialiszer
+class BloodBank_viewsets(viewsets.ModelViewSet):
+    queryset = BloodBank.objects.all()
+    serializer_class = bloodBankserializer
+class BloodDrive_viewsets(viewsets.ModelViewSet):
+    queryset = BloodDrive.objects.all()
+    serializer_class = bloodDriveSerializer
     
 @csrf_exempt
 def login_view(request):

@@ -79,7 +79,7 @@ const Term = () => {
           </section>
         </main>
       </div>
-      <Footer color="var(--c-theme2)" />
+      <Footer color="var(--c-white)" />
     </>
   );
 };

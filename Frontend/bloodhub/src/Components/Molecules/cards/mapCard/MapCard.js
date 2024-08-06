@@ -4,14 +4,14 @@ import { MapContainer, TileLayer, Marker, Popup,useMapEvents, useMap, LayerGroup
 import 'leaflet/dist/leaflet.css';
 import donorPinImg from "Assets/images/donorPin.png"
 import seekerPinImg from "Assets/images/seekerPin.png"
-/* import bloodBankPinImg from "Assets/images/bloodBankPin.png"
-import activeDrivePinImg from "Assets/images/activeDrivePin.png" */
+import bloodBankPinImg from "Assets/images/bloodBankPin.png"
+import activeDrivePinImg from "Assets/images/activeDrivePin.png"
 import { placingRoute } from './calculateRouteAndDistance ';
 import myPinImg from "Assets/images/myPin.png"
 import  BloodDonor  from "Assets/images/blooddonor.png"
 import L from 'leaflet';
 import { useState,useEffect } from 'react';
-import { patchUser } from 'Services/FetchData';
+import { GetData, patchUser } from 'Services/FetchData';
 import MapPopup from '../MapPopup/MapPopup';
 import { LayersControl,Circle } from 'react-leaflet';
 import { useOutletContext, useParams } from 'react-router-dom';
@@ -33,7 +33,7 @@ const seekerPin = new L.Icon({
   iconAnchor: [20, 40],
   popupAnchor: [0, -40],
 });
-/* const bloodBankPin = new L.Icon({
+const bloodBankPin = new L.Icon({
   iconUrl: bloodBankPinImg, 
   iconSize: [40, 40],
   iconAnchor: [20, 40],
@@ -45,7 +45,7 @@ const activeDrivePin = new L.Icon({
   iconAnchor: [20, 40],
   popupAnchor: [0, -40],
 });
- */
+
 const MyLocationMarker = (userId) => {
   const {lat,lng} = useParams();
   const [position, setPosition] = useState(null);
@@ -125,7 +125,13 @@ const getFilteredUser = (query,items)=>{
     if(!query){
       return null;
     }else{
-      return items.filter((item)=> item.firstName.toLowerCase().includes(query.toLowerCase()) || item.lastName.toLowerCase().includes(query.toLowerCase()));
+      return items.filter((item)=> {
+        if(item.uId){
+          return item.firstName.toLowerCase().includes(query.toLowerCase()) || item.lastName.toLowerCase().includes(query.toLowerCase())
+        }else{
+          return item.name.toLowerCase().includes(query.toLowerCase()) 
+        }
+      });
     }
 }
 const GetRouteButton = ({start,end,onclick=()=>{}})=>{
@@ -144,10 +150,11 @@ const GetRouteButton = ({start,end,onclick=()=>{}})=>{
       </div>
   </>);
 }
-const SearchBox = ({Donors,Seeker,myLocation,setSearchBox})=>{
+const SearchBox = ({Donors,Seeker,myLocation,setSearchBox,BloodBanks,BloodDrives})=>{
   const parentMap = useMap();
   const [query,setQuery] = useState("");
-  const filteredUser = getFilteredUser(query,[...Donors,...Seeker]);
+  console.log(BloodDrives)
+  const filteredUser = getFilteredUser(query,[...Donors,...Seeker,...BloodBanks,...BloodDrives]);
   const disableMapEvents = ()=>{
     parentMap.dragging.disable();
     parentMap.scrollWheelZoom.disable();
@@ -166,13 +173,15 @@ const SearchBox = ({Donors,Seeker,myLocation,setSearchBox})=>{
                   <div className='searchOutput' key={index}>
                     <div className='d-flex'>
                       <div className='userProfileImg'>
-                          <img height={"100%"} width={"100%"} src={BloodDonor} alt={user.firstName} />
+                          <img height={"100%"} width={"100%"} src={user.uId?user.dp:user.image} alt={user.firstName} />
                       </div>
                       <div className='userDetails p-2'>
-                          <span>{user.firstName+" "+user.lastName+" "+user.bloodGroup}</span>
+                          <span>{user.uId?user.firstName+" "+user.lastName+" "+user.bloodGroup:user.name}</span>
                       </div>
                       <div className='type p-2 ms-auto'>
-                          <span className='text-success '>DONOR</span>
+                          <span className='text-success '>{user.uId?
+                            user.type.toLowerCase()==="DONOR"?"DONOR":"SEEKER"
+                          :user.blood_Quantity?"BLOOD BANK":"BLOOD DRIVE"}</span>
                       </div>
                       {/* locateUser */}        
                       <GetRecenterUser lat={user.lat} lng={user.lng} onclick={()=>{setSearchBox(false);}} />
@@ -193,7 +202,7 @@ const SearchBox = ({Donors,Seeker,myLocation,setSearchBox})=>{
 
 export default function MapCard({ className,style,height,mapFunction=false }) {
   let start ={}
-  const {Donors,Seeker,user} = useOutletContext();
+  const {Donors,Seeker,user,BloodBanks,BloodDrives} = useOutletContext();
   if(user){
      start = {lat:user.lat,lng:user.lng}
   }
@@ -203,6 +212,8 @@ export default function MapCard({ className,style,height,mapFunction=false }) {
     searchBox?setSearchBox(false):setSearchBox(true);
   }
 
+  //setBloodBank(GetData(`http://localhost:8000/api/BloodBank/`))
+  console.log(BloodBanks)
   return (
 
     <div className={className} style={style}>
@@ -238,7 +249,7 @@ export default function MapCard({ className,style,height,mapFunction=false }) {
           }
         {/* end Map functions */}
         {searchBox?<>
-        <SearchBox Donors={Donors} Seeker={Seeker} myLocation={start} setSearchBox={setSearchBox}/>
+        <SearchBox Donors={Donors} Seeker={Seeker} BloodBanks={BloodBanks} BloodDrives={BloodDrives} myLocation={start} setSearchBox={setSearchBox}/>
         </>:<></>}  
        
 
@@ -270,6 +281,41 @@ export default function MapCard({ className,style,height,mapFunction=false }) {
                     <Marker position={{ lat: seeker.lat, lng: seeker.lng }} icon={seekerPin} key={index} >
                       <Popup>
                         <MapPopup data={seeker} type="Seeker" start={start} GetRouteButton={GetRouteButton} GetRecenterUser={GetRecenterUser}/>
+                      </Popup>
+                    </Marker>
+                    </>
+                  ))
+                }
+              </LayerGroup>
+            </LayersControl.Overlay>
+            
+            <LayersControl.Overlay checked name='BloodBanks' key={"BLoodBank"}>
+              <LayerGroup>
+                { BloodBanks &&
+                  BloodBanks.filter(bank => bank.lat && bank.lng)
+                  .map((bank,index)=>(
+                    <>
+                    <Marker position={{ lat: bank.lat, lng: bank.lng }} icon={bloodBankPin} key={index} >
+                      <Popup>
+                        <MapPopup data={bank} type="bank" start={start} GetRouteButton={GetRouteButton} GetRecenterUser={GetRecenterUser}/>
+                      </Popup>
+                    </Marker>
+                    </>
+                  ))
+                }
+              </LayerGroup>
+            </LayersControl.Overlay>
+            
+            
+            <LayersControl.Overlay checked name='Blood Drives' key={"BloodDrives"}>
+              <LayerGroup>
+                { BloodDrives &&
+                  BloodDrives.filter(drive => drive.lat && drive.lng)
+                  .map((drive,index)=>(
+                    <>
+                    <Marker position={{ lat: drive.lat, lng: drive.lng }} icon={activeDrivePin} key={index} >
+                      <Popup>
+                        <MapPopup data={drive} type="drive" start={start} GetRouteButton={GetRouteButton} GetRecenterUser={GetRecenterUser}/>
                       </Popup>
                     </Marker>
                     </>

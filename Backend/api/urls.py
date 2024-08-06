@@ -15,6 +15,8 @@ router.register(r'Notifications',NotificationModel_ViewSets)
 router.register(r'ChatBase',ChatBaseModel_Viewsets)
 router.register(r'Message',MessageModel_Viewsets)
 router.register(r'Slider',Slider_viewsets)
+router.register(r'BloodBank',BloodBank_viewsets)
+router.register(r'BloodDrive',BloodDrive_viewsets)
 
 
 urlpatterns = [

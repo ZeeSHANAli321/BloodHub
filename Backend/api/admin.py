@@ -49,3 +49,5 @@ admin.site.register(Message)
 admin.site.register(ChatBase)
 admin.site.register(Slider)
 
+admin.site.register(BloodBank)
+admin.site.register(BloodDrive)

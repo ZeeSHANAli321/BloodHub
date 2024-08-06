@@ -10,7 +10,7 @@ export default function MapPopup({data,type,GetRouteButton,start,GetRecenterUser
             <img style={{height:'100%',width:"100%"}} src={BloodDonor} alt={data.firstname + "s image"} />
         </div>
         <div className='pinInfo d-flex flex-column'>
-            <span className=''> <b>{data.firstName+" "+data.lastName}</b> ({data.bloodGroup})</span>
+            <span className=''> <b>{data.uId?data.firstName+" "+data.lastName:data.name}</b></span>
             <small className='text-danger '>Blood {type}</small>
         </div>
         <div className='pinBtn

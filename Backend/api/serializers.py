@@ -57,3 +57,13 @@ class sliderSerialiszer(serializers.HyperlinkedModelSerializer):
         model = Slider
         fields = "__all__"
     
+class bloodBankserializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = BloodBank
+        fields = "__all__"
+    
+class bloodDriveSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = BloodDrive
+        fields = "__all__"
+    

@@ -94,7 +94,7 @@ const PrivacyPolicy = () => {
           <p>© 2024 BloodHub. All rights reserved.</p>
         </footer>
       </div>
-      <Footer color="var(--c-theme2)" />
+      <Footer color="var(--c-white)" />
     </>
   );
 };

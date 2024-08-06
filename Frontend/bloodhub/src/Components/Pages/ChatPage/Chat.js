@@ -152,18 +152,19 @@ export default function Chat() {
                 </div>
                 <hr key={"hr1"} style={{margin:".5rem 0px"}}/>
                 <div className='chat-elements-container'>
+                  
+                {query === '' ? (<>
                   {selectedChat && (
                     <ChatElement chat={selectedChat} className={"selectedChat"} />
                   )}
-                {query === '' ? (
-                    notSelectedChats.length > 0 ? (
+                    {notSelectedChats.length > 0 ? (
                       notSelectedChats.map((chat, index) => (
                         <ChatElement key={index} chat={chat} onClick={() => { changeChatBase(chat); }} />
                       ))
                     ) : (
                       <div className='text-center'>No Chats to Display</div>
-                    )
-                  ) : (
+                    )}
+                    </>) : (
                     <>
                       
                       {chatbases.length > 0 &&(<>
