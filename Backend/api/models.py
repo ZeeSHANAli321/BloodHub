@@ -177,4 +177,41 @@ class UserDevice(models.Model):
     device_token = models.CharField(max_length=255)
     def __str__(self):
         return F"{self.user}'s Device Token"
+    
+    #blood drive model
+class BloodDrive(models.Model):
+    drive_name = models.CharField(max_length=100)
+    organizer = models.CharField(max_length=100)
+    date = models.DateField()
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+    location = models.CharField(max_length=200)
+    contact_person = models.CharField(max_length=100)
+    contact_phone = models.CharField(max_length=15)
+    contact_email = models.EmailField()
+    description = models.TextField(blank=True, null=True)
+    requirements = models.TextField(blank=True, null=True)
+    image = models.ImageField(upload_to='blood_drive_images/', blank=True, null=True)
 
+    def __str__(self):
+        return self.drive_name 
+
+class BloodBank(models.Model):
+    bank_name = models.CharField(max_length=100)
+    location = models.CharField(max_length=200)
+    contact_person = models.CharField(max_length=100)
+    contact_phone = models.CharField(max_length=15)
+    contact_email = models.EmailField()
+    a_positive = models.IntegerField(default=0)
+    a_negative = models.IntegerField(default=0)
+    b_positive = models.IntegerField(default=0)
+    b_negative = models.IntegerField(default=0)
+    ab_positive = models.IntegerField(default=0)
+    ab_negative = models.IntegerField(default=0)
+    o_positive = models.IntegerField(default=0)
+    o_negative = models.IntegerField(default=0)
+    last_updated = models.DateTimeField(auto_now=True)
+    image = models.ImageField(upload_to='blood_bank_images/', blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.bank_name} - {self.location}"

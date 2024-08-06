@@ -53,10 +53,10 @@ export default function Footer({color}) {
               <div className="row">
                 <div className="col-md-10 mx-auto d-inline-flex justify-content-center">
                     <ul className="d-inline-flex footerLinks  ">
-                        <li><Link to={""} style={{textDecoration:"none",color:"black"}}>Privacy Policy</Link></li>
-                        <li><Link to={""} style={{textDecoration:"none",color:"black"}}>Terms and Condition</Link></li>
-                        <li><Link to={""} style={{textDecoration:"none",color:"black"}}>About Us</Link></li>
-                        <li><Link to={""} style={{textDecoration:"none",color:"black"}}>Contact Us</Link></li>
+                        <li><Link to="/privacyPolicy" style={{textDecoration:"none",color:"black"}}>Privacy Policy</Link></li>
+                        <li><Link to="/term" style={{textDecoration:"none",color:"black"}}>Terms and Condition</Link></li>
+                        <li><Link to="/#whoWeAre" style={{textDecoration:"none",color:"black"}}>About Us</Link></li>
+                        <li><Link to="/#contact" style={{textDecoration:"none",color:"black"}}>Contact Us</Link></li>
                     </ul>
                 </div>
               </div>
