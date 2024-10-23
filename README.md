@@ -21,3 +21,6 @@ BloodHub is a dynamic and user-friendly web application dedicated to bridging th
 To get started with BloodHub, simply [insert instructions on how to run or access the platform].
 
 Join us in making a life-saving impact! 🩸✨
+
+## Teammate
+1.[Gaurav Gupta]((https://github.com/codewithgaurave))
