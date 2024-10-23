@@ -23,4 +23,4 @@ To get started with BloodHub, simply [insert instructions on how to run or acces
 Join us in making a life-saving impact! 🩸✨
 
 ## Teammate
-1.[Gaurav Gupta]((https://github.com/codewithgaurave))
+1 [Gaurav Gupta](https://github.com/codewithgaurave)
